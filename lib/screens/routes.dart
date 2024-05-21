@@ -72,4 +72,6 @@ class RouteNames {
   static const String addBookRoute = "/add_book_route";
   static const String newsRoute = "/news_route";
   static const String profileRoute = "/profile_route";
+  static const String notificationScreen = 'notification_Screen';
+
 }

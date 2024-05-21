@@ -10,6 +10,11 @@ class AppImages {
   static const String lock = "assets/icons/lock.svg";
   static const String shelf = "assets/icons/shelf.svg";
   static const String user = "assets/icons/user.svg";
+  static const String home = "assets/icons/home.svg";
+  static const String search = "assets/icons/search.svg";
+  static const String tabProfile = "assets/icons/tab_profile.svg";
+  static const String settings = "assets/icons/settings.svg";
+
 
   //lottie
   static const String lottie = "assets/lottie/lottie.json";

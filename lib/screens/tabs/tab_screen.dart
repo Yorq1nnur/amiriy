@@ -1,21 +1,25 @@
 import 'dart:convert';
-
 import 'package:amiriy/bloc/bottom/bottom_bloc.dart';
+import 'package:amiriy/bloc/bottom/bottom_event.dart';
 import 'package:amiriy/bloc/bottom/bottom_state.dart';
+import 'package:amiriy/bloc/notification/notification_bloc.dart';
+import 'package:amiriy/bloc/notification/notification_event.dart';
+import 'package:amiriy/data/models/notification_model.dart';
+import 'package:amiriy/permissions/app_permissions.dart';
+import 'package:amiriy/screens/routes.dart';
+import 'package:amiriy/screens/tabs/book/books_screen.dart';
+import 'package:amiriy/screens/tabs/categories/categories_screen.dart';
 import 'package:amiriy/screens/tabs/settings/settings_screen.dart';
+import 'package:amiriy/screens/widgets/my_notification_button.dart';
+import 'package:amiriy/services/local_notification_service.dart';
+import 'package:amiriy/utils/colors/app_colors.dart';
+import 'package:amiriy/utils/images/app_images.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_utils/my_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
-import '../../bloc/bottom/bottom_event.dart';
-import '../../bloc/notification/notification_bloc.dart';
-import '../../bloc/notification/notification_event.dart';
-import '../../data/models/notification_model.dart';
-import '../../permissions/app_permissions.dart';
-import '../../services/local_notification_service.dart';
-import 'book/books_screen.dart';
-import 'categories/categories_screen.dart';
 
 class TabScreen extends StatefulWidget {
   const TabScreen({super.key});
@@ -25,11 +29,6 @@ class TabScreen extends StatefulWidget {
 }
 
 class _TabScreenState extends State<TabScreen> {
-  List<Widget> screens = const [
-    CategoriesScreen(),
-    BooksScreen(),
-    SettingsScreen(),
-  ];
   String messageTitle = "";
 
   bool showMessage = false;
@@ -41,6 +40,129 @@ class _TabScreenState extends State<TabScreen> {
     _getMyToken();
     _getPermission();
     super.initState();
+  }
+
+  _getPermission() async {
+    await Permission.notification.isDenied.then((value) {
+      if (value) {
+        Permission.notification.request();
+      }
+    });
+  }
+
+  final List<Widget> screens = [
+    const BooksScreen(),
+    const CategoriesScreen(),
+    const SettingsScreen(),
+    const SettingsScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: BlocBuilder<BottomBloc, ChangeIndexState>(
+        builder: (context, state) {
+          return Stack(
+            children: [
+              IndexedStack(
+                index: state.index,
+                children: screens,
+              ),
+              if (showMessage)
+                NotificationMyButton(
+                  messageTitle: messageTitle,
+                  onTab: () {
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.notificationScreen,
+                    );
+                  },
+                ),
+            ],
+          );
+        },
+      ),
+      bottomNavigationBar: BlocBuilder<BottomBloc, ChangeIndexState>(
+        builder: (context, state) {
+          return BottomNavigationBar(
+            selectedItemColor: AppColors.black,
+            currentIndex: state.index,
+            type: BottomNavigationBarType.fixed,
+            onTap: (index) {
+              context.read<BottomBloc>().add(ChangeIndexEvent(
+                    index: index,
+                  ));
+            },
+            items: [
+              BottomNavigationBarItem(
+                activeIcon: SvgPicture.asset(
+                  AppImages.home,
+                  colorFilter:
+                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                icon: SvgPicture.asset(
+                  AppImages.home,
+                  colorFilter:
+                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                label: "",
+              ),
+              BottomNavigationBarItem(
+                activeIcon: SvgPicture.asset(
+                  AppImages.search,
+                  colorFilter:
+                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                icon: SvgPicture.asset(
+                  AppImages.search,
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                label: "",
+              ),
+              BottomNavigationBarItem(
+                activeIcon: SvgPicture.asset(
+                  AppImages.tabProfile,
+                  colorFilter:
+                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                icon: SvgPicture.asset(
+                  AppImages.tabProfile,
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                label: "",
+              ),
+              BottomNavigationBarItem(
+                activeIcon: SvgPicture.asset(
+                  AppImages.settings,
+                  colorFilter:
+                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                icon: SvgPicture.asset(
+                  AppImages.settings,
+                  height: 24.h,
+                  width: 24.h,
+                  colorFilter:
+                      const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                ),
+                label: "",
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 
   _getMyToken() async {
@@ -65,99 +187,15 @@ class _TabScreenState extends State<TabScreen> {
           messageTitle = notificationModel.title;
           setState(() {});
 
-          await Future.delayed(const Duration(seconds: 3));
+          await Future.delayed(
+            const Duration(
+              seconds: 3,
+            ),
+          );
           showMessage = false;
           setState(() {});
         }
       },
-    );
-  }
-
-  _getPermission() async {
-    await Permission.notification.isDenied.then((value) {
-      if (value) {
-        Permission.notification.request();
-      }
-    });
-    await Permission.camera.isDenied.then((value) {
-      if (value) {
-        Permission.notification.request();
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: BlocBuilder<BottomBloc, ChangeIndexState>(
-        builder: (context, state) {
-          return Stack(
-            children: [
-              IndexedStack(
-                index: state.index,
-                children: screens,
-              ),
-            ],
-          );
-        },
-      ),
-      bottomNavigationBar: BlocBuilder<BottomBloc, ChangeIndexState>(
-        builder: (context, state) {
-          return BottomNavigationBar(
-            currentIndex: state.index,
-            type: BottomNavigationBarType.fixed,
-            onTap: (index) {
-              context.read<BottomBloc>().add(
-                    ChangeIndexEvent(
-                      index: index,
-                    ),
-                  );
-            },
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.category,
-                  color: Colors.black,
-                  size: 20.w,
-                ),
-                label: "Categories",
-                activeIcon: Icon(
-                  Icons.category,
-                  color: Colors.blue,
-                  size: 30.w,
-                ),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.book,
-                  color: Colors.black,
-                  size: 20.w,
-                ),
-                label: "Books",
-                activeIcon: Icon(
-                  Icons.book,
-                  color: Colors.blue,
-                  size: 30.w,
-                ),
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.settings,
-                  color: Colors.black,
-                  size: 20.w,
-                ),
-                label: "Settings",
-                activeIcon: Icon(
-                  Icons.settings,
-                  color: Colors.blue,
-                  size: 30.w,
-                ),
-              ),
-            ],
-          );
-        },
-      ),
     );
   }
 }
