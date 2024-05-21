@@ -10,11 +10,9 @@ import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/constants/app_constants.dart';
 import 'package:amiriy/utils/formaters/formatters.dart';
 import 'package:amiriy/utils/images/app_images.dart';
-import 'package:amiriy/utils/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:my_utils/my_utils.dart';
 import '../../routes.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -177,8 +175,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               SizedBox(width: 10.w),
                               Text(
                                 "sign_up_google",
-                                style: AppTextStyle.interBold.copyWith(
-                                    fontSize: 14, color: Colors.white),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.copyWith(
+                                      fontSize: 14,
+                                    ),
                               ),
                             ],
                           ),
@@ -205,8 +207,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: Text(
                             'Sign up',
-                            style: AppTextStyle.interBold.copyWith(
-                                fontSize: 12, color: AppColors.c9D9EA8),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  fontSize: 12,
+                                ),
                           ),
                         )
                       ],

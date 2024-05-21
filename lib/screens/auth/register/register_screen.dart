@@ -12,9 +12,8 @@ import 'package:amiriy/utils/formaters/formatters.dart';
 import 'package:amiriy/utils/images/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_utils/my_utils.dart';
 import '../../../data/models/user_model.dart';
-import '../../../utils/styles/app_text_style.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -188,7 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               SizedBox(width: 10.w),
                               Text(
                                 "sign_up_google",
-                                style: AppTextStyle.interBold.copyWith(
+                                style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                     fontSize: 14, color: Colors.white),
                               ),
                             ],
@@ -214,7 +213,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           child: Text(
                             "login",
-                            style: AppTextStyle.interRegular.copyWith(
+                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               fontSize: 12,
                               color: AppColors.cCA5A5A,
                             ),

@@ -1,5 +1,4 @@
 import 'package:amiriy/screens/auth/widgets/global_textbutton.dart';
-import 'package:amiriy/utils/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 errorDialog({
@@ -19,13 +18,12 @@ errorDialog({
               children: [
                 Text(
                   "!!!",
-                  style: AppTextStyle.interBold
-                      .copyWith(color: Colors.redAccent, fontSize: 20),
+                  style: Theme.of(context).textTheme.titleLarge
+                      ?.copyWith(color: Colors.redAccent, fontSize: 20),
                 ),
                 Text(
                   errorText,
-                  style: AppTextStyle.interBold
-                      .copyWith(color: Colors.redAccent, fontSize: 24),
+                  style:Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.redAccent, fontSize: 24),
                 ),
                 const SizedBox(height: 20),
                 GlobalTextButton(

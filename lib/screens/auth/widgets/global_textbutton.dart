@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 import '../../../utils/colors/app_colors.dart';
-import '../../../utils/styles/app_text_style.dart';
 
 class GlobalTextButton extends StatelessWidget {
   const GlobalTextButton({
@@ -34,8 +33,8 @@ class GlobalTextButton extends StatelessWidget {
               )
             : Text(
                 text,
-                style: AppTextStyle.interBold
-                    .copyWith(fontSize: 14, color: Colors.white),
+                style: Theme.of(context).textTheme.titleLarge
+                    ?.copyWith(fontSize: 14, color: Colors.white),
               ),
       ),
     );

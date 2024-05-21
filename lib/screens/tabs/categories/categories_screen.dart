@@ -1,8 +1,7 @@
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
-import 'package:amiriy/utils/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_utils/my_utils.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -23,8 +22,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         centerTitle: true,
         title: Text(
           "Categories",
-          style: AppTextStyle.interBold.copyWith(
-            color: AppColors.black,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
             fontSize: 20.sp,
             fontWeight: FontWeight.w900,
           ),

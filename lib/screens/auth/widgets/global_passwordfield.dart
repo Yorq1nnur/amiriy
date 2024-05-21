@@ -1,4 +1,3 @@
-import 'package:amiriy/utils/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 import '../../../utils/colors/app_colors.dart';
@@ -43,7 +42,7 @@ class _GlobalPasswordFieldState extends State<GlobalPasswordField> {
           ],
         ),
         child: TextFormField(
-          style: AppTextStyle.interRegular.copyWith(fontSize: 14),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 14.w),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
             if (value!.isEmpty) {
@@ -103,10 +102,9 @@ class _GlobalPasswordFieldState extends State<GlobalPasswordField> {
               ),
             ),
             hintText: widget.title,
-            hintStyle: AppTextStyle.interRegular.copyWith(
-              fontSize: 14,
-              color: AppColors.c9D9EA8.withOpacity(0.6),
-            ),
+            hintStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontSize: 14,
+                ),
           ),
         ),
       ),

@@ -1,5 +1,4 @@
 import 'package:amiriy/utils/colors/app_colors.dart';
-import 'package:amiriy/utils/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 
@@ -21,7 +20,7 @@ class NotificationMyButton extends StatelessWidget {
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
           shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
         onPressed: onTab,
         child: Container(
@@ -41,10 +40,9 @@ class NotificationMyButton extends StatelessWidget {
           ),
           child: Text(
             messageTitle,
-            style: AppTextStyle.interBold.copyWith(
-              color: AppColors.black,
-              fontSize: 20,
-            ),
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontSize: 20,
+                ),
           ),
         ),
       ),

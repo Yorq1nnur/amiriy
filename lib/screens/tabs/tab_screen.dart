@@ -33,14 +33,7 @@ class _TabScreenState extends State<TabScreen> {
 
   bool showMessage = false;
 
-  @override
-  void initState() {
-    AppPermissions();
 
-    _getMyToken();
-    _getPermission();
-    super.initState();
-  }
 
   _getPermission() async {
     await Permission.notification.isDenied.then((value) {
@@ -50,12 +43,20 @@ class _TabScreenState extends State<TabScreen> {
     });
   }
 
-  final List<Widget> screens = [
-    const BooksScreen(),
-    const CategoriesScreen(),
-    const SettingsScreen(),
-    const SettingsScreen(),
-  ];
+  late List<Widget> screens = [];
+
+  @override
+  void initState() {
+    AppPermissions();
+    screens = [
+      const BooksScreen(),
+      const CategoriesScreen(),
+    ];
+
+    _getMyToken();
+    _getPermission();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,38 +124,6 @@ class _TabScreenState extends State<TabScreen> {
                   AppImages.search,
                   height: 24.h,
                   width: 24.h,
-                ),
-                label: "",
-              ),
-              BottomNavigationBarItem(
-                activeIcon: SvgPicture.asset(
-                  AppImages.tabProfile,
-                  colorFilter:
-                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-                  height: 24.h,
-                  width: 24.h,
-                ),
-                icon: SvgPicture.asset(
-                  AppImages.tabProfile,
-                  height: 24.h,
-                  width: 24.h,
-                ),
-                label: "",
-              ),
-              BottomNavigationBarItem(
-                activeIcon: SvgPicture.asset(
-                  AppImages.settings,
-                  colorFilter:
-                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-                  height: 24.h,
-                  width: 24.h,
-                ),
-                icon: SvgPicture.asset(
-                  AppImages.settings,
-                  height: 24.h,
-                  width: 24.h,
-                  colorFilter:
-                      const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
                 ),
                 label: "",
               ),

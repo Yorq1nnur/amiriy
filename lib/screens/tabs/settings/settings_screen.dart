@@ -3,11 +3,9 @@ import 'package:amiriy/utils/images/app_images.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_utils/my_utils.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-import '../../../utils/colors/app_colors.dart';
-import '../../../utils/styles/app_text_style.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -34,8 +32,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           centerTitle: true,
           title: Text(
             "Settings",
-            style: AppTextStyle.interBold.copyWith(
-              color: AppColors.black,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontSize: 20.sp,
               fontWeight: FontWeight.w900,
             ),
@@ -63,7 +60,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: user?.photoURL == null
                 ? ClipRRect(
                     borderRadius: BorderRadius.circular(
-                      16.r,
+                      16,
                     ),
                     child: Image.network(
                       "https://www.tenforums.com/attachments/tutorials/146359d1501443008-change-default-account-picture-windows-10-a-user.png",
@@ -74,7 +71,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   )
                 : ClipRRect(
                     borderRadius: BorderRadius.circular(
-                      16.r,
+                      16,
                     ),
                     child: Image.network(
                       user!.photoURL!,

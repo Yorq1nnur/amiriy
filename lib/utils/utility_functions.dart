@@ -1,4 +1,3 @@
-import 'package:amiriy/utils/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 showSnackBar({required BuildContext context, required String message}) {
@@ -11,8 +10,9 @@ showSnackBar({required BuildContext context, required String message}) {
       content: Text(
         message,
         textAlign: TextAlign.center,
-        style: AppTextStyle.interSemiBold
-            .copyWith(fontSize: 32, color: Colors.white),
+        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontSize: 32,
+            ),
       ),
     ),
   );

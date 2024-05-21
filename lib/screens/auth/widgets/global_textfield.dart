@@ -1,7 +1,5 @@
-import 'package:amiriy/utils/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_utils/my_utils.dart';
 import '../../../utils/colors/app_colors.dart';
 
@@ -48,7 +46,7 @@ class GlobalTextField extends StatelessWidget {
           ],
         ),
         child: TextFormField(
-          style: AppTextStyle.interRegular.copyWith(fontSize: 14.sp),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 14.sp),
           onChanged: onChanged,
           inputFormatters: inputFormatter,
           textInputAction: TextInputAction.next,
@@ -95,9 +93,8 @@ class GlobalTextField extends StatelessWidget {
             contentPadding: EdgeInsets.only(top: 17.h, bottom: 17.h),
             prefixIcon: icon,
             hintText: title,
-            hintStyle: AppTextStyle.interRegular.copyWith(
-              fontSize: 14,
-              color: AppColors.c9D9EA8.withOpacity(0.6),
+            hintStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontSize: 14.w,
             ),
           ),
         ),

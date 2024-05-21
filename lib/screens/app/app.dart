@@ -53,7 +53,7 @@ class App extends StatelessWidget {
         child: AdaptiveTheme(
           light: AppTheme.lightTheme,
           dark: AppTheme.darkTheme,
-          initial: AdaptiveThemeMode.system,
+          initial: AdaptiveThemeMode.light,
           builder: (theme, darkTheme) {
             return MaterialApp(
               theme: theme,
