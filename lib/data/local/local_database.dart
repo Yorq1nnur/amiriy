@@ -54,13 +54,17 @@ class LocalDatabase {
 
   Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
     if (oldVersion < 2) {
-      await db.execute('ALTER TABLE ${NotificationModelConstants.tableName} ADD COLUMN ${NotificationModelConstants.isRead} INTEGER NOT NULL DEFAULT 0');
+      await db.execute(
+          'ALTER TABLE ${NotificationModelConstants.tableName} ADD COLUMN ${NotificationModelConstants.isRead} INTEGER NOT NULL DEFAULT 0');
     }
   }
-  static Future<NotificationModel> insertNotification(NotificationModel notificationModel) async {
+
+  static Future<NotificationModel> insertNotification(
+      NotificationModel notificationModel) async {
     try {
       final db = await databaseInstance.database;
-      int savedTaskId = await db.insert(NotificationModelConstants.tableName, notificationModel.toJson());
+      int savedTaskId = await db.insert(
+          NotificationModelConstants.tableName, notificationModel.toJson());
       debugPrint("saved id:$savedTaskId");
       return notificationModel.copyWith(id: savedTaskId);
     } catch (error) {
@@ -75,8 +79,10 @@ class LocalDatabase {
     try {
       final db = await databaseInstance.database;
       String orderBy = "${NotificationModelConstants.id} DESC";
-      List<Map<String, dynamic>> json = await db.query(NotificationModelConstants.tableName, orderBy: orderBy);
-      networkResponse.data = json.map((e) => NotificationModel.fromJson(e)).toList();
+      List<Map<String, dynamic>> json = await db
+          .query(NotificationModelConstants.tableName, orderBy: orderBy);
+      networkResponse.data =
+          json.map((e) => NotificationModel.fromJson(e)).toList();
     } catch (error) {
       networkResponse.errorText = error.toString();
     }
@@ -94,17 +100,21 @@ class LocalDatabase {
     return deletedId;
   }
 
-  static Future<int> updateNotification(NotificationModel notificationModel, int id) async {
+  static Future<int> updateNotification(
+      NotificationModel notificationModel, int id) async {
     final db = await databaseInstance.database;
     int updatedId = await db.update(
-      NotificationModelConstants.tableName, notificationModel.toJson(),
-      where: "${NotificationModelConstants.id} = ?", whereArgs: [id],
+      NotificationModelConstants.tableName,
+      notificationModel.toJson(),
+      where: "${NotificationModelConstants.id} = ?",
+      whereArgs: [id],
     );
 
     return updatedId;
   }
 
-  static Future<List<NotificationModel>> searchNotification(String query) async {
+  static Future<List<NotificationModel>> searchNotification(
+      String query) async {
     final db = await databaseInstance.database;
     var json = await db.query(NotificationModelConstants.tableName,
         where: "${NotificationModelConstants.title} LIKE ?",

@@ -110,8 +110,8 @@ class LightTheme {
         fontWeight: FontWeight.w500,
       ),
     ),
-    iconTheme:  const IconThemeData(color: AppColors.white, size: 24),
-    bottomAppBarTheme:  const BottomAppBarTheme(
+    iconTheme: const IconThemeData(color: AppColors.white, size: 24),
+    bottomAppBarTheme: const BottomAppBarTheme(
       color: AppColors.white,
     ),
     iconButtonTheme: IconButtonThemeData(
@@ -120,7 +120,7 @@ class LightTheme {
       thumbColor: WidgetStateProperty.all((Colors.white)),
       trackColor: WidgetStateProperty.all((Colors.grey)),
     ),
-    colorScheme:  const ColorScheme(
+    colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: AppColors.white,
       onPrimary: AppColors.white,

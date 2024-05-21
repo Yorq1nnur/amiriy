@@ -44,7 +44,7 @@ Future<void> main() async {
         "uz",
         "UZ",
       ),
-      child:  App(),
+      child: App(),
     ),
   );
 }

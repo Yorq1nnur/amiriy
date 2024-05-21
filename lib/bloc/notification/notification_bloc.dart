@@ -46,7 +46,6 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     add(NotificationCallEvent());
   }
 
-
   Future<void> _markAsRead(MarkAsReadEvent event, emit) async {
     await LocalDatabase.markAsRead(event.notificationModel.id ?? 0);
     add(NotificationCallEvent());
@@ -58,7 +57,8 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   }
 
   Future<void> _markAllAsRead(MarkAllAsReadEvent event, emit) async {
-    List<NotificationModel> unreadNotifications = await LocalDatabase.getUnreadNotifications();
+    List<NotificationModel> unreadNotifications =
+        await LocalDatabase.getUnreadNotifications();
     for (var notification in unreadNotifications) {
       await LocalDatabase.markAsRead(notification.id ?? 0);
     }

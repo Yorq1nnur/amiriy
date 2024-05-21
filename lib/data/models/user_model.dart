@@ -30,17 +30,17 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() => {
-    "userId": userId,
-    "username": username,
-    "phoneNumber": phoneNumber,
-    "authUid": authUid,
-  };
+        "userId": userId,
+        "username": username,
+        "phoneNumber": phoneNumber,
+        "authUid": authUid,
+      };
 
   Map<String, dynamic> toJsonForUpdate() => {
-    "username": username,
-    "phoneNumber": phoneNumber,
-    "authUid": authUid,
-  };
+        "username": username,
+        "phoneNumber": phoneNumber,
+        "authUid": authUid,
+      };
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
@@ -53,10 +53,10 @@ class UserModel {
   }
 
   static UserModel initial() => UserModel(
-    phoneNumber: "",
-    userId: "",
-    username: "",
-    authUid: "",
-    password: '',
-  );
+        phoneNumber: "",
+        userId: "",
+        username: "",
+        authUid: "",
+        password: '',
+      );
 }

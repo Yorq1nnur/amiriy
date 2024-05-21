@@ -24,10 +24,8 @@ class AppInputFormatters {
     RegExp(r'-'),
   );
 
-  static final digitNoZero = FilteringTextInputFormatter.allow(
-      RegExp(r'^[1-9][0-9]*|-[1-9][0-9]*')
-  );
-
+  static final digitNoZero =
+      FilteringTextInputFormatter.allow(RegExp(r'^[1-9][0-9]*|-[1-9][0-9]*'));
 
   static final text = FilteringTextInputFormatter.allow(
     RegExp(r'[a-zA-Z0-9]'),

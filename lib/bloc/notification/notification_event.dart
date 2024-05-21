@@ -28,6 +28,7 @@ class NotificationDeleteEvent extends NotificationEvent {
   @override
   List<Object?> get props => [notificationModel];
 }
+
 class MarkAsReadEvent extends NotificationEvent {
   final NotificationModel notificationModel;
 

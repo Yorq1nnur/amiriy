@@ -54,7 +54,8 @@ class DefaultFirebaseOptions {
     appId: '1:762812355330:android:d51d9281042d38054fe81b',
     messagingSenderId: '762812355330',
     projectId: 'e-commerce-app-863de',
-    databaseURL: 'https://e-commerce-app-863de-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://e-commerce-app-863de-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'e-commerce-app-863de.appspot.com',
   );
 
@@ -63,9 +64,11 @@ class DefaultFirebaseOptions {
     appId: '1:762812355330:ios:022a6475826eea724fe81b',
     messagingSenderId: '762812355330',
     projectId: 'e-commerce-app-863de',
-    databaseURL: 'https://e-commerce-app-863de-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://e-commerce-app-863de-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'e-commerce-app-863de.appspot.com',
-    androidClientId: '762812355330-14k24rndh7986g5onnoq8ie11278nmup.apps.googleusercontent.com',
+    androidClientId:
+        '762812355330-14k24rndh7986g5onnoq8ie11278nmup.apps.googleusercontent.com',
     iosBundleId: 'com.example.amiriy',
   );
 }

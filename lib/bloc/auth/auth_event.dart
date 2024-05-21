@@ -1,4 +1,3 @@
-
 import 'package:amiriy/data/models/user_model.dart';
 import 'package:equatable/equatable.dart';
 

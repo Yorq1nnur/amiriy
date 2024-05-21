@@ -44,7 +44,6 @@ class NotificationModel {
     );
   }
 
-
   Map<String, dynamic> toJson() {
     return {
       "title": title,
