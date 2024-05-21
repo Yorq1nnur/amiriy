@@ -1,82 +1,50 @@
-import 'package:amiriy/screens/routes.dart';
-import 'package:amiriy/services/firebase_options.dart';
+import 'package:amiriy/data/local/local_database.dart';
+import 'package:amiriy/screens/app/app.dart';
 import 'package:amiriy/services/local_notification_service.dart';
-import 'package:amiriy/view_models/auth_view_model.dart';
-import 'package:amiriy/view_models/category_view_model.dart';
-import 'package:amiriy/view_models/image_view_model.dart';
-import 'package:amiriy/view_models/notifications_view_model.dart';
-import 'package:amiriy/view_models/books_view_model.dart';
-import 'package:amiriy/view_models/tab_view_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'data/local/storage_repository.dart';
+import 'services/firebase_options.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   debugPrint(
-    "BACKGROUND MODE DA PUSH NOTIFICATION KELDI:${message.notification!.title}",
-  );
+      "BACKGROUND MODE DA PUSH NOTIFICATION KELDI:${message.notification!.title}");
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseMessaging.instance.subscribeToTopic("news");
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  LocalNotificationService.localNotificationService.init();
+  LocalDatabase.databaseInstance;
 
+  await SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ],
+  );
+
+  await StorageRepository.init();
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => TabViewModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => AuthViewModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => CategoriesViewModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => BooksViewModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => NotificationsViewModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => ImageViewModel(),
-        ),
+    EasyLocalization(
+      supportedLocales: const [
+        Locale("uz", "UZ"),
+        Locale("ru", "RU"),
       ],
-      child: const MyApp(),
+      path: "assets/translations",
+      fallbackLocale: const Locale(
+        "uz",
+        "UZ",
+      ),
+      child:  App(),
     ),
   );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(
-        375,
-        812,
-      ),
-      builder: (context, child) {
-        ScreenUtil.init(context);
-        LocalNotificationService.localNotificationService.init();
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            useMaterial3: true,
-            scaffoldBackgroundColor: Colors.white,
-          ),
-          initialRoute: RouteNames.splashScreen,
-          onGenerateRoute: AppRoutes.generateRoute,
-        );
-      },
-    );
-  }
 }

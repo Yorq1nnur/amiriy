@@ -32,7 +32,25 @@ dependencies:
   permission_handler: ^11.3.1
   image_picker: ^1.0.7
   firebase_storage: ^11.6.11
+  equatable: ^2.0.5
+  flutter_bloc: ^8.1.5
+  bloc_concurrency: ^0.2.5
+  sqflite: ^2.3.3+1
+  path_provider: ^2.1.3
+  mask_text_input_formatter: ^2.9.0
+  easy_localization: ^3.0.6
+  shimmer: ^3.0.0
+  adaptive_theme: ^3.6.0
+  connectivity_plus: ^6.0.3
+  fluttertoast: ^8.2.5
+  pinput: ^4.0.0
+  carousel_slider: ^4.2.1
+  google_maps_flutter: ^2.6.1
+  location: ^5.0.3
+  url_launcher: ^6.2.6
 
+  my_utils:
+    path: packages/my_utils
 
 
 dev_dependencies:

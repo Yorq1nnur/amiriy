@@ -1,12 +1,6 @@
-import 'package:amiriy/screens/add_book/add_book_screen.dart';
-import 'package:amiriy/screens/add_category/add_category_screen.dart';
-import 'package:amiriy/screens/news/news_screen.dart';
-import 'package:amiriy/screens/profile/profile_screen.dart';
 import 'package:amiriy/screens/splash/splash_screen.dart';
 import 'package:amiriy/screens/tabs/tab_screen.dart';
 import 'package:flutter/material.dart';
-import 'auth/login_screen.dart';
-import 'auth/register_screen.dart';
 
 class AppRoutes {
   static Route generateRoute(
@@ -23,31 +17,31 @@ class AppRoutes {
           const TabScreen(),
         );
 
-      case RouteNames.loginRoute:
-        return navigate(
-          const LoginScreen(),
-        );
+      // case RouteNames.loginRoute:
+      //   return navigate(
+      //     const LoginScreen(),
+      //   );
 
-      case RouteNames.registerRoute:
-        return navigate(
-          const RegisterScreen(),
-        );
-      case RouteNames.addCategoryRoute:
-        return navigate(
-          const AddCategoryScreen(),
-        );
-      case RouteNames.addBookRoute:
-        return navigate(
-          const AddBookScreen(),
-        );
-      case RouteNames.newsRoute:
-        return navigate(
-          const NewsScreen(),
-        );
-      case RouteNames.profileRoute:
-        return navigate(
-          const ProfileScreen(),
-        );
+      // case RouteNames.registerRoute:
+      //   return navigate(
+      //     const RegisterScreen(),
+      //   );
+      // case RouteNames.addCategoryRoute:
+      //   return navigate(
+      //     const AddCategoryScreen(),
+      //   );
+      // case RouteNames.addBookRoute:
+      //   return navigate(
+      //     const AddBookScreen(),
+      //   );
+      // case RouteNames.newsRoute:
+      //   return navigate(
+      //     const NewsScreen(),
+      //   );
+      // case RouteNames.profileRoute:
+      //   return navigate(
+      //     const ProfileScreen(),
+      //   );
 
       default:
         return navigate(

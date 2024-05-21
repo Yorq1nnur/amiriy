@@ -1,6 +1,7 @@
 class AppImages {
   //.png
   static const String login = "assets/images/login.webp";
+  static const String google = "assets/images/google.png";
   static const String register = "assets/images/register.png";
   static const String back = "assets/images/back.png";
   //.svg
