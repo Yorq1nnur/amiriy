@@ -1,0 +1,72 @@
+name: amiriy
+description: "Amiriy kutubxonasi"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.9
+  http: ^1.2.0
+  shared_preferences: ^2.2.2
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.17.9
+  provider: ^6.1.2
+  google_sign_in: ^6.2.1
+  cloud_firestore: ^4.15.9
+  flutter_staggered_grid_view: ^0.7.0
+  flutter_screenutil: ^5.9.0
+  cached_network_image: ^3.3.1
+  zoom_tap_animation: ^1.1.0
+  lottie: ^3.1.0
+  flutter_local_notifications: ^17.0.0
+  flutter_timezone: ^1.0.8
+  change_app_package_name: ^1.1.0
+  firebase_messaging: ^14.7.20
+  permission_handler: ^11.3.1
+  image_picker: ^1.0.7
+  firebase_storage: ^11.6.11
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.1
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/fonts/bodoni/
+    - assets/fonts/inter/
+    - assets/images/
+    - assets/icons/
+    - assets/lottie/
+
+  fonts:
+    - family: Bodoni
+      fonts:
+        - asset: assets/fonts/bodoni/BodoniFLF-Bold.ttf
+        - asset: assets/fonts/bodoni/BodoniFLF-BoldItalic.ttf
+        - asset: assets/fonts/bodoni/BodoniFLF-Italic.ttf
+          style: italic
+        - asset: assets/fonts/bodoni/BodoniFLF-Roman.ttf
+
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter-Black.otf
+        - asset: assets/fonts/inter/Inter-Bold.otf
+        - asset: assets/fonts/inter/Inter-Italic.otf
+        - asset: assets/fonts/inter/Inter-Light.otf
+        - asset: assets/fonts/inter/Inter-Medium.otf
+        - asset: assets/fonts/inter/Inter-Regular.otf
+        - asset: assets/fonts/inter/Inter-SemiBold.otf
