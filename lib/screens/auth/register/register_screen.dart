@@ -10,6 +10,7 @@ import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/constants/app_constants.dart';
 import 'package:amiriy/utils/formaters/formatters.dart';
 import 'package:amiriy/utils/images/app_images.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_utils/my_utils.dart';
@@ -54,7 +55,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     Center(
                       child: Text(
-                        "openRegister",
+                        "openRegister".tr(),
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!
@@ -64,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(height: 11.h),
                     Center(
                       child: Text(
-                        "register_to_use_app",
+                        "register_to_use_app".tr(),
                         style: Theme.of(context)
                             .textTheme
                             .titleSmall!
@@ -73,7 +74,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 64.h),
                     Text(
-                      "name_and_surname",
+                      "name_and_surname".tr(),
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium!
@@ -94,7 +95,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 14.h),
                     Text(
-                      "phone_",
+                      "phone_".tr(),
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium!
@@ -119,7 +120,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: 14.h),
                     Text(
-                      "password",
+                      "password".tr(),
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium!
@@ -186,7 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               Image.asset(AppImages.google, height: 20.h),
                               SizedBox(width: 10.w),
                               Text(
-                                "sign_up_google",
+                                "sign_up_google".tr(),
                                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                     fontSize: 14, color: Colors.white),
                               ),
@@ -200,7 +201,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "have_an_account",
+                          "have_an_account".tr(),
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium!
@@ -212,7 +213,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 RouteNames.loginRoute, (route) => false);
                           },
                           child: Text(
-                            "login",
+                            "login".tr(),
                             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               fontSize: 12,
                               color: AppColors.cCA5A5A,

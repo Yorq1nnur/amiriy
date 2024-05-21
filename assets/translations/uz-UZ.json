@@ -6,6 +6,8 @@
   "don_not_have_an_account": "Sizda hisob yo'qmi! Ro'yxatdan o'tish",
   "phone": "Telefon raqam:",
   "phone_": "Telefon",
+  "books": "Kitoblar",
+  "categories": "Toifalar",
   "weak_password": "Kuchsiz parol",
   "openRegister": "Hisob yaratish",
   "register": "Ro'yxatdan o'tish",
@@ -187,7 +189,6 @@
   "add_appreciation": "Mukofot qo'shish",
   "award_name": "Mukofot nomi",
   "category": "Categoriyasi/Turi"
-
 }
 
 
