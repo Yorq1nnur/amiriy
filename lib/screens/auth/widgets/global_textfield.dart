@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_utils/my_utils.dart';
@@ -53,10 +54,10 @@ class GlobalTextField extends StatelessWidget {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
             if (value!.isEmpty) {
-              return validateEmptyText;
+              return validateEmptyText.tr();
             }
             if (!validate.hasMatch(value) || value.length < 3) {
-              return validateText;
+              return validateText.tr();
             }
             return null;
           },

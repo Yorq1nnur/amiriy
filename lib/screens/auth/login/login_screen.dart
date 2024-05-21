@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
                           }
                         },
-                        text: "login",
+                        text: "login".tr(),
                       ),
                     ),
                     SizedBox(height: 15.h),
@@ -207,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                           },
                           child: Text(
-                            'Sign up'.tr(),
+                            'sign_up'.tr(),
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge

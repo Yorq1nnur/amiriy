@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 import '../../../utils/colors/app_colors.dart';
@@ -46,10 +47,10 @@ class _GlobalPasswordFieldState extends State<GlobalPasswordField> {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
             if (value!.isEmpty) {
-              return "enter_your_password";
+              return "enter_your_password".tr();
             }
             if (!widget.validate.hasMatch(value)) {
-              return "weak_password";
+              return "weak_password".tr();
             }
             return null;
           },

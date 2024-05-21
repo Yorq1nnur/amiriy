@@ -85,7 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onChanged: (v) {},
                       type: TextInputType.text,
                       inputFormatter: const [],
-                      title: "anvar_anvarov",
+                      title: "anvar_anvarov".tr(),
                       icon: const Icon(Icons.person),
                       controller: nameController,
                       validate: AppConstants.textRegExp,
@@ -114,8 +114,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       icon: const Icon(Icons.phone),
                       controller: phoneController,
                       validate: RegExp(''),
-                      validateText: "wrong_name",
-                      validateEmptyText: "enter_your_number",
+                      validateText: "wrong_name".tr(),
+                      validateEmptyText: "enter_your_name".tr(),
                       formKey: _formKeyTwo,
                     ),
                     SizedBox(height: 14.h),
@@ -164,7 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   );
                             }
                           },
-                          text: "register"),
+                          text: "register".tr()),
                     ),
                     SizedBox(height: 15.h),
                     Padding(
@@ -188,8 +188,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               SizedBox(width: 10.w),
                               Text(
                                 "sign_up_google".tr(),
-                                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                    fontSize: 14, color: Colors.white),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.copyWith(
+                                        fontSize: 14, color: Colors.white),
                               ),
                             ],
                           ),
@@ -214,10 +217,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           child: Text(
                             "login".tr(),
-                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontSize: 12,
-                              color: AppColors.cCA5A5A,
-                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  fontSize: 12,
+                                  color: AppColors.cCA5A5A,
+                                ),
                           ),
                         )
                       ],
