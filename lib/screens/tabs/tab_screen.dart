@@ -6,11 +6,8 @@ import 'package:amiriy/bloc/notification/notification_bloc.dart';
 import 'package:amiriy/bloc/notification/notification_event.dart';
 import 'package:amiriy/data/models/notification_model.dart';
 import 'package:amiriy/permissions/app_permissions.dart';
-import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/book/books_screen.dart';
 import 'package:amiriy/screens/tabs/categories/categories_screen.dart';
-import 'package:amiriy/screens/tabs/settings/settings_screen.dart';
-import 'package:amiriy/screens/widgets/my_notification_button.dart';
 import 'package:amiriy/services/local_notification_service.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/images/app_images.dart';
@@ -69,16 +66,6 @@ class _TabScreenState extends State<TabScreen> {
                 index: state.index,
                 children: screens,
               ),
-              if (showMessage)
-                NotificationMyButton(
-                  messageTitle: messageTitle,
-                  onTab: () {
-                    Navigator.pushNamed(
-                      context,
-                      RouteNames.notificationScreen,
-                    );
-                  },
-                ),
             ],
           );
         },

@@ -37,24 +37,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               fontWeight: FontWeight.w900,
             ),
           ),
-          actions: [
-            ZoomTapAnimation(
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  RouteNames.newsRoute,
-                );
-              },
-              child: SvgPicture.asset(
-                AppImages.news,
-                width: 24.w,
-                height: 24.h,
-              ),
-            ),
-            SizedBox(
-              width: 10.w,
-            ),
-          ],
           leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: user?.photoURL == null

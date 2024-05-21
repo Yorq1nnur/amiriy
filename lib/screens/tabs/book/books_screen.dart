@@ -24,22 +24,6 @@ class _BooksScreenState extends State<BooksScreen> {
           "Books",
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        actions: [
-          ZoomTapAnimation(
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                RouteNames.addBookRoute,
-              );
-            },
-            child: const Icon(
-              Icons.add,
-            ),
-          ),
-          SizedBox(
-            width: 20.w,
-          ),
-        ],
       ),
     );
   }
