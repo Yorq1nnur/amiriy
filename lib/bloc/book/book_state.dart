@@ -37,9 +37,15 @@ class BookState extends Equatable {
         errorText: '',
         statusMessage: '',
         books: [],
-    categoryBooks: [],
+        categoryBooks: [],
       );
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        categoryBooks,
+        books,
+        statusMessage,
+        errorText,
+        formStatus,
+      ];
 }
