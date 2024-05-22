@@ -62,7 +62,7 @@ class App extends StatelessWidget {
               darkTheme: darkTheme,
               navigatorKey: navigatorKey,
               debugShowCheckedModeBanner: false,
-              initialRoute: RouteNames.splashScreen,
+              initialRoute: RouteNames.onBoardingRoute,
               onGenerateRoute: AppRoutes.generateRoute,
               locale: context.locale,
               localizationsDelegates: context.localizationDelegates,

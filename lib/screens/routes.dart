@@ -1,5 +1,6 @@
 import 'package:amiriy/screens/auth/login/login_screen.dart';
 import 'package:amiriy/screens/auth/register/register_screen.dart';
+import 'package:amiriy/screens/on_boarding/on_boarding_screen.dart';
 import 'package:amiriy/screens/splash/splash_screen.dart';
 import 'package:amiriy/screens/tabs/tab_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +14,20 @@ class AppRoutes {
         return navigate(
           const SplashScreen(),
         );
+      case RouteNames.onBoardingRoute:
+        return navigate(
+          const OnBoardingScreen(),
+        );
 
       case RouteNames.tabRoute:
         return navigate(
           const TabScreen(),
-        ); case RouteNames.loginRoute:
+        );
+      case RouteNames.loginRoute:
         return navigate(
           const LoginScreen(),
-        ); case RouteNames.registerRoute:
+        );
+      case RouteNames.registerRoute:
         return navigate(
           const RegisterScreen(),
         );
@@ -46,9 +53,9 @@ class AppRoutes {
 }
 
 class RouteNames {
-  static const String splashScreen = "/";
+  static const String splashScreen = "/splash_route";
   static const String tabRoute = "/tab_route";
   static const String loginRoute = "/login_route";
   static const String registerRoute = "/register_route";
-
+  static const String onBoardingRoute = "/";
 }
