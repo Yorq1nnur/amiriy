@@ -4,11 +4,13 @@ import 'package:amiriy/bloc/auth/auth_event.dart';
 import 'package:amiriy/bloc/banner/banner_bloc.dart';
 import 'package:amiriy/bloc/banner/banner_event.dart';
 import 'package:amiriy/bloc/bottom/bottom_bloc.dart';
+import 'package:amiriy/bloc/category/category_bloc.dart';
 import 'package:amiriy/bloc/image/image_bloc.dart';
 import 'package:amiriy/bloc/notification/notification_bloc.dart';
 import 'package:amiriy/bloc/notification/notification_event.dart';
 import 'package:amiriy/data/repositories/auth_repository.dart';
 import 'package:amiriy/data/repositories/banner_repository.dart';
+import 'package:amiriy/data/repositories/category_repo.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/app_theme/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -28,6 +30,9 @@ class App extends StatelessWidget {
           create: (_) => AuthRepository(),
         ),
         RepositoryProvider(
+          create: (_) => CategoryRepo(),
+        ),
+        RepositoryProvider(
           create: (_) => BannerRepository(),
         ),
       ],
@@ -40,8 +45,17 @@ class App extends StatelessWidget {
                 CheckAuthenticationEvent(),
               ),
           ),
-          BlocProvider(create: (context) => BottomBloc()),
-          BlocProvider(create: (context) => ImageBloc()),
+          BlocProvider(
+            create: (context) => BottomBloc(),
+          ),
+          BlocProvider(
+            create: (context) => ImageBloc(),
+          ),
+          BlocProvider(
+            create: (context) => CategoryBloc(
+              context.read<CategoryRepo>(),
+            ),
+          ),
           BlocProvider(
             create: (context) =>
                 NotificationBloc()..add(NotificationCallEvent()),
@@ -49,7 +63,9 @@ class App extends StatelessWidget {
           BlocProvider(
             create: (context) => BannerBloc(
               bannerRepository: context.read<BannerRepository>(),
-            )..add(GetBannerEvent()),
+            )..add(
+                GetBannerEvent(),
+              ),
           ),
         ],
         child: AdaptiveTheme(

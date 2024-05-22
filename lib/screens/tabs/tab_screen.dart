@@ -94,8 +94,8 @@ class _TabScreenState extends State<TabScreen> {
           return BottomNavigationBar(
             selectedItemColor: AppColors.black,
             unselectedItemColor: Colors.grey,
-            selectedFontSize: 18.w,
-            unselectedFontSize: 16.w,
+            selectedFontSize: 15.w,
+            unselectedFontSize: 14.w,
             currentIndex: state.index,
             type: BottomNavigationBarType.fixed,
             onTap: (index) {

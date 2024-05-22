@@ -43,7 +43,8 @@ class _GlobalPasswordFieldState extends State<GlobalPasswordField> {
           ],
         ),
         child: TextFormField(
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 14.w),
+          style:
+              Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 14.w),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
             if (value!.isEmpty) {

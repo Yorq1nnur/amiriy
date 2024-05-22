@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class UtilityFunctions {
   static void methodPrint(dynamic value) {
     debugPrint(

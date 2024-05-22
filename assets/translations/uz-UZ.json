@@ -11,6 +11,8 @@
   "search": "Qidirish",
   "categories": "Toifalar",
   "ok": "Davom etish",
+  "category": "Toifa",
+  "search_books": "Kitoblar ichidan qidirish...",
   "languages": "Tillar",
   "weak_password": "Kuchsiz parol",
   "openRegister": "Hisob yaratish",
