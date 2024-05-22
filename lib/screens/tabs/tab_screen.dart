@@ -12,10 +12,12 @@ import 'package:amiriy/permissions/app_permissions.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/book/books_screen.dart';
 import 'package:amiriy/screens/tabs/categories/categories_screen.dart';
+import 'package:amiriy/screens/tabs/search/search_screen.dart';
 import 'package:amiriy/screens/tabs/settings/settings_screen.dart';
 import 'package:amiriy/services/local_notification_service.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/images/app_images.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,6 +53,7 @@ class _TabScreenState extends State<TabScreen> {
     screens = [
       const BooksScreen(),
       const CategoriesScreen(),
+      const SearchScreen(),
       const SettingsScreen(),
     ];
 
@@ -90,6 +93,9 @@ class _TabScreenState extends State<TabScreen> {
         builder: (context, state) {
           return BottomNavigationBar(
             selectedItemColor: AppColors.black,
+            unselectedItemColor: Colors.grey,
+            selectedFontSize: 18.w,
+            unselectedFontSize: 16.w,
             currentIndex: state.index,
             type: BottomNavigationBarType.fixed,
             onTap: (index) {
@@ -115,13 +121,34 @@ class _TabScreenState extends State<TabScreen> {
                         ),
                       );
                   break;
+                case (3):
+                  context.read<BottomBloc>().add(
+                        ChangeIndexEvent(
+                          index: 3,
+                        ),
+                      );
+                  break;
               }
             },
             items: [
-               BottomNavigationBarItem(
-                activeIcon: Icon(Icons.home, color: Theme.of(context).bottomNavigationBarTheme.selectedIconTheme?.color,),
-                icon: Icon(Icons.home),
-                label: "",
+              BottomNavigationBarItem(
+                activeIcon: SvgPicture.asset(
+                  AppImages.home,
+                  colorFilter:
+                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                icon: SvgPicture.asset(
+                  AppImages.home,
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.black,
+                    BlendMode.srcIn,
+                  ),
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                label: "home".tr(),
               ),
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
@@ -142,7 +169,26 @@ class _TabScreenState extends State<TabScreen> {
                     BlendMode.srcIn,
                   ),
                 ),
-                label: "",
+                label: "categories".tr(),
+              ),
+              BottomNavigationBarItem(
+                activeIcon: SvgPicture.asset(
+                  AppImages.search,
+                  colorFilter:
+                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                icon: SvgPicture.asset(
+                  AppImages.search,
+                  height: 24.h,
+                  width: 24.h,
+                  colorFilter: const ColorFilter.mode(
+                    Colors.grey,
+                    BlendMode.srcIn,
+                  ),
+                ),
+                label: "search".tr(),
               ),
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
@@ -161,7 +207,7 @@ class _TabScreenState extends State<TabScreen> {
                     BlendMode.srcIn,
                   ),
                 ),
-                label: "",
+                label: "settings".tr(),
               ),
             ],
           );
