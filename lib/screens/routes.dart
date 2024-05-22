@@ -1,8 +1,9 @@
 import 'package:amiriy/screens/auth/login/login_screen.dart';
 import 'package:amiriy/screens/auth/register/register_screen.dart';
+import 'package:amiriy/screens/languages/languages_screen.dart';
 import 'package:amiriy/screens/on_boarding/on_boarding_screen.dart';
+import 'package:amiriy/screens/one_category/one_category_screen.dart';
 import 'package:amiriy/screens/splash/splash_screen.dart';
-import 'package:amiriy/screens/tabs/settings/languages/languages_screen.dart';
 import 'package:amiriy/screens/tabs/tab_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -36,6 +37,12 @@ class AppRoutes {
         return navigate(
           const LanguagesScreen(),
         );
+      case RouteNames.oneCategoryRoute:
+        return navigate(
+          OneCategoryScreen(
+            categoryName: settings.arguments as String,
+          ),
+        );
 
       default:
         return navigate(
@@ -64,4 +71,5 @@ class RouteNames {
   static const String registerRoute = "/register_route";
   static const String onBoardingRoute = "/on_boarding_route";
   static const String languagesRoute = "/languages_route";
+  static const String oneCategoryRoute = "/one_category_route";
 }
