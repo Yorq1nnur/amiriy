@@ -118,23 +118,9 @@ class _TabScreenState extends State<TabScreen> {
               }
             },
             items: [
-              BottomNavigationBarItem(
-                activeIcon: SvgPicture.asset(
-                  AppImages.home,
-                  colorFilter:
-                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-                  height: 24.h,
-                  width: 24.h,
-                ),
-                icon: SvgPicture.asset(
-                  AppImages.home,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.black,
-                    BlendMode.srcIn,
-                  ),
-                  height: 24.h,
-                  width: 24.h,
-                ),
+               BottomNavigationBarItem(
+                activeIcon: Icon(Icons.home, color: Theme.of(context).bottomNavigationBarTheme.selectedIconTheme?.color,),
+                icon: Icon(Icons.home),
                 label: "",
               ),
               BottomNavigationBarItem(
