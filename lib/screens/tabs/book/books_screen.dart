@@ -1,4 +1,6 @@
 import 'package:amiriy/bloc/book/book_bloc.dart';
+import 'package:amiriy/bloc/book/book_event.dart';
+import 'package:amiriy/bloc/book/book_state.dart';
 import 'package:amiriy/bloc/category/category_bloc.dart';
 import 'package:amiriy/bloc/category/category_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
@@ -7,6 +9,7 @@ import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/global_widgets/search_widget.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
+import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_utils/my_utils.dart';
@@ -25,6 +28,16 @@ class _BooksScreenState extends State<BooksScreen> {
   void dispose() {
     searchController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    Future.microtask(
+      () => context.read<BookBloc>().add(
+            ListenAllBooksEvent(),
+          ),
+    );
+    super.initState();
   }
 
   @override
@@ -73,19 +86,50 @@ class _BooksScreenState extends State<BooksScreen> {
             //     hintText: 'search_books'.tr(),
             //   ),
             // ),
-            GestureDetector(
-              onTap: () {
-                showSearch(
-                  context: context,
-                  delegate: ItemSearch(
-                    items: context.read<BookBloc>().state.books,
-                  ), // Pass your list of items here
+            BlocBuilder<BookBloc, BookState>(
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () {
+                    UtilityFunctions.methodPrint(
+                      state.books.length,
+                    );
+                    showSearch(
+                      context: context,
+                      delegate: ItemSearch(
+                        items: context.read<BookBloc>().state.books,
+                      ), // Pass your list of items here
+                    );
+                  },
+                  child: SearchWidget(
+                    controller: searchController,
+                    voidCallback: (v) {},
+                  ),
                 );
               },
-              child: SearchWidget(
-                controller: searchController,
-                voidCallback: (v) {},
-              ),
+            ),
+            BlocBuilder<BookBloc, BookState>(
+              builder: (context, state) {
+                if (state.formStatus == FormStatus.loading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (state.formStatus == FormStatus.error) {
+                  return Center(
+                    child: Text(state.errorText),
+                  );
+                }
+                if (state.formStatus == FormStatus.success) {
+                  return Column(
+                    children: List.generate(state.books.length, (index) {
+                      return Text(
+                        state.books[index].bookName,
+                      );
+                    }),
+                  );
+                }
+                return const SizedBox();
+              },
             ),
             50.getH(),
             GlobalText(

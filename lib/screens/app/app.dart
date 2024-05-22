@@ -3,6 +3,8 @@ import 'package:amiriy/bloc/auth/auth_bloc.dart';
 import 'package:amiriy/bloc/auth/auth_event.dart';
 import 'package:amiriy/bloc/banner/banner_bloc.dart';
 import 'package:amiriy/bloc/banner/banner_event.dart';
+import 'package:amiriy/bloc/book/book_bloc.dart';
+import 'package:amiriy/bloc/book/book_event.dart';
 import 'package:amiriy/bloc/bottom/bottom_bloc.dart';
 import 'package:amiriy/bloc/category/category_bloc.dart';
 import 'package:amiriy/bloc/category/category_event.dart';
@@ -11,6 +13,7 @@ import 'package:amiriy/bloc/notification/notification_bloc.dart';
 import 'package:amiriy/bloc/notification/notification_event.dart';
 import 'package:amiriy/data/repositories/auth_repository.dart';
 import 'package:amiriy/data/repositories/banner_repository.dart';
+import 'package:amiriy/data/repositories/book_repo.dart';
 import 'package:amiriy/data/repositories/category_repo.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/app_theme/app_theme.dart';
@@ -29,6 +32,9 @@ class App extends StatelessWidget {
       providers: [
         RepositoryProvider(
           create: (_) => AuthRepository(),
+        ),
+        RepositoryProvider(
+          create: (_) => BookRepo(),
         ),
         RepositoryProvider(
           create: (_) => CategoryRepo(),
@@ -68,6 +74,13 @@ class App extends StatelessWidget {
               bannerRepository: context.read<BannerRepository>(),
             )..add(
                 GetBannerEvent(),
+              ),
+          ),
+          BlocProvider(
+            create: (context) => BookBloc(
+              context.read<BookRepo>(),
+            )..add(
+                ListenAllBooksEvent(),
               ),
           ),
         ],

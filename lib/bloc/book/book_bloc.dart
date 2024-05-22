@@ -7,19 +7,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookBloc extends Bloc<BookEvent, BookState> {
   BookBloc(this.bookRepo) : super(BookState.initial()) {
-    on<BookEvent>(_listenAllBooks);
+    on<ListenAllBooksEvent>(_listenAllBooks);
   }
 
   BookRepo bookRepo;
 
-  _listenAllBooks(BookEvent event, Emitter emit) async {
+  _listenAllBooks(ListenAllBooksEvent event, Emitter emit) async {
     emit(
       state.copyWith(
         formStatus: FormStatus.loading,
       ),
     );
 
-    await emit.onEach(
+await emit.onEach(
       bookRepo.listenAllBooks(),
       onData: (List<BookModel> allBooks) {
         emit(

@@ -16,19 +16,4 @@ class CategoryModel {
       categoryName: json["category_name"] as String? ?? "",
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      "doc_id": "",
-      "image_url": imageUrl,
-      "category_name": categoryName,
-    };
-  }
-
-  Map<String, dynamic> toJsonForUpdate() {
-    return {
-      "image_url": imageUrl,
-      "category_name": categoryName,
-    };
-  }
 }

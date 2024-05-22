@@ -8,7 +8,7 @@ class CategoryState extends Equatable {
   final String errorText;
   final String statusMessage;
 
-  CategoryState({
+  const CategoryState({
     required this.formStatus,
     required this.errorText,
     required this.statusMessage,
@@ -28,11 +28,11 @@ class CategoryState extends Equatable {
         allCategories: allCategories ?? this.allCategories,
       );
 
-  static CategoryState initial() => CategoryState(
+  static CategoryState initial() => const CategoryState(
         formStatus: FormStatus.pure,
         errorText: '',
         statusMessage: '',
-        allCategories: const [],
+        allCategories: [],
       );
 
   @override
