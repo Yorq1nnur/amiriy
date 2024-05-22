@@ -1,10 +1,12 @@
+import 'package:amiriy/bloc/book/book_bloc.dart';
 import 'package:amiriy/bloc/category/category_bloc.dart';
 import 'package:amiriy/bloc/category/category_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
+import 'package:amiriy/screens/global_widgets/global_search_delegate.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
+import 'package:amiriy/screens/global_widgets/search_widget.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_utils/my_utils.dart';
@@ -17,6 +19,14 @@ class BooksScreen extends StatefulWidget {
 }
 
 class _BooksScreenState extends State<BooksScreen> {
+  TextEditingController searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,29 +48,43 @@ class _BooksScreenState extends State<BooksScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             24.getH(),
-            TextField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: AppColors.c29BB89,
-                  size: 25.w,
-                ),
-                contentPadding: EdgeInsets.only(
-                  left: 20.w,
-                  right: 10.w,
-                  top: 16.h,
-                  bottom: 16.h,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    20,
-                  ),
-                  borderSide: BorderSide(
-                    color: Colors.blue,
-                    width: 1.w,
-                  ),
-                ),
-                hintText: 'search_books'.tr(),
+            // TextField(
+            //   decoration: InputDecoration(
+            //     prefixIcon: Icon(
+            //       Icons.search,
+            //       color: AppColors.c29BB89,
+            //       size: 25.w,
+            //     ),
+            //     contentPadding: EdgeInsets.only(
+            //       left: 20.w,
+            //       right: 10.w,
+            //       top: 16.h,
+            //       bottom: 16.h,
+            //     ),
+            //     border: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(
+            //         20,
+            //       ),
+            //       borderSide: BorderSide(
+            //         color: Colors.blue,
+            //         width: 1.w,
+            //       ),
+            //     ),
+            //     hintText: 'search_books'.tr(),
+            //   ),
+            // ),
+            GestureDetector(
+              onTap: () {
+                showSearch(
+                  context: context,
+                  delegate: ItemSearch(
+                    items: context.read<BookBloc>().state.books,
+                  ), // Pass your list of items here
+                );
+              },
+              child: SearchWidget(
+                controller: searchController,
+                voidCallback: (v) {},
               ),
             ),
             50.getH(),

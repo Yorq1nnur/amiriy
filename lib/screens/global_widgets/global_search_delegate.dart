@@ -6,7 +6,9 @@ import '../../../utils/colors/app_colors.dart';
 class ItemSearch extends SearchDelegate<String> {
   final List<BookModel> items; // List of items to search from
 
-  ItemSearch({required this.items});
+  ItemSearch({
+    required this.items,
+  });
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -93,7 +95,8 @@ class ItemSearch extends SearchDelegate<String> {
                       children: [
                         ...List.generate(
                           5,
-                          (index) => const Icon(Icons.star, color: Colors.amber),
+                          (index) =>
+                              const Icon(Icons.star, color: Colors.amber),
                         ),
                         SizedBox(width: 8.w),
                         Text(
@@ -204,7 +207,8 @@ class ItemSearch extends SearchDelegate<String> {
                       children: [
                         ...List.generate(
                           5,
-                          (index) => const Icon(Icons.star, color: Colors.amber),
+                          (index) =>
+                              const Icon(Icons.star, color: Colors.amber),
                         ),
                         const SizedBox(width: 8),
                         const Text(
