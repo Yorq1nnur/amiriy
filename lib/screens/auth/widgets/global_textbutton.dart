@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
@@ -9,11 +10,13 @@ class GlobalTextButton extends StatelessWidget {
     required this.onTap,
     required this.text,
     this.isLoading = false,
+    required this.isTranslate,
   });
 
   final VoidCallback onTap;
   final String text;
   final bool isLoading;
+  final bool isTranslate;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +35,10 @@ class GlobalTextButton extends StatelessWidget {
                 color: Colors.white,
               )
             : Text(
-                text,
-                style: Theme.of(context).textTheme.titleLarge
+                isTranslate ? text.tr() : text,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
                     ?.copyWith(fontSize: 14, color: Colors.white),
               ),
       ),

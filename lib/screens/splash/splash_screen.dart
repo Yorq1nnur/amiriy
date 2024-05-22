@@ -46,6 +46,7 @@
 //   }
 // }
 
+import 'package:amiriy/data/local/storage_repository.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/images/app_images.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -63,11 +64,27 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   _init() async {
     await Future.delayed(const Duration(seconds: 2));
+    bool isNewUser = StorageRepository.getBool(key: 'is_new_user');
+
     if (!mounted) return;
-    if (FirebaseAuth.instance.currentUser == null) {
-      Navigator.pushReplacementNamed(context, RouteNames.loginRoute);
+
+    if (isNewUser) {
+      if (FirebaseAuth.instance.currentUser == null) {
+        Navigator.pushReplacementNamed(
+          context,
+          RouteNames.loginRoute,
+        );
+      } else {
+        Navigator.pushReplacementNamed(
+          context,
+          RouteNames.tabRoute,
+        );
+      }
     } else {
-      Navigator.pushReplacementNamed(context, RouteNames.tabRoute);
+      Navigator.pushReplacementNamed(
+        context,
+        RouteNames.onBoardingRoute,
+      );
     }
   }
 

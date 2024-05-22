@@ -138,33 +138,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Padding(
                       padding: EdgeInsets.only(left: 25.w, right: 25.w),
                       child: GlobalTextButton(
-                          isLoading: state.status == FormStatus.loading,
-                          onTap: () {
-                            final isValidateOne =
-                                _formKeyOne.currentState!.validate();
-                            final isValidateTwo =
-                                _formKeyTwo.currentState!.validate();
-                            final isValidateThree =
-                                _formKeyThree.currentState!.validate();
-                            if (isValidateOne &&
-                                isValidateTwo &&
-                                isValidateThree) {
-                              String cleanedPhone = phoneController.text
-                                  .replaceAll(RegExp(r'\D+'), '');
-                              context.read<AuthBloc>().add(
-                                    RegisterUserEvent(
-                                      userModel: UserModel(
-                                        username: nameController.text,
-                                        phoneNumber: cleanedPhone,
-                                        password: passwordController.text,
-                                        userId: '',
-                                        authUid: '',
-                                      ),
+                        isLoading: state.status == FormStatus.loading,
+                        onTap: () {
+                          final isValidateOne =
+                              _formKeyOne.currentState!.validate();
+                          final isValidateTwo =
+                              _formKeyTwo.currentState!.validate();
+                          final isValidateThree =
+                              _formKeyThree.currentState!.validate();
+                          if (isValidateOne &&
+                              isValidateTwo &&
+                              isValidateThree) {
+                            String cleanedPhone = phoneController.text
+                                .replaceAll(RegExp(r'\D+'), '');
+                            context.read<AuthBloc>().add(
+                                  RegisterUserEvent(
+                                    userModel: UserModel(
+                                      username: nameController.text,
+                                      phoneNumber: cleanedPhone,
+                                      password: passwordController.text,
+                                      userId: '',
+                                      authUid: '',
                                     ),
-                                  );
-                            }
-                          },
-                          text: "register".tr()),
+                                  ),
+                                );
+                          }
+                        },
+                        text: "register",
+                        isTranslate: true,
+                      ),
                     ),
                     SizedBox(height: 15.h),
                     Padding(

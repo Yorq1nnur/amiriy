@@ -30,7 +30,7 @@ errorDialog({
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    text: "Ok")
+                    text: "Ok", isTranslate: true,)
               ],
             ),
           ),

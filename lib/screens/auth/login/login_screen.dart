@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
                           }
                         },
-                        text: "login".tr(),
+                        text: "login", isTranslate: true,
                       ),
                     ),
                     SizedBox(height: 15.h),
