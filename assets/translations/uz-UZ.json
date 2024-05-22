@@ -9,6 +9,7 @@
   "books": "Kitoblar",
   "categories": "Toifalar",
   "ok": "Davom etish",
+  "languages": "Tillar",
   "weak_password": "Kuchsiz parol",
   "openRegister": "Hisob yaratish",
   "register": "Ro'yxatdan o'tish",
@@ -38,5 +39,3 @@
   "no_results_found": "Hech qanday natija topilmadi",
   "this_error": "Xato kiritingiz!"
 }
-
-

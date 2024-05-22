@@ -38,10 +38,10 @@ Future<void> main() async {
     EasyLocalization(
       saveLocale: true,
       supportedLocales: const [
-        Locale("eng", "ENG"),
+        Locale('en', 'US'),
         Locale("uz", "UZ"),
         Locale("ru", "RU"),
-        Locale("kr", "KR"),
+        Locale('uz', 'Cyrl'),
       ],
       path: AppConstants.translations,
       fallbackLocale: const Locale(

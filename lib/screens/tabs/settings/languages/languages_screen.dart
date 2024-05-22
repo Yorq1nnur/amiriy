@@ -27,7 +27,8 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text('language'.tr(), style: Theme.of(context).textTheme.bodyLarge),
+        title:
+            Text('language'.tr(), style: Theme.of(context).textTheme.bodyLarge),
         centerTitle: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
@@ -103,7 +104,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                 setState(() {
                   language = 3;
                 });
-                locale = const Locale('eng', 'ENG');
+                locale = const Locale('en', 'US');
                 context.setLocale(locale);
 
                 debugPrint(context.locale.toString());
@@ -127,7 +128,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                 setState(() {
                   language = 4;
                 });
-                locale = const Locale('kr', 'KR');
+                locale = const Locale('uz', 'Cyrl');
                 context.setLocale(locale);
 
                 debugPrint(context.locale.toString());
@@ -149,9 +150,8 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                 isLoading = true;
                 setState(() {});
                 await Future.delayed(const Duration(seconds: 1));
-                if (context.mounted) {
-                  Navigator.pop(context);
-                }
+                if (!context.mounted) return;
+                Navigator.pop(context);
               },
               text: "save",
               isTranslate: true,
