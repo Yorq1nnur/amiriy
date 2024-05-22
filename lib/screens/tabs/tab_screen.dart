@@ -139,7 +139,7 @@ class _TabScreenState extends State<TabScreen> {
               ),
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
-                  AppImages.search,
+                  AppImages.categories,
                   colorFilter: const ColorFilter.mode(
                     AppColors.black,
                     BlendMode.srcIn,
@@ -148,9 +148,13 @@ class _TabScreenState extends State<TabScreen> {
                   width: 24.h,
                 ),
                 icon: SvgPicture.asset(
-                  AppImages.search,
+                  AppImages.categories,
                   height: 24.h,
                   width: 24.h,
+                  colorFilter: const ColorFilter.mode(
+                    Colors.black54,
+                    BlendMode.srcIn,
+                  ),
                 ),
                 label: "",
               ),

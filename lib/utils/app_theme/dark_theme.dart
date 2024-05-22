@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_utils/my_utils.dart';
 
 class DarkTheme {
   static final ThemeData darkTheme = ThemeData(
@@ -112,6 +113,18 @@ class DarkTheme {
     iconTheme: const IconThemeData(color: Colors.blue, size: 24.0),
     bottomAppBarTheme: const BottomAppBarTheme(
       color: Colors.black,
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedIconTheme: IconThemeData(
+        size: 20.w,
+        color: Colors.white,
+      ),
+      unselectedIconTheme: IconThemeData(
+        size: 20.w,
+        color: Colors.white60,
+      ),
+      elevation: 0,
+      type: BottomNavigationBarType.fixed,
     ),
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(

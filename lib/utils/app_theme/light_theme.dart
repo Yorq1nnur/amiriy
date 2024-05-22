@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_utils/my_utils.dart';
 
 class LightTheme {
   static final ThemeData lightTheme = ThemeData(
@@ -13,6 +14,20 @@ class LightTheme {
         statusBarIconBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
       ),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.black54,
+      selectedIconTheme: IconThemeData(
+        size: 20.w,
+        color: Colors.black,
+      ),
+      unselectedIconTheme: IconThemeData(
+        size: 20.w,
+        color: Colors.black54,
+      ),
+      elevation: 0,
+      type: BottomNavigationBarType.fixed,
     ),
     shadowColor: Colors.black,
     cardColor: Colors.white,

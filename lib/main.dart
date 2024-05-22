@@ -38,15 +38,15 @@ Future<void> main() async {
     EasyLocalization(
       saveLocale: true,
       supportedLocales: const [
-        Locale('en', 'US'),
+        Locale("en", "US"),
         Locale("uz", "UZ"),
         Locale("ru", "RU"),
         Locale('uz', 'Cyrl'),
       ],
       path: AppConstants.translations,
-      fallbackLocale: const Locale(
-        "eng",
-        "ENG",
+      startLocale: const Locale(
+        "uz",
+        "UZ",
       ),
       child: App(),
     ),

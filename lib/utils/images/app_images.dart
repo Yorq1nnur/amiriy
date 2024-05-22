@@ -10,8 +10,10 @@ class AppImages {
   //.jpg
   static const String rusFlag = "assets/images/rus_flag.jpg";
   static const String uzbFlag = "assets/images/uzb_flag.jpg";
+
   //.svg
   static const String email = "assets/icons/email.svg";
+  static const String categories = "assets/icons/categories.svg";
   static const String news = "assets/icons/news.svg";
   static const String lock = "assets/icons/lock.svg";
   static const String shelf = "assets/icons/shelf.svg";
@@ -21,11 +23,10 @@ class AppImages {
   static const String tabProfile = "assets/icons/tab_profile.svg";
   static const String settings = "assets/icons/settings.svg";
 
-
   //lottie
   static const String lottie = "assets/lottie/lottie.json";
 
-  //.jpg
+//.jpg
 
-  //.gif
+//.gif
 }
