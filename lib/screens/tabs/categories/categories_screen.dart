@@ -1,5 +1,4 @@
 import 'package:amiriy/screens/global_widgets/global_text.dart';
-import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 
@@ -17,7 +16,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: AppColors.white,
         centerTitle: true,
         title: GlobalText(
           data: "categories",

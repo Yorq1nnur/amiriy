@@ -43,10 +43,9 @@ Future<void> main() async {
         Locale("kr", "KR"),
       ],
       path: AppConstants.translations,
-      startLocale: const Locale("eng","ENG"),
       fallbackLocale: const Locale(
-        "uz",
-        "UZ",
+        "eng",
+        "ENG",
       ),
       child: App(),
     ),
