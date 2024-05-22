@@ -1,4 +1,5 @@
 import 'package:amiriy/screens/global_widgets/global_text.dart';
+import 'package:amiriy/screens/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 
@@ -25,6 +26,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
           fontWeight: FontWeight.w900,
           isTranslate: true,
         ),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Ink(
+            height: 50.h,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(
+                16,
+              ),
+            ),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(
+                16,
+              ),
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  RouteNames.languagesRoute,
+                );
+              },
+              child: const Center(
+                child: Text('Tillar'),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

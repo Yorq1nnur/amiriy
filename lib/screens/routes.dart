@@ -2,6 +2,7 @@ import 'package:amiriy/screens/auth/login/login_screen.dart';
 import 'package:amiriy/screens/auth/register/register_screen.dart';
 import 'package:amiriy/screens/on_boarding/on_boarding_screen.dart';
 import 'package:amiriy/screens/splash/splash_screen.dart';
+import 'package:amiriy/screens/tabs/settings/languages/languages_screen.dart';
 import 'package:amiriy/screens/tabs/tab_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +32,10 @@ class AppRoutes {
         return navigate(
           const RegisterScreen(),
         );
+      case RouteNames.languagesRoute:
+        return navigate(
+          const LanguagesScreen(),
+        );
 
       default:
         return navigate(
@@ -58,4 +63,5 @@ class RouteNames {
   static const String loginRoute = "/login_route";
   static const String registerRoute = "/register_route";
   static const String onBoardingRoute = "/on_boarding_route";
+  static const String languagesRoute = "/languages_route";
 }

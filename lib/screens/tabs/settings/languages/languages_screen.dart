@@ -1,0 +1,165 @@
+import 'package:amiriy/screens/auth/widgets/global_textbutton.dart';
+import 'package:amiriy/utils/images/app_images.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:my_utils/my_utils.dart';
+
+class LanguagesScreen extends StatefulWidget {
+  const LanguagesScreen({super.key});
+
+  @override
+  State<LanguagesScreen> createState() => _LanguagesScreenState();
+}
+
+class _LanguagesScreenState extends State<LanguagesScreen> {
+  int language = 1;
+  late Locale locale;
+  bool isLoading = false;
+
+  @override
+  void didChangeDependencies() {
+    locale = context.locale;
+    super.didChangeDependencies();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: AppBar(
+        title: Text('language'.tr(), style: Theme.of(context).textTheme.bodyLarge),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: EdgeInsets.only(
+          left: 17.w,
+          right: 17.w,
+          top: 40.h,
+          bottom: 40.h,
+        ),
+        child: Column(
+          children: [
+            ListTile(
+              onTap: () {
+                setState(() {
+                  language = 1;
+                });
+                locale = const Locale('uz', 'UZ');
+                context.setLocale(locale);
+
+                debugPrint(context.locale.toString());
+                setState(() {});
+              },
+              leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.asset(AppImages.uzbFlag,
+                      height: 25.h, width: 25.w, fit: BoxFit.cover)),
+              trailing: Icon(
+                language == 1 ? Icons.check_circle : Icons.circle_outlined,
+                color: Theme.of(context).iconTheme.color,
+              ),
+              title: Text(
+                'Uzbek',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+            Divider(color: Theme.of(context).dividerColor),
+            ListTile(
+              onTap: () {
+                setState(() {
+                  language = 2;
+                });
+                locale = const Locale('ru', 'RU');
+                context.setLocale(locale);
+
+                debugPrint(context.locale.toString());
+                setState(() {});
+              },
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.asset(
+                  AppImages.rusFlag,
+                  height: 25.h,
+                  width: 25.w,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              trailing: Icon(
+                language == 2 ? Icons.check_circle : Icons.circle_outlined,
+                color: Theme.of(context).iconTheme.color,
+              ),
+              title: Text(
+                'Русский',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+            Divider(
+              color: Theme.of(context).dividerColor,
+            ),
+            ListTile(
+              onTap: () {
+                setState(() {
+                  language = 3;
+                });
+                locale = const Locale('eng', 'ENG');
+                context.setLocale(locale);
+
+                debugPrint(context.locale.toString());
+                setState(() {});
+              },
+              leading: Image.asset(AppImages.english, height: 25.h),
+              trailing: Icon(
+                language == 3 ? Icons.check_circle : Icons.circle_outlined,
+                color: Theme.of(context).iconTheme.color,
+              ),
+              title: Text(
+                'English',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+            Divider(
+              color: Theme.of(context).dividerColor,
+            ),
+            ListTile(
+              onTap: () {
+                setState(() {
+                  language = 4;
+                });
+                locale = const Locale('kr', 'KR');
+                context.setLocale(locale);
+
+                debugPrint(context.locale.toString());
+                setState(() {});
+              },
+              leading: Image.asset(AppImages.uzbFlag, height: 25.h),
+              trailing: Icon(
+                language == 4 ? Icons.check_circle : Icons.circle_outlined,
+                color: Theme.of(context).iconTheme.color,
+              ),
+              title: Text(
+                'Кирилча',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+            const Spacer(),
+            GlobalTextButton(
+              onTap: () async {
+                isLoading = true;
+                setState(() {});
+                await Future.delayed(const Duration(seconds: 1));
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
+              },
+              text: "save",
+              isTranslate: true,
+              isLoading: isLoading,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

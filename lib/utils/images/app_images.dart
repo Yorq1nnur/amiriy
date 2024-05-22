@@ -5,6 +5,11 @@ class AppImages {
   static const String register = "assets/images/register.png";
   static const String back = "assets/images/back.png";
   static const String amiriy = "assets/images/amiriy.png";
+  static const String english = "assets/images/english.png";
+
+  //.jpg
+  static const String rusFlag = "assets/images/rus_flag.jpg";
+  static const String uzbFlag = "assets/images/uzb_flag.jpg";
   //.svg
   static const String email = "assets/icons/email.svg";
   static const String news = "assets/icons/news.svg";

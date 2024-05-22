@@ -1,11 +1,15 @@
 import 'dart:convert';
+import 'package:amiriy/bloc/auth/auth_bloc.dart';
+import 'package:amiriy/bloc/auth/auth_state.dart';
 import 'package:amiriy/bloc/bottom/bottom_bloc.dart';
 import 'package:amiriy/bloc/bottom/bottom_event.dart';
 import 'package:amiriy/bloc/bottom/bottom_state.dart';
+import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/bloc/notification/notification_bloc.dart';
 import 'package:amiriy/bloc/notification/notification_event.dart';
 import 'package:amiriy/data/models/notification_model.dart';
 import 'package:amiriy/permissions/app_permissions.dart';
+import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/book/books_screen.dart';
 import 'package:amiriy/screens/tabs/categories/categories_screen.dart';
 import 'package:amiriy/screens/tabs/settings/settings_screen.dart';
@@ -60,6 +64,18 @@ class _TabScreenState extends State<TabScreen> {
     return Scaffold(
       body: BlocBuilder<BottomBloc, ChangeIndexState>(
         builder: (context, state) {
+          BlocListener<AuthBloc, AuthState>(
+            listener: (p, c) {
+              if (c.status == FormStatus.unauthenticated) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RouteNames.loginRoute,
+                  (context) => false,
+                );
+              }
+            },
+            child: const SizedBox.shrink(),
+          );
           return Stack(
             children: [
               IndexedStack(

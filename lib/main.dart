@@ -36,6 +36,7 @@ Future<void> main() async {
   await StorageRepository.init();
   runApp(
     EasyLocalization(
+      saveLocale: true,
       supportedLocales: const [
         Locale("eng", "ENG"),
         Locale("uz", "UZ"),
