@@ -19,11 +19,11 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   _getAllCategories(
     GetAllCategoriesEvent event,
     Emitter emit,
-  ) {
+  ) async {
     state.copyWith(
       formStatus: FormStatus.loading,
     );
-    emit.onEach(
+   await emit.onEach(
       categoryRepo.listenCategories(),
       onData: (
         List<CategoryModel> categories,

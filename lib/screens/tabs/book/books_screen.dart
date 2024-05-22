@@ -17,7 +17,6 @@ class BooksScreen extends StatefulWidget {
 }
 
 class _BooksScreenState extends State<BooksScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,24 +83,31 @@ class _BooksScreenState extends State<BooksScreen> {
                   return Wrap(
                     children: List.generate(
                       state.allCategories.length,
-                      (index) => Container(
+                      (index) => Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 10.w,
-                          vertical: 15.h,
+                          horizontal: 3.w,
+                          vertical: 3.h,
                         ),
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 5.w,
-                          vertical: 5.h,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.cF1F1F1,
+                        child: InkWell(
+                          onTap: () {},
                           borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: GlobalText(
-                          data: state.allCategories[index].categoryName,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                          isTranslate: false,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 10.w,
+                              vertical: 15.h,
+                            ),
+                            margin: EdgeInsets.all(2.w),
+                            decoration: BoxDecoration(
+                              color: AppColors.cF1F1F1,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: GlobalText(
+                              data: state.allCategories[index].categoryName,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400,
+                              isTranslate: false,
+                            ),
+                          ),
                         ),
                       ),
                     ),

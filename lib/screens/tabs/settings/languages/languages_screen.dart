@@ -1,4 +1,5 @@
 import 'package:amiriy/screens/auth/widgets/global_textbutton.dart';
+import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/images/app_images.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,19 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RouteNames.tabRoute,
+              (context) => false,
+            );
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            size: 20.w,
+          ),
+        ),
         title:
             Text('language'.tr(), style: Theme.of(context).textTheme.bodyLarge),
         centerTitle: true,
@@ -128,7 +142,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                 setState(() {
                   language = 4;
                 });
-                locale = const Locale('uz', 'Cyrl');
+                locale = const Locale('uz', 'RU');
                 context.setLocale(locale);
 
                 debugPrint(context.locale.toString());
@@ -151,7 +165,11 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                 setState(() {});
                 await Future.delayed(const Duration(seconds: 1));
                 if (!context.mounted) return;
-                Navigator.pop(context);
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RouteNames.tabRoute,
+                      (context) => false,
+                );
               },
               text: "save",
               isTranslate: true,

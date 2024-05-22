@@ -41,7 +41,7 @@ Future<void> main() async {
         Locale("en", "US"),
         Locale("uz", "UZ"),
         Locale("ru", "RU"),
-        Locale('uz', 'Cyrl'),
+        Locale('uz', 'RU'),
       ],
       path: AppConstants.translations,
       startLocale: const Locale(
