@@ -5,6 +5,7 @@ import 'package:amiriy/bloc/banner/banner_bloc.dart';
 import 'package:amiriy/bloc/banner/banner_event.dart';
 import 'package:amiriy/bloc/bottom/bottom_bloc.dart';
 import 'package:amiriy/bloc/category/category_bloc.dart';
+import 'package:amiriy/bloc/category/category_event.dart';
 import 'package:amiriy/bloc/image/image_bloc.dart';
 import 'package:amiriy/bloc/notification/notification_bloc.dart';
 import 'package:amiriy/bloc/notification/notification_event.dart';
@@ -54,7 +55,9 @@ class App extends StatelessWidget {
           BlocProvider(
             create: (context) => CategoryBloc(
               context.read<CategoryRepo>(),
-            ),
+            )..add(
+                GetAllCategoriesEvent(),
+              ),
           ),
           BlocProvider(
             create: (context) =>
