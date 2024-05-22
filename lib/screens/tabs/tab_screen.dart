@@ -12,7 +12,6 @@ import 'package:amiriy/permissions/app_permissions.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/book/books_screen.dart';
 import 'package:amiriy/screens/tabs/categories/categories_screen.dart';
-import 'package:amiriy/screens/tabs/search/search_screen.dart';
 import 'package:amiriy/screens/tabs/settings/settings_screen.dart';
 import 'package:amiriy/services/local_notification_service.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
@@ -53,7 +52,7 @@ class _TabScreenState extends State<TabScreen> {
     screens = [
       const BooksScreen(),
       const CategoriesScreen(),
-      const SearchScreen(),
+      const BooksScreen(),
       const SettingsScreen(),
     ];
 
@@ -173,14 +172,14 @@ class _TabScreenState extends State<TabScreen> {
               ),
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
-                  AppImages.search,
+                  AppImages.books,
                   colorFilter:
                       const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
                   height: 24.h,
                   width: 24.h,
                 ),
                 icon: SvgPicture.asset(
-                  AppImages.search,
+                  AppImages.books,
                   height: 24.h,
                   width: 24.h,
                   colorFilter: const ColorFilter.mode(

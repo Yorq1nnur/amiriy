@@ -2,14 +2,14 @@ import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+class BooksScreen extends StatefulWidget {
+  const BooksScreen({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<BooksScreen> createState() => _BooksScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _BooksScreenState extends State<BooksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

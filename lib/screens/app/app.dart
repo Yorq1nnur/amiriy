@@ -79,9 +79,7 @@ class App extends StatelessWidget {
           BlocProvider(
             create: (context) => BookBloc(
               context.read<BookRepo>(),
-            )..add(
-                ListenAllBooksEvent(),
-              ),
+            ),
           ),
         ],
         child: AdaptiveTheme(

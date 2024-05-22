@@ -6,6 +6,7 @@ class AppImages {
   static const String back = "assets/images/back.png";
   static const String amiriy = "assets/images/amiriy.png";
   static const String english = "assets/images/english.png";
+  static const String errorForImage = "assets/images/error_for_image.png";
 
   //.jpg
   static const String rusFlag = "assets/images/rus_flag.jpg";
@@ -20,6 +21,7 @@ class AppImages {
   static const String user = "assets/icons/user.svg";
   static const String home = "assets/icons/home.svg";
   static const String search = "assets/icons/search.svg";
+  static const String books = "assets/icons/books.svg";
   static const String tabProfile = "assets/icons/tab_profile.svg";
   static const String settings = "assets/icons/settings.svg";
 
