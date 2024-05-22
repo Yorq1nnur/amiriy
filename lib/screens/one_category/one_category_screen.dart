@@ -1,8 +1,10 @@
 import 'package:amiriy/bloc/book/book_bloc.dart';
 import 'package:amiriy/bloc/book/book_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
+import 'package:amiriy/utils/images/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 class OneCategoryScreen extends StatelessWidget {
   const OneCategoryScreen({
@@ -23,18 +25,30 @@ class OneCategoryScreen extends StatelessWidget {
       ),
       body: BlocBuilder<BookBloc, BookState>(
         builder: (context, state) {
-          if(state.formStatus ==FormStatus.loading){
-            return const Center(child: CircularProgressIndicator(),);
-          }
-          if(state.formStatus ==FormStatus.error){
-            return Center(child: Text(state.errorText),);
-          }
-          if(state.formStatus ==FormStatus.success){
-            return Column(
-              children: List.generate(state.categoryBooks.length, (i){
-                return Text(state.categoryBooks[i].bookName,);
-              }),
+          if (state.formStatus == FormStatus.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
+          }
+          if (state.formStatus == FormStatus.error) {
+            return Center(
+              child: Text(state.errorText),
+            );
+          }
+          if (state.formStatus == FormStatus.success) {
+            if (state.categoryBooks.isEmpty) {
+              return Center(
+                child: Lottie.asset(AppImages.empty),
+              );
+            } else {
+              return Column(
+                children: List.generate(state.categoryBooks.length, (i) {
+                  return Text(
+                    state.categoryBooks[i].bookName,
+                  );
+                }),
+              );
+            }
           }
           return const SizedBox.shrink();
         },
