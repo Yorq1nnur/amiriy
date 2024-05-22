@@ -51,9 +51,6 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state.status == FormStatus.authenticated) {
               if (state.statusMessage == "registered") {
                 ///TODO ADD USER DATA TO USER TABLE
-                // BlocProvider.of<ResumeBloc>(context).add(
-                //   InsertResumeEvent(uid: state.userModel.authUid),
-                // );
               }
               Navigator.pushNamedAndRemoveUntil(
                 context,
@@ -72,10 +69,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     Center(
                       child: Text(
                         "welcome_back".tr(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(fontSize: 30),
+                        style:
+                            Theme.of(context).textTheme.titleMedium!.copyWith(
+                                  fontSize: 30,
+                                ),
                       ),
                     ),
                     SizedBox(height: 11.h),
@@ -151,7 +148,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
                           }
                         },
-                        text: "login", isTranslate: true,
+                        text: "login",
+                        isTranslate: true,
                       ),
                     ),
                     SizedBox(height: 15.h),

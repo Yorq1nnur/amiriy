@@ -8,6 +8,7 @@ import 'package:amiriy/data/models/notification_model.dart';
 import 'package:amiriy/permissions/app_permissions.dart';
 import 'package:amiriy/screens/tabs/book/books_screen.dart';
 import 'package:amiriy/screens/tabs/categories/categories_screen.dart';
+import 'package:amiriy/screens/tabs/settings/settings_screen.dart';
 import 'package:amiriy/services/local_notification_service.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/images/app_images.dart';
@@ -30,8 +31,6 @@ class _TabScreenState extends State<TabScreen> {
 
   bool showMessage = false;
 
-
-
   _getPermission() async {
     await Permission.notification.isDenied.then((value) {
       if (value) {
@@ -48,6 +47,7 @@ class _TabScreenState extends State<TabScreen> {
     screens = [
       const BooksScreen(),
       const CategoriesScreen(),
+      const SettingsScreen(),
     ];
 
     _getMyToken();
@@ -77,9 +77,29 @@ class _TabScreenState extends State<TabScreen> {
             currentIndex: state.index,
             type: BottomNavigationBarType.fixed,
             onTap: (index) {
-              context.read<BottomBloc>().add(ChangeIndexEvent(
-                    index: index,
-                  ));
+              switch (index) {
+                case (0):
+                  context.read<BottomBloc>().add(
+                        ChangeIndexEvent(
+                          index: 0,
+                        ),
+                      );
+                  break;
+                case (1):
+                  context.read<BottomBloc>().add(
+                        ChangeIndexEvent(
+                          index: 1,
+                        ),
+                      );
+                  break;
+                case (2):
+                  context.read<BottomBloc>().add(
+                        ChangeIndexEvent(
+                          index: 2,
+                        ),
+                      );
+                  break;
+              }
             },
             items: [
               BottomNavigationBarItem(
@@ -92,8 +112,10 @@ class _TabScreenState extends State<TabScreen> {
                 ),
                 icon: SvgPicture.asset(
                   AppImages.home,
-                  colorFilter:
-                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.black,
+                    BlendMode.srcIn,
+                  ),
                   height: 24.h,
                   width: 24.h,
                 ),
@@ -102,8 +124,10 @@ class _TabScreenState extends State<TabScreen> {
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
                   AppImages.search,
-                  colorFilter:
-                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.black,
+                    BlendMode.srcIn,
+                  ),
                   height: 24.h,
                   width: 24.h,
                 ),
@@ -111,6 +135,25 @@ class _TabScreenState extends State<TabScreen> {
                   AppImages.search,
                   height: 24.h,
                   width: 24.h,
+                ),
+                label: "",
+              ),
+              BottomNavigationBarItem(
+                activeIcon: SvgPicture.asset(
+                  AppImages.settings,
+                  colorFilter:
+                      const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+                  height: 24.h,
+                  width: 24.h,
+                ),
+                icon: SvgPicture.asset(
+                  AppImages.settings,
+                  height: 24.h,
+                  width: 24.h,
+                  colorFilter: const ColorFilter.mode(
+                    Colors.grey,
+                    BlendMode.srcIn,
+                  ),
                 ),
                 label: "",
               ),

@@ -1,6 +1,7 @@
 import 'package:amiriy/data/local/local_database.dart';
 import 'package:amiriy/screens/app/app.dart';
 import 'package:amiriy/services/local_notification_service.dart';
+import 'package:amiriy/utils/constants/app_constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -36,10 +37,13 @@ Future<void> main() async {
   runApp(
     EasyLocalization(
       supportedLocales: const [
+        Locale("eng", "ENG"),
         Locale("uz", "UZ"),
         Locale("ru", "RU"),
+        Locale("kr", "KR"),
       ],
-      path: "assets/translations",
+      path: AppConstants.translations,
+      startLocale: const Locale("eng","ENG"),
       fallbackLocale: const Locale(
         "uz",
         "UZ",

@@ -1,5 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:flutter/material.dart';
+import 'package:my_utils/my_utils.dart';
 
 class BooksScreen extends StatefulWidget {
   const BooksScreen({super.key});
@@ -18,9 +19,11 @@ class _BooksScreenState extends State<BooksScreen> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          "books".tr(),
-          style: Theme.of(context).textTheme.titleLarge,
+        title: GlobalText(
+          data: "books",
+          fontSize: 20.sp,
+          fontWeight: FontWeight.w900,
+          isTranslate: true,
         ),
       ),
     );

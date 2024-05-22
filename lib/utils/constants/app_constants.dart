@@ -15,4 +15,6 @@ class AppConstants {
 
   static const String categories = "categories";
   static const String books = "books";
+
+  static const String translations = "assets/translations";
 }
