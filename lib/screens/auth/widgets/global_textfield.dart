@@ -10,7 +10,7 @@ class GlobalTextField extends StatelessWidget {
     required this.title,
     this.focusNode,
     required this.icon,
-    required this.controller,
+    this.controller,
     required this.validate,
     required this.validateText,
     required this.validateEmptyText,
@@ -25,7 +25,7 @@ class GlobalTextField extends StatelessWidget {
   final String validateText;
   final String validateEmptyText;
   final Widget icon;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final RegExp validate;
   final GlobalKey formKey;
   final TextInputType type;
@@ -47,7 +47,8 @@ class GlobalTextField extends StatelessWidget {
           ],
         ),
         child: TextFormField(
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 14.sp),
+          style:
+              Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 14.sp),
           onChanged: onChanged,
           inputFormatters: inputFormatter,
           textInputAction: TextInputAction.next,
@@ -95,8 +96,8 @@ class GlobalTextField extends StatelessWidget {
             prefixIcon: icon,
             hintText: title,
             hintStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontSize: 14.w,
-            ),
+                  fontSize: 14.w,
+                ),
           ),
         ),
       ),

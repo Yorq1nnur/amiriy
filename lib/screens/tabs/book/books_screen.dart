@@ -1,8 +1,5 @@
-import 'package:amiriy/screens/routes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:my_utils/my_utils.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class BooksScreen extends StatefulWidget {
   const BooksScreen({super.key});

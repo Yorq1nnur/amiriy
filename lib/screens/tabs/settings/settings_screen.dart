@@ -1,11 +1,7 @@
-import 'package:amiriy/screens/routes.dart';
-import 'package:amiriy/utils/images/app_images.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_utils/my_utils.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
