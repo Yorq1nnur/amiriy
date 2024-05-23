@@ -1,11 +1,8 @@
 import 'package:amiriy/data/models/book_model.dart';
 import 'package:amiriy/screens/global_widgets/image_item.dart';
-import 'package:amiriy/utils/colors/app_colors.dart';
-import 'package:amiriy/utils/images/app_images.dart';
 import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_utils/my_utils.dart';
 
 class SearchItems extends StatelessWidget {
