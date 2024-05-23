@@ -18,10 +18,10 @@ class ImageItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      fit: BoxFit.fill,
       imageUrl: imageUrl,
-      height: width,
-      width: width ,
+      height: height,
+      width: width,
+      fit: BoxFit.fill,
       placeholder: (context, s) {
         return ShimmerContainer(
           width: width,

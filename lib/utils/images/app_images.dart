@@ -7,6 +7,11 @@ class AppImages {
   static const String amiriy = "assets/images/amiriy.png";
   static const String english = "assets/images/english.png";
   static const String errorForImage = "assets/images/error_for_image.png";
+  // static const String home = "assets/images/home.png";
+  // static const String search = "assets/images/search.png";
+  // static const String books = "assets/images/books.png";
+  // static const String settings = "assets/images/settings.png";
+
 
   //.jpg
   static const String rusFlag = "assets/images/rus_flag.jpg";
@@ -14,14 +19,15 @@ class AppImages {
 
   //.svg
   static const String email = "assets/icons/email.svg";
+  static const String rate = "assets/icons/rate.svg";
   static const String categories = "assets/icons/categories.svg";
   static const String news = "assets/icons/news.svg";
   static const String lock = "assets/icons/lock.svg";
   static const String shelf = "assets/icons/shelf.svg";
   static const String user = "assets/icons/user.svg";
-  static const String home = "assets/icons/home.svg";
   static const String search = "assets/icons/search.svg";
   static const String books = "assets/icons/books.svg";
+  static const String home = "assets/icons/home.svg";
   static const String tabProfile = "assets/icons/tab_profile.svg";
   static const String settings = "assets/icons/settings.svg";
 

@@ -1,5 +1,7 @@
+import 'package:amiriy/data/models/book_model.dart';
 import 'package:amiriy/screens/auth/login/login_screen.dart';
 import 'package:amiriy/screens/auth/register/register_screen.dart';
+import 'package:amiriy/screens/details/book_details_screen.dart';
 import 'package:amiriy/screens/languages/languages_screen.dart';
 import 'package:amiriy/screens/on_boarding/on_boarding_screen.dart';
 import 'package:amiriy/screens/one_category/one_category_screen.dart';
@@ -43,6 +45,12 @@ class AppRoutes {
             categoryName: settings.arguments as String,
           ),
         );
+      case RouteNames.bookDetailsRoute:
+        return navigate(
+          BookDetailsScreen(
+            bookModel: settings.arguments as BookModel,
+          ),
+        );
 
       default:
         return navigate(
@@ -72,4 +80,5 @@ class RouteNames {
   static const String onBoardingRoute = "/on_boarding_route";
   static const String languagesRoute = "/languages_route";
   static const String oneCategoryRoute = "/one_category_route";
+  static const String bookDetailsRoute = "/book_details_route";
 }

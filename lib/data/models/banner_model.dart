@@ -13,9 +13,9 @@ class BannerModel {
 
   factory BannerModel.fromJson(Map<String, dynamic> json) => BannerModel(
         bannerTitle: json['banner_title'] as String? ?? '',
-        bannerImageUrl: json['banner_imageUrl'] as String? ?? '',
-        bannerOnTapUrl: json['banner_onTapUrl'] as String? ?? '',
-        bannerCreatedAt: json['banner_createdAt'] as String? ?? '',
+        bannerImageUrl: json['banner_image_url'] as String? ?? '',
+        bannerOnTapUrl: json['banner_url'] as String? ?? '',
+        bannerCreatedAt: json['banner_created_at'] as String? ?? '',
       );
 
   static List<BannerModel> initialValue() => [

@@ -49,24 +49,9 @@ class _BooksScreenState extends State<BooksScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            24.getH(),
-            GestureDetector(
-              onTap: () {
-                showSearch(
-                  context: context,
-                  delegate: ItemSearch(
-                    items: context.read<BookBloc>().state.books,
-                  ),
-                );
-              },
-              child: SearchWidget(
-                controller: searchController,
-                voidCallback: (v) {},
-              ),
-            ),
             50.getH(),
             GlobalText(
-              data: 'category',
+              data: 'categories',
               fontSize: 18.w,
               fontWeight: FontWeight.w700,
               isTranslate: true,

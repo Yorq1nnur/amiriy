@@ -168,7 +168,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   RouteNames.tabRoute,
-                      (context) => false,
+                  (context) => false,
                 );
               },
               text: "save",

@@ -4,7 +4,6 @@ import 'package:amiriy/bloc/auth/auth_event.dart';
 import 'package:amiriy/bloc/banner/banner_bloc.dart';
 import 'package:amiriy/bloc/banner/banner_event.dart';
 import 'package:amiriy/bloc/book/book_bloc.dart';
-import 'package:amiriy/bloc/book/book_event.dart';
 import 'package:amiriy/bloc/bottom/bottom_bloc.dart';
 import 'package:amiriy/bloc/category/category_bloc.dart';
 import 'package:amiriy/bloc/category/category_event.dart';

@@ -23,7 +23,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     state.copyWith(
       formStatus: FormStatus.loading,
     );
-   await emit.onEach(
+    await emit.onEach(
       categoryRepo.listenCategories(),
       onData: (
         List<CategoryModel> categories,

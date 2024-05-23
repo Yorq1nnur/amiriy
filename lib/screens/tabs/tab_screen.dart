@@ -11,7 +11,7 @@ import 'package:amiriy/data/models/notification_model.dart';
 import 'package:amiriy/permissions/app_permissions.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/book/books_screen.dart';
-import 'package:amiriy/screens/tabs/categories/categories_screen.dart';
+import 'package:amiriy/screens/tabs/search/search_screen.dart';
 import 'package:amiriy/screens/tabs/settings/settings_screen.dart';
 import 'package:amiriy/services/local_notification_service.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
@@ -51,7 +51,7 @@ class _TabScreenState extends State<TabScreen> {
     AppPermissions();
     screens = [
       const BooksScreen(),
-      const CategoriesScreen(),
+      const SearchScreen(),
       const BooksScreen(),
       const SettingsScreen(),
     ];
@@ -91,8 +91,8 @@ class _TabScreenState extends State<TabScreen> {
       bottomNavigationBar: BlocBuilder<BottomBloc, ChangeIndexState>(
         builder: (context, state) {
           return BottomNavigationBar(
-            selectedItemColor: AppColors.black,
-            unselectedItemColor: Colors.grey,
+            selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+            unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
             selectedFontSize: 15.w,
             unselectedFontSize: 14.w,
             currentIndex: state.index,
@@ -151,7 +151,7 @@ class _TabScreenState extends State<TabScreen> {
               ),
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
-                  AppImages.categories,
+                  AppImages.search,
                   colorFilter: const ColorFilter.mode(
                     AppColors.black,
                     BlendMode.srcIn,
@@ -160,7 +160,7 @@ class _TabScreenState extends State<TabScreen> {
                   width: 24.h,
                 ),
                 icon: SvgPicture.asset(
-                  AppImages.categories,
+                  AppImages.search,
                   height: 24.h,
                   width: 24.h,
                   colorFilter: const ColorFilter.mode(
@@ -168,7 +168,7 @@ class _TabScreenState extends State<TabScreen> {
                     BlendMode.srcIn,
                   ),
                 ),
-                label: "categories".tr(),
+                label: "search".tr(),
               ),
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
@@ -187,7 +187,7 @@ class _TabScreenState extends State<TabScreen> {
                     BlendMode.srcIn,
                   ),
                 ),
-                label: "search".tr(),
+                label: "books".tr(),
               ),
               BottomNavigationBarItem(
                 activeIcon: SvgPicture.asset(
