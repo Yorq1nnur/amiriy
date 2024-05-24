@@ -1,9 +1,8 @@
 import 'package:amiriy/data/models/banner_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:amiriy/screens/global_widgets/image_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BannerItems extends StatelessWidget {
@@ -38,38 +37,10 @@ class BannerItems extends StatelessWidget {
                   borderRadius: BorderRadius.circular(
                     6,
                   ),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.cover,
+                  child: ImageItem(
                     imageUrl: banners[index].bannerImageUrl,
-                    placeholder: (
-                      context,
-                      url,
-                    ) =>
-                        Shimmer.fromColors(
-                      enabled: true,
-                      baseColor: Colors.grey.shade300,
-                      highlightColor: Colors.white,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(
-                            6,
-                          ),
-                        ),
-                        height: double.infinity,
-                        width: double.infinity,
-                      ),
-                    ),
-                    errorWidget: (
-                      context,
-                      url,
-                      error,
-                    ) =>
-                        const Center(
-                      child: Icon(
-                        Icons.error,
-                      ),
-                    ),
+                    width: double.infinity,
+                    height: double.infinity,
                   ),
                 ),
                 Positioned(
@@ -118,7 +89,8 @@ class BannerItems extends StatelessWidget {
         },
       ),
       options: CarouselOptions(
-        aspectRatio: 16 / 10,
+        aspectRatio: 16 / 8,
+        height: height/4,
         viewportFraction: 1,
         initialPage: 0,
         enableInfiniteScroll: true,

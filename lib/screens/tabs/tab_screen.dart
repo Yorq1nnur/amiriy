@@ -129,7 +129,7 @@ class _TabScreenState extends State<TabScreen>
           ),
           BottomNavigationBarItem(
             icon: _buildAnimatedIcon(Icons.category, 1),
-            label: 'all_book'.tr(),
+            label: 'all_books'.tr(),
             tooltip: 'all_books'.tr(),
           ),
           BottomNavigationBarItem(

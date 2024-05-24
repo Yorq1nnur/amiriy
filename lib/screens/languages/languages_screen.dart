@@ -158,12 +158,19 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
               onTap: () async {
                 isLoading = true;
                 setState(() {});
-                await Future.delayed(const Duration(seconds: 1));
+                await Future.delayed(
+                  const Duration(
+                    seconds: 1,
+                  ),
+                );
                 if (!context.mounted) return;
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   RouteNames.tabRoute,
-                  (context) => false,
+                  (
+                    context,
+                  ) =>
+                      false,
                 );
               },
               text: "save",
