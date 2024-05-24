@@ -83,6 +83,42 @@ class BookDetailsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Positioned(
+                    top: 10.h,
+                    right: 10.w,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          style: IconButton.styleFrom(
+                            backgroundColor: Theme.of(context).primaryColor,
+                          ),
+                          icon: Icon(
+                            Icons.shop,
+                            color: Theme.of(context).iconTheme.color,
+                            size: Theme.of(context).iconTheme.size,
+                          ),
+                        ),
+                        const GlobalText(
+                          data: 'or',
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          isTranslate: true,
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          style: IconButton.styleFrom(
+                            backgroundColor: Theme.of(context).primaryColor,
+                          ),
+                          icon: Icon(
+                            Icons.car_rental,
+                            color: Theme.of(context).iconTheme.color,
+                            size: Theme.of(context).iconTheme.size,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
               20.getH(),
@@ -125,77 +161,6 @@ class BookDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  bottom: 20.h,
-                  left: 20.w,
-                  right: 20.w,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Ink(
-                      height: 50.h,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20.w,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          8,
-                        ),
-                        color: AppColors.c29BB89,
-                      ),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(8),
-                        onTap: () {},
-                        child: Center(
-                          child: GlobalText(
-                            data: 'buy',
-                            fontSize: 20.w,
-                            fontWeight: FontWeight.w900,
-                            isTranslate: true,
-                          ),
-                        ),
-                      ),
-                    ),
-                    GlobalText(
-                      data: 'or',
-                      fontSize: 20.w,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.color
-                          ?.withOpacity(0.6),
-                      fontWeight: FontWeight.w900,
-                      isTranslate: true,
-                    ),
-                    Ink(
-                      height: 50.h,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20.w,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          8,
-                        ),
-                        color: AppColors.c29BB89,
-                      ),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(8),
-                        onTap: () {},
-                        child: Center(
-                          child: GlobalText(
-                            data: 'rent',
-                            fontSize: 20.w,
-                            fontWeight: FontWeight.w900,
-                            isTranslate: true,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
         ),
