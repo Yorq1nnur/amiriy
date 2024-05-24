@@ -44,7 +44,7 @@ dependencies:
   pinput: ^4.0.0
   carousel_slider: ^4.2.1
   google_maps_flutter: ^2.6.1
-  location: ^5.0.3
+  location: ^6.0.2
   url_launcher: ^6.2.6
 
   my_utils:
@@ -55,7 +55,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^3.0.1
+  flutter_lints: ^4.0.0
 
 flutter:
 

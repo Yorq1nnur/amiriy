@@ -72,6 +72,7 @@ class BooksItem extends StatelessWidget {
                             fontWeight: FontWeight.w900,
                             fontSize: 20.w,
                           ),
+                      maxLines: 1,
                     ),
                     SizedBox(
                       height: 10.h,
