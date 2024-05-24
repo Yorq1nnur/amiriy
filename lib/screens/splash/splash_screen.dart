@@ -21,8 +21,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   _init() async {
     context.read<CategoryBloc>().add(
-      GetAllCategoriesEvent(),
-    );
+          GetAllCategoriesEvent(),
+        );
     await Future.delayed(const Duration(seconds: 2));
     bool isNewUser = StorageRepository.getBool(key: 'is_new_user');
 

@@ -99,7 +99,9 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                 ),
               ),
               trailing: Icon(
-                currentLocale == const Locale('ru', 'RU') ? Icons.check_circle : Icons.circle_outlined,
+                currentLocale == const Locale('ru', 'RU')
+                    ? Icons.check_circle
+                    : Icons.circle_outlined,
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(
@@ -119,7 +121,9 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
               },
               leading: Image.asset(AppImages.english, height: 25.h),
               trailing: Icon(
-                currentLocale == const Locale('en', 'US') ? Icons.check_circle : Icons.circle_outlined,
+                currentLocale == const Locale('en', 'US')
+                    ? Icons.check_circle
+                    : Icons.circle_outlined,
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(
@@ -139,7 +143,9 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
               },
               leading: Image.asset(AppImages.uzbFlag, height: 25.h),
               trailing: Icon(
-                currentLocale == const Locale('uz', 'RU') ? Icons.check_circle : Icons.circle_outlined,
+                currentLocale == const Locale('uz', 'RU')
+                    ? Icons.check_circle
+                    : Icons.circle_outlined,
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(
