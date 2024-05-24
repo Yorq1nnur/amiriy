@@ -1,5 +1,7 @@
 import 'package:amiriy/bloc/book/book_bloc.dart';
 import 'package:amiriy/bloc/book/book_event.dart';
+import 'package:amiriy/bloc/category/category_bloc.dart';
+import 'package:amiriy/bloc/category/category_event.dart';
 import 'package:amiriy/data/local/storage_repository.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/images/app_images.dart';
@@ -18,6 +20,9 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   _init() async {
+    context.read<CategoryBloc>().add(
+      GetAllCategoriesEvent(),
+    );
     await Future.delayed(const Duration(seconds: 2));
     bool isNewUser = StorageRepository.getBool(key: 'is_new_user');
 

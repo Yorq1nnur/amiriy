@@ -25,6 +25,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Locale currentLocale = EasyLocalization.of(context)!.locale;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -58,21 +59,23 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
           children: [
             ListTile(
               onTap: () {
-                setState(() {
-                  language = 1;
-                });
                 locale = const Locale('uz', 'UZ');
                 context.setLocale(locale);
-
                 debugPrint(context.locale.toString());
-                setState(() {});
               },
               leading: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.asset(AppImages.uzbFlag,
-                      height: 25.h, width: 25.w, fit: BoxFit.cover)),
+                borderRadius: BorderRadius.circular(50),
+                child: Image.asset(
+                  AppImages.uzbFlag,
+                  height: 25.h,
+                  width: 25.w,
+                  fit: BoxFit.cover,
+                ),
+              ),
               trailing: Icon(
-                language == 1 ? Icons.check_circle : Icons.circle_outlined,
+                currentLocale == const Locale('uz', 'UZ')
+                    ? Icons.check_circle
+                    : Icons.circle_outlined,
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(
@@ -83,14 +86,9 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
             Divider(color: Theme.of(context).dividerColor),
             ListTile(
               onTap: () {
-                setState(() {
-                  language = 2;
-                });
                 locale = const Locale('ru', 'RU');
                 context.setLocale(locale);
-
                 debugPrint(context.locale.toString());
-                setState(() {});
               },
               leading: ClipRRect(
                 borderRadius: BorderRadius.circular(50),
@@ -102,7 +100,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                 ),
               ),
               trailing: Icon(
-                language == 2 ? Icons.check_circle : Icons.circle_outlined,
+                currentLocale == const Locale('ru', 'RU') ? Icons.check_circle : Icons.circle_outlined,
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(
@@ -115,18 +113,14 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
             ),
             ListTile(
               onTap: () {
-                setState(() {
-                  language = 3;
-                });
                 locale = const Locale('en', 'US');
                 context.setLocale(locale);
 
                 debugPrint(context.locale.toString());
-                setState(() {});
               },
               leading: Image.asset(AppImages.english, height: 25.h),
               trailing: Icon(
-                language == 3 ? Icons.check_circle : Icons.circle_outlined,
+                currentLocale == const Locale('en', 'US') ? Icons.check_circle : Icons.circle_outlined,
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(
@@ -139,18 +133,14 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
             ),
             ListTile(
               onTap: () {
-                setState(() {
-                  language = 4;
-                });
                 locale = const Locale('uz', 'RU');
                 context.setLocale(locale);
 
                 debugPrint(context.locale.toString());
-                setState(() {});
               },
               leading: Image.asset(AppImages.uzbFlag, height: 25.h),
               trailing: Icon(
-                language == 4 ? Icons.check_circle : Icons.circle_outlined,
+                currentLocale == const Locale('uz', 'RU') ? Icons.check_circle : Icons.circle_outlined,
                 color: Theme.of(context).iconTheme.color,
               ),
               title: Text(

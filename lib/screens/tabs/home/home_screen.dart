@@ -1,3 +1,5 @@
+import 'package:amiriy/bloc/banner/banner_bloc.dart';
+import 'package:amiriy/bloc/banner/banner_state.dart';
 import 'package:amiriy/bloc/book/book_bloc.dart';
 import 'package:amiriy/bloc/book/book_event.dart';
 import 'package:amiriy/bloc/category/category_bloc.dart';
@@ -5,6 +7,7 @@ import 'package:amiriy/bloc/category/category_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_bloc.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_state.dart';
+import 'package:amiriy/screens/global_widgets/banner_items.dart';
 import 'package:amiriy/screens/global_widgets/books_item.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/routes.dart';
@@ -50,6 +53,14 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            20.getH(),
+            BlocBuilder<BannerBloc, BannerState>(
+              builder: (context, state) {
+                return BannerItems(
+                  banners: state.banners,
+                );
+              },
+            ),
             20.getH(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 32.w),
