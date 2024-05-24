@@ -45,9 +45,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 25.w,
-        ),
+        padding: EdgeInsets.symmetric(horizontal: 25.w),
         child: Column(
           children: [
             GestureDetector(
@@ -68,7 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
               if (state.formStatus == FormStatus.loading) {
                 return ShimmerContainer(
                   width: double.infinity,
-                  height: height / 4,
+                  height: MediaQuery.of(context).size.height / 4,
                 );
               }
               if (state.formStatus == FormStatus.error) {
@@ -80,7 +78,6 @@ class _SearchScreenState extends State<SearchScreen> {
                 return Expanded(
                   child: ListView.builder(
                     itemCount: state.books.length,
-                    padding: EdgeInsets.symmetric(vertical: 24.h),
                     itemBuilder: (BuildContext context, int index) {
                       return TabItem(
                         onTap: () {
@@ -90,9 +87,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             arguments: state.books[index],
                           );
                         },
-                        duration: const Duration(
-                          microseconds: 500,
-                        ),
+                        duration: const Duration(microseconds: 500),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -103,7 +98,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 borderRadius: BorderRadius.circular(20),
                                 child: ImageItem(
                                   imageUrl: state.books[index].imageUrl,
-                                  width: width,
+                                  width: MediaQuery.of(context).size.width,
                                   height: 220.h,
                                 ),
                               ),
@@ -111,24 +106,18 @@ class _SearchScreenState extends State<SearchScreen> {
                               Row(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(
-                                      left: 20.w,
-                                    ),
+                                    padding: EdgeInsets.only(left: 20.w),
                                     child: Text(
                                       state.books[index].bookName,
                                     ),
                                   ),
                                   20.getW(),
                                   UtilityFunctions.buildRatingStars(
-                                    double.parse(
-                                      state.books[index].rate,
-                                    ),
+                                    double.parse(state.books[index].rate),
                                     MainAxisAlignment.center,
                                   ),
                                 ],
-
                               ),
-
                               const Divider(),
                             ],
                           ),
@@ -139,7 +128,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 );
               }
               return const SizedBox.shrink();
-            })
+            }),
           ],
         ),
       ),

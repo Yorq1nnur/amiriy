@@ -2,26 +2,21 @@
 // import 'package:amiriy/bloc/auth/auth_bloc.dart';
 // import 'package:amiriy/bloc/auth/auth_state.dart';
 // import 'package:amiriy/bloc/bottom/bottom_bloc.dart';
-// import 'package:amiriy/bloc/bottom/bottom_event.dart';
 // import 'package:amiriy/bloc/bottom/bottom_state.dart';
 // import 'package:amiriy/bloc/form_status/form_status.dart';
 // import 'package:amiriy/bloc/notification/notification_bloc.dart';
 // import 'package:amiriy/bloc/notification/notification_event.dart';
 // import 'package:amiriy/data/models/notification_model.dart';
 // import 'package:amiriy/permissions/app_permissions.dart';
+// import 'package:amiriy/screens/global_widgets/custom_navigation_bar.dart';
 // import 'package:amiriy/screens/routes.dart';
 // import 'package:amiriy/screens/tabs/book/books_screen.dart';
 // import 'package:amiriy/screens/tabs/search/search_screen.dart';
 // import 'package:amiriy/screens/tabs/settings/settings_screen.dart';
 // import 'package:amiriy/services/local_notification_service.dart';
-// import 'package:amiriy/utils/colors/app_colors.dart';
-// import 'package:amiriy/utils/images/app_images.dart';
-// import 'package:easy_localization/easy_localization.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:my_utils/my_utils.dart';
 // import 'package:permission_handler/permission_handler.dart';
 //
 // class TabScreen extends StatefulWidget {
@@ -84,130 +79,41 @@
 //                 index: state.index,
 //                 children: screens,
 //               ),
-//             ],
-//           );
-//         },
-//       ),
-//       bottomNavigationBar: BlocBuilder<BottomBloc, ChangeIndexState>(
-//         builder: (context, state) {
-//           return BottomNavigationBar(
-//             selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-//             unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-//             selectedFontSize: 15.w,
-//             unselectedFontSize: 14.w,
-//             currentIndex: state.index,
-//             type: BottomNavigationBarType.fixed,
-//             onTap: (index) {
-//               switch (index) {
-//                 case (0):
-//                   context.read<BottomBloc>().add(
-//                         ChangeIndexEvent(
-//                           index: 0,
-//                         ),
-//                       );
-//                   break;
-//                 case (1):
-//                   context.read<BottomBloc>().add(
-//                         ChangeIndexEvent(
-//                           index: 1,
-//                         ),
-//                       );
-//                   break;
-//                 case (2):
-//                   context.read<BottomBloc>().add(
-//                         ChangeIndexEvent(
-//                           index: 2,
-//                         ),
-//                       );
-//                   break;
-//                 case (3):
-//                   context.read<BottomBloc>().add(
-//                         ChangeIndexEvent(
-//                           index: 3,
-//                         ),
-//                       );
-//                   break;
-//               }
-//             },
-//             items: [
-//               BottomNavigationBarItem(
-//                 activeIcon: SvgPicture.asset(
-//                   AppImages.home,
-//                   colorFilter:
-//                       const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-//                   height: 24.h,
-//                   width: 24.h,
+//               Align(
+//                 alignment: Alignment.bottomCenter,
+//                 child: CustomBottomNavigationBar(
+//                   currentIndex: 0,
+//                   items: [
+//                     CustomBottomNavigationBarItem(
+//                       icon: Icons.home,
+//                       label: 'Home',
+//                       activeColor: Colors.blue,
+//                       inactiveColor: Colors.grey,
+//                     ),
+//                     CustomBottomNavigationBarItem(
+//                       icon: Icons.search,
+//                       label: 'Search',
+//                       activeColor: Colors.blue,
+//                       inactiveColor: Colors.grey,
+//                     ),
+//                     CustomBottomNavigationBarItem(
+//                       icon: Icons.book,
+//                       label: 'Books',
+//                       activeColor: Colors.blue,
+//                       inactiveColor: Colors.grey,
+//                     ),
+//                     CustomBottomNavigationBarItem(
+//                       icon: Icons.settings,
+//                       label: 'Settings',
+//                       activeColor: Colors.blue,
+//                       inactiveColor: Colors.grey,
+//                     ),
+//                   ],
+//                   onTap: (index) {
+//                     // Handle item tap
+//                   },
 //                 ),
-//                 icon: SvgPicture.asset(
-//                   AppImages.home,
-//                   colorFilter: const ColorFilter.mode(
-//                     AppColors.black,
-//                     BlendMode.srcIn,
-//                   ),
-//                   height: 24.h,
-//                   width: 24.h,
-//                 ),
-//                 label: "home".tr(),
-//               ),
-//               BottomNavigationBarItem(
-//                 activeIcon: SvgPicture.asset(
-//                   AppImages.search,
-//                   colorFilter: const ColorFilter.mode(
-//                     AppColors.black,
-//                     BlendMode.srcIn,
-//                   ),
-//                   height: 24.h,
-//                   width: 24.h,
-//                 ),
-//                 icon: SvgPicture.asset(
-//                   AppImages.search,
-//                   height: 24.h,
-//                   width: 24.h,
-//                   colorFilter: const ColorFilter.mode(
-//                     Colors.black54,
-//                     BlendMode.srcIn,
-//                   ),
-//                 ),
-//                 label: "search".tr(),
-//               ),
-//               BottomNavigationBarItem(
-//                 activeIcon: SvgPicture.asset(
-//                   AppImages.books,
-//                   colorFilter:
-//                       const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-//                   height: 24.h,
-//                   width: 24.h,
-//                 ),
-//                 icon: SvgPicture.asset(
-//                   AppImages.books,
-//                   height: 24.h,
-//                   width: 24.h,
-//                   colorFilter: const ColorFilter.mode(
-//                     Colors.grey,
-//                     BlendMode.srcIn,
-//                   ),
-//                 ),
-//                 label: "books".tr(),
-//               ),
-//               BottomNavigationBarItem(
-//                 activeIcon: SvgPicture.asset(
-//                   AppImages.settings,
-//                   colorFilter:
-//                       const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-//                   height: 24.h,
-//                   width: 24.h,
-//                 ),
-//                 icon: SvgPicture.asset(
-//                   AppImages.settings,
-//                   height: 24.h,
-//                   width: 24.h,
-//                   colorFilter: const ColorFilter.mode(
-//                     Colors.grey,
-//                     BlendMode.srcIn,
-//                   ),
-//                 ),
-//                 label: "settings".tr(),
-//               ),
+//               )
 //             ],
 //           );
 //         },
@@ -250,295 +156,14 @@
 //   }
 // }
 
-
-// import 'dart:convert';
-// import 'package:amiriy/bloc/auth/auth_bloc.dart';
-// import 'package:amiriy/bloc/auth/auth_state.dart';
-// import 'package:amiriy/bloc/bottom/bottom_bloc.dart';
-// import 'package:amiriy/bloc/bottom/bottom_event.dart';
-// import 'package:amiriy/bloc/bottom/bottom_state.dart';
-// import 'package:amiriy/bloc/form_status/form_status.dart';
-// import 'package:amiriy/bloc/notification/notification_bloc.dart';
-// import 'package:amiriy/bloc/notification/notification_event.dart';
-// import 'package:amiriy/data/models/notification_model.dart';
-// import 'package:amiriy/permissions/app_permissions.dart';
-// import 'package:amiriy/screens/routes.dart';
-// import 'package:amiriy/screens/tabs/book/books_screen.dart';
-// import 'package:amiriy/screens/tabs/search/search_screen.dart';
-// import 'package:amiriy/screens/tabs/settings/settings_screen.dart';
-// import 'package:amiriy/services/local_notification_service.dart';
-// import 'package:amiriy/utils/colors/app_colors.dart';
-// import 'package:amiriy/utils/images/app_images.dart';
-// import 'package:easy_localization/easy_localization.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:my_utils/my_utils.dart';
-// import 'package:permission_handler/permission_handler.dart';
-
-// class TabScreen extends StatefulWidget {
-//   const TabScreen({super.key});
-//
-//   @override
-//   State<TabScreen> createState() => _TabScreenState();
-// }
-//
-// class _TabScreenState extends State<TabScreen> {
-//   String messageTitle = "";
-//
-//   bool showMessage = false;
-//
-//   _getPermission() async {
-//     await Permission.notification.isDenied.then((value) {
-//       if (value) {
-//         Permission.notification.request();
-//       }
-//     });
-//   }
-//
-//   late List<Widget> screens = [];
-//
-//   @override
-//   void initState() {
-//     AppPermissions();
-//     screens = [
-//       const BooksScreen(),
-//       const SearchScreen(),
-//       const BooksScreen(),
-//       const SettingsScreen(),
-//     ];
-//
-//     _getMyToken();
-//     _getPermission();
-//     super.initState();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: BlocBuilder<BottomBloc, ChangeIndexState>(
-//         builder: (context, state) {
-//           BlocListener<AuthBloc, AuthState>(
-//             listener: (p, c) {
-//               if (c.status == FormStatus.unauthenticated) {
-//                 Navigator.pushNamedAndRemoveUntil(
-//                   context,
-//                   RouteNames.loginRoute,
-//                       (context) => false,
-//                 );
-//               }
-//             },
-//             child: const SizedBox.shrink(),
-//           );
-//           return Stack(
-//             children: [
-//               AnimatedSwitcher(
-//                 duration: const Duration(milliseconds: 500),
-//                 transitionBuilder: (Widget child, Animation<double> animation) {
-//                   final offsetAnimation = Tween<Offset>(
-//                     begin: const Offset(1, 0),
-//                     end: Offset.zero,
-//                   ).animate(animation);
-//
-//                   return SlideTransition(
-//                     position: offsetAnimation,
-//                     child: child,
-//                   );
-//                 },
-//                 child: IndexedStack(
-//                   key: ValueKey<int>(state.index),
-//                   index: state.index,
-//                   children: screens,
-//                 ),
-//               ),
-//             ],
-//           );
-//         },
-//       ),
-//       bottomNavigationBar: BlocBuilder<BottomBloc, ChangeIndexState>(
-//         builder: (context, state) {
-//           return BottomNavigationBar(
-//             selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-//             unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-//             selectedFontSize: 15.w,
-//             unselectedFontSize: 14.w,
-//             currentIndex: state.index,
-//             type: BottomNavigationBarType.fixed,
-//             onTap: (index) {
-//               _navigateToScreen(index);
-//             },
-//             items: [
-//               BottomNavigationBarItem(
-//                 activeIcon: SvgPicture.asset(
-//                   AppImages.home,
-//                   colorFilter:
-//                   const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-//                   height: 24.h,
-//                   width: 24.h,
-//                 ),
-//                 icon: SvgPicture.asset(
-//                   AppImages.home,
-//                   colorFilter: const ColorFilter.mode(
-//                     AppColors.black,
-//                     BlendMode.srcIn,
-//                   ),
-//                   height: 24.h,
-//                   width: 24.h,
-//                 ),
-//                 label: "home".tr(),
-//               ),
-//               BottomNavigationBarItem(
-//                 activeIcon: SvgPicture.asset(
-//                   AppImages.search,
-//                   colorFilter: const ColorFilter.mode(
-//                     AppColors.black,
-//                     BlendMode.srcIn,
-//                   ),
-//                   height: 24.h,
-//                   width: 24.h,
-//                 ),
-//                 icon: SvgPicture.asset(
-//                   AppImages.search,
-//                   height: 24.h,
-//                   width: 24.h,
-//                   colorFilter: const ColorFilter.mode(
-//                     Colors.black54,
-//                     BlendMode.srcIn,
-//                   ),
-//                 ),
-//                 label: "search".tr(),
-//               ),
-//               BottomNavigationBarItem(
-//                 activeIcon: SvgPicture.asset(
-//                   AppImages.books,
-//                   colorFilter:
-//                   const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-//                   height: 24.h,
-//                   width: 24.h,
-//                 ),
-//                 icon: SvgPicture.asset(
-//                   AppImages.books,
-//                   height: 24.h,
-//                   width: 24.h,
-//                   colorFilter: const ColorFilter.mode(
-//                     Colors.grey,
-//                     BlendMode.srcIn,
-//                   ),
-//                 ),
-//                 label: "books".tr(),
-//               ),
-//               BottomNavigationBarItem(
-//                 activeIcon: SvgPicture.asset(
-//                   AppImages.settings,
-//                   colorFilter:
-//                   const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-//                   height: 24.h,
-//                   width: 24.h,
-//                 ),
-//                 icon: SvgPicture.asset(
-//                   AppImages.settings,
-//                   height: 24.h,
-//                   width: 24.h,
-//                   colorFilter: const ColorFilter.mode(
-//                     Colors.grey,
-//                     BlendMode.srcIn,
-//                   ),
-//                 ),
-//                 label: "settings".tr(),
-//               ),
-//             ],
-//           );
-//         },
-//       ),
-//     );
-//   }
-//
-//   void _navigateToScreen(int index) {
-//     Navigator.of(context).push(
-//       PageRouteBuilder(
-//         pageBuilder: (context, animation, secondaryAnimation) {
-//           return screens[index];
-//         },
-//         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-//           const begin = Offset(1.0, 0.0);
-//           const end = Offset.zero;
-//           const curve = Curves.easeInOut;
-//
-//           var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-//
-//           return SlideTransition(
-//             position: animation.drive(tween),
-//             child: child,
-//           );
-//         },
-//       ),
-//     );
-//
-//     context.read<BottomBloc>().add(ChangeIndexEvent(index: index));
-//   }
-//
-//   _getMyToken() async {
-//     FirebaseMessaging.onMessage.listen(
-//           (RemoteMessage remote) async {
-//         if (remote.notification!.title != null) {
-//           debugPrint("${remote.notification!.body!}   ------------");
-//           NotificationModel notificationModel = NotificationModel.fromJson(
-//               jsonDecode(remote.notification!.body!));
-//
-//           context.read<NotificationBloc>().add(
-//             NotificationInsertEvent(notificationModel: notificationModel),
-//           );
-//
-//           LocalNotificationService.localNotificationService.showNotification(
-//             title: notificationModel.title,
-//             body: notificationModel.description,
-//             id: 1,
-//           );
-//
-//           showMessage = true;
-//           messageTitle = notificationModel.title;
-//           setState(() {});
-//
-//           await Future.delayed(
-//             const Duration(
-//               seconds: 3,
-//             ),
-//           );
-//           showMessage = false;
-//           setState(() {});
-//         }
-//       },
-//     );
-//   }
-// }
-
-
-import 'dart:convert';
-import 'package:amiriy/bloc/auth/auth_bloc.dart';
-import 'package:amiriy/bloc/auth/auth_state.dart';
-import 'package:amiriy/bloc/bottom/bottom_bloc.dart';
-import 'package:amiriy/bloc/bottom/bottom_event.dart';
-import 'package:amiriy/bloc/bottom/bottom_state.dart';
-import 'package:amiriy/bloc/form_status/form_status.dart';
-import 'package:amiriy/bloc/notification/notification_bloc.dart';
-import 'package:amiriy/bloc/notification/notification_event.dart';
-import 'package:amiriy/data/models/notification_model.dart';
-import 'package:amiriy/permissions/app_permissions.dart';
-import 'package:amiriy/screens/routes.dart';
+import 'dart:math';
 import 'package:amiriy/screens/tabs/book/books_screen.dart';
-import 'package:amiriy/screens/tabs/search/search_screen.dart';
-import 'package:amiriy/screens/tabs/settings/settings_screen.dart';
-import 'package:amiriy/services/local_notification_service.dart';
-import 'package:amiriy/utils/colors/app_colors.dart';
-import 'package:amiriy/utils/images/app_images.dart';
+import 'package:amiriy/screens/tabs/books/books_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_utils/my_utils.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'search/search_screen.dart';
+import 'settings/settings_screen.dart';
 
 class TabScreen extends StatefulWidget {
   const TabScreen({super.key});
@@ -547,210 +172,105 @@ class TabScreen extends StatefulWidget {
   State<TabScreen> createState() => _TabScreenState();
 }
 
-class _TabScreenState extends State<TabScreen> {
-  String messageTitle = "";
-  bool showMessage = false;
+class _TabScreenState extends State<TabScreen> with SingleTickerProviderStateMixin {
+  int _selectedIndex = 0;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   late List<Widget> screens;
-  int currentIndex = 0;
-  double circlePosition = 0;
 
   @override
   void initState() {
-    super.initState();
-    AppPermissions();
-    screens = [
-      const BooksScreen(),
-      const SearchScreen(),
-      const BooksScreen(),
-      const SettingsScreen(),
+    screens = const [
+      BooksScreen(),
+      SearchScreen(),
+      BookScreen(),
+      SettingsScreen(),
     ];
-    _getMyToken();
-    _getPermission();
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOut,
+    );
   }
 
-  Future<void> _getPermission() async {
-    if (await Permission.notification.isDenied) {
-      Permission.notification.request();
-    }
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    _controller.forward(from: 0.0);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Widget _buildAnimatedIcon(IconData icon, int index) {
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        double animationValue = _animation.value;
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            if (_selectedIndex == index)
+              ...List.generate(4, (i) {
+                double angle = (i * 90.0) * (3.14 / 180.0);
+                return Transform.translate(
+                  offset: Offset(
+                    animationValue * 20 * cos(angle),
+                    animationValue * 20 * sin(angle),
+                  ),
+                  child: Container(
+                    width: 8.0,
+                    height: 8.0,
+                    decoration:  BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                );
+              }),
+            Icon(icon, color: Theme.of(context).iconTheme.color, size: Theme.of(context).iconTheme.size,),
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<BottomBloc, ChangeIndexState>(
-        builder: (context, state) {
-          BlocListener<AuthBloc, AuthState>(
-            listener: (p, c) {
-              if (c.status == FormStatus.unauthenticated) {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  RouteNames.loginRoute,
-                      (context) => false,
-                );
-              }
-            },
-            child: const SizedBox.shrink(),
-          );
-          return Stack(
-            children: [
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 500),
-                transitionBuilder: (Widget child, Animation<double> animation) {
-                  final offsetAnimation = Tween<Offset>(
-                    begin: const Offset(1, 0),
-                    end: Offset.zero,
-                  ).animate(animation);
-
-                  return SlideTransition(
-                    position: offsetAnimation,
-                    child: child,
-                  );
-                },
-                child: IndexedStack(
-                  key: ValueKey<int>(state.index),
-                  index: state.index,
-                  children: screens,
-                ),
-              ),
-            ],
-          );
-        },
-      ),
-      bottomNavigationBar: Stack(
-        children: [
-          BottomNavigationBar(
-            selectedItemColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-            unselectedItemColor: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
-            selectedFontSize: 15.w,
-            unselectedFontSize: 14.w,
-            currentIndex: currentIndex,
-            type: BottomNavigationBarType.fixed,
-            onTap: (index) {
-              setState(() {
-                currentIndex = index;
-                circlePosition = index * (MediaQuery.of(context).size.width / 4);
-              });
-              context.read<BottomBloc>().add(ChangeIndexEvent(index: index));
-            },
-            items: [
-              BottomNavigationBarItem(
-                activeIcon: SvgPicture.asset(
-                  AppImages.home,
-                  colorFilter: const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-                  height: 24.h,
-                  width: 24.h,
-                ),
-                icon: SvgPicture.asset(
-                  AppImages.home,
-                  colorFilter: const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-                  height: 24.h,
-                  width: 24.h,
-                ),
-                label: "home".tr(),
-              ),
-              BottomNavigationBarItem(
-                activeIcon: SvgPicture.asset(
-                  AppImages.search,
-                  colorFilter: const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-                  height: 24.h,
-                  width: 24.h,
-                ),
-                icon: SvgPicture.asset(
-                  AppImages.search,
-                  height: 24.h,
-                  width: 24.h,
-                  colorFilter: const ColorFilter.mode(Colors.black54, BlendMode.srcIn),
-                ),
-                label: "search".tr(),
-              ),
-              BottomNavigationBarItem(
-                activeIcon: SvgPicture.asset(
-                  AppImages.books,
-                  colorFilter: const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-                  height: 24.h,
-                  width: 24.h,
-                ),
-                icon: SvgPicture.asset(
-                  AppImages.books,
-                  height: 24.h,
-                  width: 24.h,
-                  colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
-                ),
-                label: "books".tr(),
-              ),
-              BottomNavigationBarItem(
-                activeIcon: SvgPicture.asset(
-                  AppImages.settings,
-                  colorFilter: const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-                  height: 24.h,
-                  width: 24.h,
-                ),
-                icon: SvgPicture.asset(
-                  AppImages.settings,
-                  height: 24.h,
-                  width: 24.h,
-                  colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
-                ),
-                label: "settings".tr(),
-              ),
-            ],
+      body: screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: _buildAnimatedIcon(Icons.home, 0),
+            label: 'home'.tr(),
           ),
-          Positioned.fill(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: AnimatedPositioned(
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.easeInOut,
-                left: circlePosition + (MediaQuery.of(context).size.width / 8) - 12,
-                bottom: 10,
-                child: Container(
-                  width: 24,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    color: Colors.red, // Change to your preferred color
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
-            ),
+          BottomNavigationBarItem(
+            icon: _buildAnimatedIcon(Icons.search, 1),
+            label: 'search'.tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: _buildAnimatedIcon(Icons.book, 2),
+            label: 'category'.tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: _buildAnimatedIcon(Icons.settings, 3),
+            label: 'settings'.tr(),
           ),
         ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
-    );
-  }
-
-  _getMyToken() async {
-    FirebaseMessaging.onMessage.listen(
-          (RemoteMessage remote) async {
-        if (remote.notification!.title != null) {
-          debugPrint("${remote.notification!.body!}   ------------");
-          NotificationModel notificationModel = NotificationModel.fromJson(
-              jsonDecode(remote.notification!.body!));
-
-          context.read<NotificationBloc>().add(
-            NotificationInsertEvent(notificationModel: notificationModel),
-          );
-
-          LocalNotificationService.localNotificationService.showNotification(
-            title: notificationModel.title,
-            body: notificationModel.description,
-            id: 1,
-          );
-
-          showMessage = true;
-          messageTitle = notificationModel.title;
-          setState(() {});
-
-          await Future.delayed(
-            const Duration(
-              seconds: 3,
-            ),
-          );
-          showMessage = false;
-          setState(() {});
-        }
-      },
     );
   }
 }
+
