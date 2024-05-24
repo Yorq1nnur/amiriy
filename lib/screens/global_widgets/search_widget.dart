@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:my_utils/my_utils.dart';
@@ -21,7 +22,7 @@ class SearchWidget extends StatelessWidget {
       onChanged: voidCallback,
       controller: controller,
       decoration: InputDecoration(
-        hintText: "Search",
+        hintText: "search_books".tr(),
         prefixIcon: Transform.scale(
           scale: 0.7,
           child: SvgPicture.asset(AppImages.search),

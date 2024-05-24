@@ -66,7 +66,7 @@ Future<void> main() async {
 // import 'package:amiriy/screens/global_widgets/custom_navigation_bar.dart';
 // import 'package:amiriy/screens/routes.dart';
 // import 'package:amiriy/screens/tabs/book/categories_screen.dart';
-// import 'package:amiriy/screens/tabs/search/search_screen.dart';
+// import 'package:amiriy/screens/tabs/search/all_books_screen.dart';
 // import 'package:amiriy/screens/tabs/settings/settings_screen.dart';
 // import 'package:amiriy/services/local_notification_service.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';

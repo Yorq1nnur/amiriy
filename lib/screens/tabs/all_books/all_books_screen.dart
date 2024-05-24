@@ -77,6 +77,10 @@ class _AllBooksScreenState extends State<AllBooksScreen> {
               if (state.formStatus == FormStatus.success) {
                 return Expanded(
                   child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    padding: EdgeInsets.symmetric(
+                      vertical: 20.h,
+                    ),
                     itemCount: state.books.length,
                     itemBuilder: (BuildContext context, int index) {
                       return TabItem(
