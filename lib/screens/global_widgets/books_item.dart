@@ -9,10 +9,14 @@ class BooksItem extends StatelessWidget {
     super.key,
     required this.bookModel,
     required this.voidCallback,
+    this.heightt,
+    this.widthh,
   });
 
   final BookModel bookModel;
   final VoidCallback voidCallback;
+  final double? widthh;
+  final double? heightt;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,8 @@ class BooksItem extends StatelessWidget {
         ),
         onTap: voidCallback,
         child: Container(
-          width: width / 2,
+          width: widthh ?? width / 2,
+          height: heightt ?? height/3,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(
               20,

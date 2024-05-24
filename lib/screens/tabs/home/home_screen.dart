@@ -15,14 +15,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_utils/my_utils.dart';
 
-class BooksScreen extends StatefulWidget {
-  const BooksScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<BooksScreen> createState() => _BooksScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _BooksScreenState extends State<BooksScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -37,6 +37,7 @@ class _BooksScreenState extends State<BooksScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
+        centerTitle: true,
         title: GlobalText(
           data: "welcome_back",
           fontSize: 20.sp,

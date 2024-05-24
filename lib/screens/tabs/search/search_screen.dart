@@ -14,14 +14,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_utils/my_utils.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+class AllBooksScreen extends StatefulWidget {
+  const AllBooksScreen({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<AllBooksScreen> createState() => _AllBooksScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _AllBooksScreenState extends State<AllBooksScreen> {
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -38,7 +38,7 @@ class _SearchScreenState extends State<SearchScreen> {
         elevation: 0,
         centerTitle: true,
         title: GlobalText(
-          data: "search",
+          data: "all_books",
           fontSize: 20.sp,
           fontWeight: FontWeight.w900,
           isTranslate: true,
