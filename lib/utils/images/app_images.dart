@@ -12,7 +12,6 @@ class AppImages {
   // static const String books = "assets/images/books.png";
   // static const String settings = "assets/images/settings.png";
 
-
   //.jpg
   static const String rusFlag = "assets/images/rus_flag.jpg";
   static const String uzbFlag = "assets/images/uzb_flag.jpg";

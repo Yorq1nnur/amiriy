@@ -9,7 +9,8 @@ class UtilityFunctions {
     );
   }
 
-  static Widget buildRatingStars(double rating, MainAxisAlignment mainAxisAlignment) {
+  static Widget buildRatingStars(
+      double rating, MainAxisAlignment mainAxisAlignment) {
     List<Widget> stars = [];
 
     for (int i = 1; i <= 5; i++) {
@@ -46,15 +47,15 @@ class UtilityFunctions {
     );
   }
 
-
- static List<BookModel> getLatest10Dates(List<BookModel> dates,) {
+  static List<BookModel> getLatest10Dates(
+    List<BookModel> dates,
+  ) {
     // Sort the list in descending order
     dates.sort((a, b) => b.dateTime.compareTo(a.dateTime));
 
     // Return the first 10 elements
     return dates.sublist(0, 10);
   }
-
 
   static void showSnackBar(String message, BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -144,5 +145,3 @@ class UtilityFunctions {
     }
   }
 }
-
-

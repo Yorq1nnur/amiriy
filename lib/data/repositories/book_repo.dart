@@ -97,13 +97,12 @@ class BookRepo {
       List<BookModel> recentBooks = querySnapshot.docs
           .map(
             (e) => BookModel.fromJson(e.data() as Map<String, dynamic>),
-      )
+          )
           .toList();
 
       //DateTime.now().toString()
 
-
-      for(var element in recentBooks){
+      for (var element in recentBooks) {
         UtilityFunctions.methodPrint(element.dateTime);
       }
 
@@ -119,7 +118,6 @@ class BookRepo {
       );
     }
   }
-
 
   Stream<List<BookModel>> listenProductsByCategory(
           {required String categoryDocId}) =>

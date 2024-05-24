@@ -17,14 +17,14 @@ class BooksItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 10.w),
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: InkWell(
         borderRadius: BorderRadius.circular(
           20,
         ),
         onTap: voidCallback,
         child: Container(
-          width: width/2,
+          width: width / 2,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(
               20,
@@ -57,16 +57,16 @@ class BooksItem extends StatelessWidget {
                 height: 10.h,
               ),
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 20.w),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       bookModel.bookName,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 20.w,
-                      ),
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20.w,
+                          ),
                     ),
                     SizedBox(
                       height: 10.h,
@@ -74,9 +74,9 @@ class BooksItem extends StatelessWidget {
                     Text(
                       bookModel.bookDescription,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 20.w,
-                      ),
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20.w,
+                          ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

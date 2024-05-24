@@ -129,7 +129,6 @@ class LightTheme {
     bottomAppBarTheme: const BottomAppBarTheme(
       color: Colors.white,
     ),
-
     iconButtonTheme: IconButtonThemeData(
       style: IconButton.styleFrom(
         backgroundColor: Colors.transparent,

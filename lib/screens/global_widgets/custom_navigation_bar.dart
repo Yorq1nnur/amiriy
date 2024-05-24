@@ -13,10 +13,12 @@ class CustomBottomNavigationBar extends StatefulWidget {
   });
 
   @override
-  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
 }
 
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> with SingleTickerProviderStateMixin {
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
+    with SingleTickerProviderStateMixin {
   late double _indicatorPosition;
   late int _currentIndex;
   late AnimationController _animationController;
@@ -104,12 +106,16 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
                   children: [
                     Icon(
                       item.icon,
-                      color: _currentIndex == index ? item.activeColor : item.inactiveColor,
+                      color: _currentIndex == index
+                          ? item.activeColor
+                          : item.inactiveColor,
                     ),
                     Text(
                       item.label,
                       style: TextStyle(
-                        color: _currentIndex == index ? item.activeColor : item.inactiveColor,
+                        color: _currentIndex == index
+                            ? item.activeColor
+                            : item.inactiveColor,
                       ),
                     ),
                   ],
@@ -121,7 +127,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
             animation: _animationController,
             builder: (context, child) {
               return Positioned(
-                left: _positionAnimation.value + (MediaQuery.of(context).size.width / widget.items.length - 24) / 2,
+                left: _positionAnimation.value +
+                    (MediaQuery.of(context).size.width / widget.items.length -
+                            24) /
+                        2,
                 bottom: 0,
                 child: Container(
                   width: 24,

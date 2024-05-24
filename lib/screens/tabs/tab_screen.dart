@@ -4,7 +4,7 @@ import 'package:amiriy/bloc/auth/auth_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/book/books_screen.dart';
-import 'package:amiriy/screens/tabs/books/books_screen.dart';
+import 'package:amiriy/screens/tabs/categories/categories_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,8 +30,8 @@ class _TabScreenState extends State<TabScreen>
   void initState() {
     screens = const [
       BooksScreen(),
+      CategoriesScreen(),
       SearchScreen(),
-      BookScreen(),
       SettingsScreen(),
     ];
     super.initState();
@@ -109,7 +109,7 @@ class _TabScreenState extends State<TabScreen>
             Navigator.pushNamedAndRemoveUntil(
               context,
               RouteNames.loginRoute,
-                  (context) => false,
+              (context) => false,
             );
           }
         },
@@ -128,14 +128,14 @@ class _TabScreenState extends State<TabScreen>
             tooltip: 'home'.tr(),
           ),
           BottomNavigationBarItem(
-            icon: _buildAnimatedIcon(Icons.search, 1),
-            label: 'search'.tr(),
-            tooltip: 'search'.tr(),
-          ),
-          BottomNavigationBarItem(
-            icon: _buildAnimatedIcon(Icons.book, 2),
+            icon: _buildAnimatedIcon(Icons.book, 1),
             label: 'category'.tr(),
             tooltip: 'category'.tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: _buildAnimatedIcon(Icons.search, 2),
+            label: 'search'.tr(),
+            tooltip: 'search'.tr(),
           ),
           BottomNavigationBarItem(
             icon: _buildAnimatedIcon(Icons.settings, 3),
