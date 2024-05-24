@@ -1,5 +1,6 @@
 import 'package:amiriy/data/models/book_model.dart';
 import 'package:amiriy/screens/global_widgets/search_items.dart';
+import 'package:amiriy/screens/routes.dart';
 import 'package:flutter/material.dart';
 
 class ItemSearch extends SearchDelegate<String> {
@@ -43,13 +44,11 @@ class ItemSearch extends SearchDelegate<String> {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => DetailScreen(
-            //         productModel: results[index]),
-            //   ),
-            // );
+            Navigator.pushNamed(
+              context,
+              RouteNames.bookDetailsRoute,
+              arguments: results[index],
+            );
           },
           child: SearchItems(bookModel: results[index]),
         );
@@ -71,13 +70,11 @@ class ItemSearch extends SearchDelegate<String> {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => DetailScreen(
-            //         productModel: suggestionList[index]),
-            //   ),
-            // );
+            Navigator.pushNamed(
+              context,
+              RouteNames.bookDetailsRoute,
+              arguments: suggestionList[index],
+            );
           },
           child: SearchItems(
             bookModel: suggestionList[index],

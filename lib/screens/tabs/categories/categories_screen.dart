@@ -6,6 +6,7 @@ import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/screens/global_widgets/books_item.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/global_widgets/tab_item.dart';
+import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -131,7 +132,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                 heightt: height / 2.5,
                                 widthh: width / 2.3,
                                 bookModel: state.books[index],
-                                voidCallback: () {},
+                                voidCallback: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RouteNames.bookDetailsRoute,
+                                    arguments: state.books[index],
+                                  );
+                                },
                               ),
                             );
                           }),

@@ -1,6 +1,10 @@
+import 'package:amiriy/bloc/auth/auth_bloc.dart';
+import 'package:amiriy/bloc/auth/auth_event.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/routes.dart';
+import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_utils/my_utils.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -26,6 +30,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
           fontWeight: FontWeight.w900,
           isTranslate: true,
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.read<AuthBloc>().add(
+                    LogOutUserEvent(),
+                  );
+            },
+            style: IconButton.styleFrom(
+                backgroundColor: Theme.of(context).primaryColor),
+            icon: Icon(
+              Icons.logout,
+              size: Theme.of(context).iconTheme.size,
+              color: Theme.of(context).iconTheme.color,
+            ),
+          ),
+          20.getW(),
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
