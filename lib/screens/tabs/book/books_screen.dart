@@ -5,6 +5,7 @@ import 'package:amiriy/bloc/category/category_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_bloc.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_state.dart';
+import 'package:amiriy/screens/global_widgets/books_item.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
@@ -42,22 +43,25 @@ class _BooksScreenState extends State<BooksScreen> {
           isTranslate: true,
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 32.w,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            20.getH(),
-            GlobalText(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          20.getH(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32.w),
+            child: GlobalText(
               data: 'categories',
               fontSize: 18.w,
               fontWeight: FontWeight.w700,
               isTranslate: true,
             ),
-            6.getH(),
-            BlocBuilder<CategoryBloc, CategoryState>(
+          ),
+          6.getH(),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 32.w,
+            ),
+            child: BlocBuilder<CategoryBloc, CategoryState>(
               builder: (context, state) {
                 if (state.formStatus == FormStatus.error) {
                   return Text(state.errorText);
@@ -115,8 +119,20 @@ class _BooksScreenState extends State<BooksScreen> {
                 return const SizedBox();
               },
             ),
-            BlocBuilder<RecommendedBooksBloc, RecommendedBooksState>(
-                builder: (context, state) {
+          ),
+          20.getH(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32.w),
+            child: GlobalText(
+              data: 'recommended',
+              fontSize: 18.w,
+              fontWeight: FontWeight.w700,
+              isTranslate: true,
+            ),
+          ),
+          20.getH(),
+          BlocBuilder<RecommendedBooksBloc, RecommendedBooksState>(
+            builder: (context, state) {
               if (state.formStatus == FormStatus.loading) {
                 return const Center(
                   child: CircularProgressIndicator(),
@@ -131,21 +147,27 @@ class _BooksScreenState extends State<BooksScreen> {
                 );
               }
               if (state.formStatus == FormStatus.success) {
-                return Column(
-                  children: List.generate(
-                    state.recommendedBooks.length,
-                    (index) => Text(
-                      state.recommendedBooks[index].bookName,
-                      style: Theme.of(context).textTheme.bodyLarge,
+                return SizedBox(
+                  height: height / 2.5,
+                  child: ListView.builder(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 32.w,
                     ),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.recommendedBooks.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return BooksItem(
+                        bookModel: state.recommendedBooks[index],
+                        voidCallback: () {},
+                      );
+                    },
                   ),
                 );
               }
-
               return const SizedBox.shrink();
-            }),
-          ],
-        ),
+            },
+          ),
+        ],
       ),
     );
   }

@@ -5,7 +5,6 @@ import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/book/books_screen.dart';
 import 'package:amiriy/screens/tabs/books/books_screen.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'search/search_screen.dart';
@@ -122,19 +121,19 @@ class _TabScreenState extends State<TabScreen>
         items: [
           BottomNavigationBarItem(
             icon: _buildAnimatedIcon(Icons.home, 0),
-            label: 'home'.tr(),
+            // label: 'home'.tr(),
           ),
           BottomNavigationBarItem(
             icon: _buildAnimatedIcon(Icons.search, 1),
-            label: 'search'.tr(),
+            // label: 'search'.tr(),
           ),
           BottomNavigationBarItem(
             icon: _buildAnimatedIcon(Icons.book, 2),
-            label: 'category'.tr(),
+            // label: 'category'.tr(),
           ),
           BottomNavigationBarItem(
             icon: _buildAnimatedIcon(Icons.settings, 3),
-            label: 'settings'.tr(),
+            // label: 'settings'.tr(),
           ),
         ],
         currentIndex: _selectedIndex,
