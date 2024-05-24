@@ -3,6 +3,8 @@ import 'package:amiriy/bloc/book/book_event.dart';
 import 'package:amiriy/bloc/category/category_bloc.dart';
 import 'package:amiriy/bloc/category/category_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
+import 'package:amiriy/bloc/recommended_books/recommended_books_bloc.dart';
+import 'package:amiriy/bloc/recommended_books/recommended_books_state.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
@@ -47,7 +49,7 @@ class _BooksScreenState extends State<BooksScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            50.getH(),
+            20.getH(),
             GlobalText(
               data: 'categories',
               fontSize: 18.w,
@@ -112,7 +114,36 @@ class _BooksScreenState extends State<BooksScreen> {
                 }
                 return const SizedBox();
               },
-            )
+            ),
+            BlocBuilder<RecommendedBooksBloc, RecommendedBooksState>(
+                builder: (context, state) {
+              if (state.formStatus == FormStatus.loading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (state.formStatus == FormStatus.error) {
+                return Center(
+                  child: Text(
+                    state.errorMessage,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                );
+              }
+              if (state.formStatus == FormStatus.success) {
+                return Column(
+                  children: List.generate(
+                    state.recommendedBooks.length,
+                    (index) => Text(
+                      state.recommendedBooks[index].bookName,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ),
+                );
+              }
+
+              return const SizedBox.shrink();
+            }),
           ],
         ),
       ),

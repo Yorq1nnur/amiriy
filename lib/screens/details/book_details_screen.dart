@@ -1,7 +1,6 @@
 import 'package:amiriy/data/models/book_model.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/global_widgets/image_item.dart';
-import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
@@ -32,10 +31,10 @@ class BookDetailsScreen extends StatelessWidget {
                   ClipRRect(
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(
-                        20,
+                        50,
                       ),
                       bottomRight: Radius.circular(
-                        20,
+                        50,
                       ),
                     ),
                     child: ImageItem(
@@ -47,39 +46,16 @@ class BookDetailsScreen extends StatelessWidget {
                   Positioned(
                     top: 10.h,
                     left: 10.w,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(
-                        20,
-                      ),
-                      onTap: () {
+                    child: IconButton(
+                      style: IconButton.styleFrom(
+                          backgroundColor: Theme.of(context).primaryColor),
+                      onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 5.w,
-                          vertical: 5.h,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).canvasColor,
-                          borderRadius: BorderRadius.circular(
-                            20,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.arrow_back_ios,
-                              color: Theme.of(context).iconTheme.color,
-                              size: Theme.of(context).iconTheme.size,
-                            ),
-                            const GlobalText(
-                              data: 'back',
-                              fontSize: 20,
-                              fontWeight: FontWeight.w900,
-                              isTranslate: true,
-                            ),
-                          ],
-                        ),
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        size: Theme.of(context).iconTheme.size,
+                        color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                   ),

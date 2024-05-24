@@ -10,6 +10,8 @@ import 'package:amiriy/bloc/category/category_event.dart';
 import 'package:amiriy/bloc/image/image_bloc.dart';
 import 'package:amiriy/bloc/notification/notification_bloc.dart';
 import 'package:amiriy/bloc/notification/notification_event.dart';
+import 'package:amiriy/bloc/recommended_books/recommended_books_bloc.dart';
+import 'package:amiriy/bloc/recommended_books/recommended_books_event.dart';
 import 'package:amiriy/data/repositories/auth_repository.dart';
 import 'package:amiriy/data/repositories/banner_repository.dart';
 import 'package:amiriy/data/repositories/book_repo.dart';
@@ -79,6 +81,13 @@ class App extends StatelessWidget {
             create: (context) => BookBloc(
               context.read<BookRepo>(),
             ),
+          ),
+          BlocProvider(
+            create: (context) => RecommendedBooksBloc(
+              context.read<BookRepo>(),
+            )..add(
+                GetRecommendedBooksEvent(),
+              ),
           ),
         ],
         child: AdaptiveTheme(
