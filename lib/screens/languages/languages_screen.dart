@@ -13,7 +13,6 @@ class LanguagesScreen extends StatefulWidget {
 }
 
 class _LanguagesScreenState extends State<LanguagesScreen> {
-  int language = 1;
   late Locale locale;
   bool isLoading = false;
 
