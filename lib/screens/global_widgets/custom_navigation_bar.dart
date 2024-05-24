@@ -38,7 +38,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
       end: widget.items[_currentIndex].inactiveColor,
     ).animate(_animationController);
 
-    // Initialize the position animation with dummy values
     _positionAnimation = Tween<double>(
       begin: 0,
       end: 0,

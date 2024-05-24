@@ -125,7 +125,7 @@ class LightTheme {
         fontWeight: FontWeight.w500,
       ),
     ),
-    iconTheme: const IconThemeData(color: Colors.blue, size: 24.0),
+    iconTheme: const IconThemeData(color: Colors.black, size: 24.0),
     bottomAppBarTheme: const BottomAppBarTheme(
       color: Colors.white,
     ),

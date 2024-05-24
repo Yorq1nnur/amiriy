@@ -21,10 +21,9 @@ class BookDetailsScreen extends StatelessWidget {
     return SafeArea(
       child: AnnotatedRegion(
         value: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarBrightness: Brightness.light,
-          statusBarIconBrightness: Brightness.light
-        ),
+            statusBarColor: Colors.transparent,
+            statusBarBrightness: Brightness.light,
+            statusBarIconBrightness: Brightness.light),
         child: Scaffold(
           body: Column(
             children: [
@@ -42,36 +41,46 @@ class BookDetailsScreen extends StatelessWidget {
                     child: ImageItem(
                       imageUrl: bookModel.imageUrl,
                       width: width,
-                      height: height / 2.5
+                      height: height / 2.5,
                     ),
                   ),
-                  Align(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Ink(
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.arrow_back_ios,
-                                  color: Theme.of(context).iconTheme.color,
-                                  size: Theme.of(context).iconTheme.size,
-                                ),
-                                const GlobalText(
-                                  data: 'back',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w900,
-                                  isTranslate: true,
-                                ),
-                              ],
-                            ),
+                  Positioned(
+                    top: 10.h,
+                    left: 10.w,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(
+                        20,
+                      ),
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 5.w,
+                          vertical: 5.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).canvasColor,
+                          borderRadius: BorderRadius.circular(
+                            20,
                           ),
                         ),
-                      ],
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_back_ios,
+                              color: Theme.of(context).iconTheme.color,
+                              size: Theme.of(context).iconTheme.size,
+                            ),
+                            const GlobalText(
+                              data: 'back',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w900,
+                              isTranslate: true,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -95,6 +104,9 @@ class BookDetailsScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   padding: EdgeInsets.only(
                     top: 40.h,
+                    left: 20.w,
+                    right: 20.w,
+                    bottom: 20.h,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
