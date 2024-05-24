@@ -1,3 +1,4 @@
+import 'package:amiriy/data/models/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 
@@ -44,6 +45,16 @@ class UtilityFunctions {
       children: stars,
     );
   }
+
+
+ static List<BookModel> getLatest10Dates(List<BookModel> dates,) {
+    // Sort the list in descending order
+    dates.sort((a, b) => b.dateTime.compareTo(a.dateTime));
+
+    // Return the first 10 elements
+    return dates.sublist(0, 10);
+  }
+
 
   static void showSnackBar(String message, BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(

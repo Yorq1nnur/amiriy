@@ -85,8 +85,12 @@ class App extends StatelessWidget {
           BlocProvider(
             create: (context) => RecommendedBooksBloc(
               context.read<BookRepo>(),
-            )..add(
+            )
+              ..add(
                 GetRecommendedBooksEvent(),
+              )
+              ..add(
+                GetLastTenBooksEvent(),
               ),
           ),
         ],

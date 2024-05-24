@@ -11,9 +11,36 @@ class RecommendedBooksBloc
     this.bookRepo,
   ) : super(RecommendedBooksState.initial()) {
     on<GetRecommendedBooksEvent>(_getRecommendedBooks);
+    on<GetLastTenBooksEvent>(_getLastTenBooks);
   }
 
   BookRepo bookRepo;
+
+  _getLastTenBooks(GetLastTenBooksEvent event, emit) async {
+    emit(
+      state.copyWith(
+        statusMessage: 'last_ten_loading',
+      ),
+    );
+
+    NetworkResponse networkResponse = await bookRepo.getLastTenBooks();
+
+    if (networkResponse.errorText.isEmpty) {
+      emit(
+        state.copyWith(
+          statusMessage: 'last_ten_success',
+          lastTenBooks: networkResponse.data,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          formStatus: FormStatus.error,
+          errorMessage: networkResponse.errorText,
+        ),
+      );
+    }
+  }
 
   _getRecommendedBooks(GetRecommendedBooksEvent event, emit) async {
     emit(
