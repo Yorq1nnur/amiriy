@@ -99,7 +99,7 @@ class App extends StatelessWidget {
         child: AdaptiveTheme(
           light: AppTheme.lightTheme,
           dark: AppTheme.darkTheme,
-          initial: AdaptiveThemeMode.dark,
+          initial: AdaptiveThemeMode.light,
           builder: (theme, darkTheme) {
             return MaterialApp(
               theme: theme,
