@@ -173,7 +173,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (BuildContext context, int index) {
                         return BooksItem(
                           bookModel: state.recommendedBooks[index],
-                          voidCallback: () {},
+                          voidCallback: () {
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.bookDetailsRoute,
+                              arguments: state.recommendedBooks[index],
+                            );
+                          },
                         );
                       },
                     ),
@@ -218,14 +224,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         horizontal: 32.w,
                       ),
                       scrollDirection: Axis.horizontal,
-                      itemCount: state.recommendedBooks.length,
+                      itemCount: state.lastTenBooks.length,
                       itemBuilder: (BuildContext context, int index) {
                         UtilityFunctions.methodPrint(
                           "$index dagi book date: ${state.recommendedBooks[index].dateTime}",
                         );
                         return BooksItem(
-                          bookModel: state.recommendedBooks[index],
-                          voidCallback: () {},
+                          bookModel: state.lastTenBooks[index],
+                          voidCallback: () {
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.bookDetailsRoute,
+                              arguments: state.lastTenBooks[index],
+                            );
+                          },
                         );
                       },
                     ),

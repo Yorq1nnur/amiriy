@@ -75,12 +75,6 @@ class BookDetailsScreen extends StatelessWidget {
                             size: Theme.of(context).iconTheme.size,
                           ),
                         ),
-                        const GlobalText(
-                          data: 'or',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          isTranslate: true,
-                        ),
                         IconButton(
                           onPressed: () {},
                           style: IconButton.styleFrom(
@@ -128,6 +122,7 @@ class BookDetailsScreen extends StatelessWidget {
                         child: GlobalText(
                           data: bookModel.bookDescription,
                           fontSize: 20.w,
+                          textAlign: TextAlign.justify,
                           fontWeight: FontWeight.w900,
                           isTranslate: false,
                           maxLines: 10000,

@@ -67,8 +67,10 @@ class App extends StatelessWidget {
               ),
           ),
           BlocProvider(
-            create: (context) =>
-                NotificationBloc()..add(NotificationCallEvent()),
+            create: (context) => NotificationBloc()
+              ..add(
+                NotificationCallEvent(),
+              ),
           ),
           BlocProvider(
             create: (context) => BannerBloc(
@@ -97,7 +99,7 @@ class App extends StatelessWidget {
         child: AdaptiveTheme(
           light: AppTheme.lightTheme,
           dark: AppTheme.darkTheme,
-          initial: AdaptiveThemeMode.light,
+          initial: AdaptiveThemeMode.dark,
           builder: (theme, darkTheme) {
             return MaterialApp(
               theme: theme,

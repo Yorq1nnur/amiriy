@@ -39,7 +39,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           SizedBox(
             height: 50.h,
             child: SingleChildScrollView(
-              // padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h,),
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               child: Row(
