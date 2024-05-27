@@ -51,10 +51,21 @@ class UtilityFunctions {
     List<BookModel> dates,
   ) {
     // Sort the list in descending order
-    dates.sort((a, b) => b.dateTime.compareTo(a.dateTime));
+    dates.sort(
+      (a, b) => DateTime.parse(
+        b.dateTime,
+      ).compareTo(
+        DateTime.parse(
+          a.dateTime,
+        ),
+      ),
+    );
 
     // Return the first 10 elements
-    return dates.sublist(0, 10);
+    return dates.sublist(
+      0,
+      10,
+    );
   }
 
   static void showSnackBar(String message, BuildContext context) {

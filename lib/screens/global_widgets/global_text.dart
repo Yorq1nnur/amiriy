@@ -32,7 +32,6 @@ class GlobalText extends StatelessWidget {
           ),
       textAlign: textAlign ?? TextAlign.center,
       maxLines: maxLines ?? 10,
-
     );
   }
 }

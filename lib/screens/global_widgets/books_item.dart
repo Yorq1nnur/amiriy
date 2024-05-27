@@ -1,5 +1,7 @@
 import 'package:amiriy/data/models/book_model.dart';
+import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/global_widgets/image_item.dart';
+import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
@@ -94,7 +96,18 @@ class BooksItem extends StatelessWidget {
                         bookModel.rate,
                       ),
                       MainAxisAlignment.start,
-                    )
+                    ),
+                    10.getH(),
+                    GlobalText(
+                      data: UtilityFunctions.timeAgo(
+                        DateTime.parse(
+                          bookModel.dateTime,
+                        ),
+                      ),
+                      fontSize: 16.w,
+                      fontWeight: FontWeight.w900,
+                      isTranslate: false,
+                    ),
                   ],
                 ),
               )

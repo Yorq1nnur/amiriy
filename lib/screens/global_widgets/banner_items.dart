@@ -90,7 +90,7 @@ class BannerItems extends StatelessWidget {
       ),
       options: CarouselOptions(
         aspectRatio: 16 / 8,
-        height: height/4,
+        height: height / 4,
         viewportFraction: 1,
         initialPage: 0,
         enableInfiniteScroll: true,

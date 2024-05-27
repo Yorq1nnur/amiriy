@@ -1,4 +1,3 @@
-
 import 'package:amiriy/bloc/favourite/favourite_event.dart';
 import 'package:amiriy/bloc/favourite/favourite_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

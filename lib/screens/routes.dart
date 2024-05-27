@@ -28,28 +28,98 @@ class AppRoutes {
           const TabScreen(),
         );
       case RouteNames.loginRoute:
-        return navigate(
-          const LoginScreen(),
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const LoginScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = 0.0;
+            const end = 1.0;
+            const curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return FadeTransition(
+              opacity: animation.drive(tween),
+              child: child,
+            );
+          },
         );
       case RouteNames.registerRoute:
-        return navigate(
-          const RegisterScreen(),
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const RegisterScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = 0.0;
+            const end = 1.0;
+            const curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return FadeTransition(
+              opacity: animation.drive(tween),
+              child: child,
+            );
+          },
         );
       case RouteNames.languagesRoute:
-        return navigate(
-          const LanguagesScreen(),
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const LanguagesScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = 0.0;
+            const end = 1.0;
+            const curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return FadeTransition(
+              opacity: animation.drive(tween),
+              child: child,
+            );
+          },
         );
       case RouteNames.oneCategoryRoute:
-        return navigate(
-          OneCategoryScreen(
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              OneCategoryScreen(
             categoryName: settings.arguments as String,
           ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = 0.0;
+            const end = 1.0;
+            const curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return FadeTransition(
+              opacity: animation.drive(tween),
+              child: child,
+            );
+          },
         );
       case RouteNames.bookDetailsRoute:
-        return navigate(
-          BookDetailsScreen(
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              BookDetailsScreen(
             bookModel: settings.arguments as BookModel,
           ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = 0.0;
+            const end = 1.0;
+            const curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return FadeTransition(
+              opacity: animation.drive(tween),
+              child: child,
+            );
+          },
         );
 
       default:

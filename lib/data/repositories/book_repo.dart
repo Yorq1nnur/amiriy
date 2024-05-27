@@ -165,35 +165,33 @@ class BookRepo {
 
   Future<bool> checkIsExistsFavouriteBook({
     required String favouriteDocId,
-}) async {
+  }) async {
     bool isExists = false;
-   try{
-     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-         .collection(
-       AppConstants.favourites,
-     )
-         .get();
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection(
+            AppConstants.favourites,
+          )
+          .get();
 
-     List<FavouriteBookModel> favourites = querySnapshot.docs
-         .map((e) =>
-         FavouriteBookModel.fromJson(e.data() as Map<String, dynamic>))
-         .toList();
+      List<FavouriteBookModel> favourites = querySnapshot.docs
+          .map((e) =>
+              FavouriteBookModel.fromJson(e.data() as Map<String, dynamic>))
+          .toList();
 
+      for (var user in favourites) {
+        if (user.favouriteDocId == favouriteDocId) {
+          isExists = true;
+        }
 
+        return isExists;
+      }
+    } on FirebaseException catch (error) {
+      UtilityFunctions.methodPrint(error);
+      isExists = false;
+    }
 
-     for (var user in favourites) {
-       if (user.favouriteDocId == favouriteDocId) {
-         isExists = true;
-       }
-
-       return isExists;
-     }
-   }on FirebaseException catch(error){
-     UtilityFunctions.methodPrint(error);
-     isExists = false;
-   }
-
-   return isExists;
+    return isExists;
   }
 
   Future<NetworkResponse> deleteFavouriteBook(String favouriteDocId) async {
