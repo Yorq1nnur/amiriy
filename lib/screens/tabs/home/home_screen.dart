@@ -163,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
                 if (state.formStatus == FormStatus.success) {
                   return SizedBox(
-                    height: height / 2.5,
+                    height: height / 2.3,
                     child: ListView.builder(
                       padding: EdgeInsets.symmetric(
                         horizontal: 32.w,
@@ -218,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
                 if (state.statusMessage == "last_ten_success") {
                   return SizedBox(
-                    height: height / 2.5,
+                    height: height / 2.3,
                     child: ListView.builder(
                       padding: EdgeInsets.symmetric(
                         horizontal: 32.w,

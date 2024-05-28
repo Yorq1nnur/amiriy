@@ -80,7 +80,7 @@ class BooksItem extends StatelessWidget {
                       height: 10.h,
                     ),
                     Text(
-                      bookModel.bookDescription,
+                      bookModel.bookAuthor,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w900,
                             fontSize: 20.w,

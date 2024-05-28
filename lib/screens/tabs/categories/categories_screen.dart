@@ -144,10 +144,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         child: SingleChildScrollView(
                           physics: const BouncingScrollPhysics(),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.center,
+                                crossAxisAlignment: WrapCrossAlignment.start,
                                 children:
                                     List.generate(state.books.length, (index) {
                                   return Padding(
@@ -155,7 +155,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                       vertical: 10.h,
                                     ),
                                     child: BooksItem(
-                                      heightt: height / 2.5,
+                                      heightt: height / 2.3,
                                       widthh: width / 2.3,
                                       bookModel: state.books[index],
                                       voidCallback: () {
@@ -196,10 +196,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         child: SingleChildScrollView(
                           physics: const BouncingScrollPhysics(),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.center,
+                                crossAxisAlignment: WrapCrossAlignment.start,
                                 children: List.generate(
                                     state.categoryBooks.length, (index) {
                                   return Padding(
@@ -207,7 +207,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                       vertical: 10.h,
                                     ),
                                     child: BooksItem(
-                                      heightt: height / 2.5,
+                                      heightt: height / 2.3,
                                       widthh: width / 2.3,
                                       bookModel: state.categoryBooks[index],
                                       voidCallback: () {
