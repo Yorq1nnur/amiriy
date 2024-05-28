@@ -1,7 +1,10 @@
 import 'package:amiriy/bloc/audio_books/audio_books_bloc.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
+import 'package:amiriy/bloc/latest_search/saved_audio_bloc.dart';
+import 'package:amiriy/bloc/latest_search/saved_audio_event.dart';
 import 'package:amiriy/screens/global_widgets/item_audios_search.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
+import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/audio_books/widgets/audio_item.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +49,19 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
               color: Theme.of(context).iconTheme.color,
             ),
           ),
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                RouteNames.favouriteAudioBooksScreen,
+              );
+            },
+            icon: Icon(
+              Icons.favorite,
+              size: 24.w,
+              color: Theme.of(context).iconTheme.color,
+            ),
+          ),
         ],
         centerTitle: true,
         title: GlobalText(
@@ -85,6 +101,11 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
                     UtilityFunctions.methodPrint(
                       'SAVE ON TAPED',
                     );
+                    context.read<SavedAudioBloc>().add(
+                          InsertAudioToDbEvent(
+                            audioBook: state.audioBooks[index],
+                          ),
+                        );
                   },
                   audioBooksModel: state.audioBooks[index],
                   listOnTap: () {
@@ -97,7 +118,13 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
                       'PLAY ON TAPED',
                     );
                   },
-                  isLiked: index % 2 == 0,
+                  isLiked: context
+                      .read<SavedAudioBloc>()
+                      .state
+                      .savedAudioBooks
+                      .contains(
+                        state.audioBooks[index],
+                      ),
                 ),
               );
             },

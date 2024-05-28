@@ -13,6 +13,8 @@ class AppConstants {
       "762812355330-nn0liimku3ot544gkpv8rptbm534hc7s.apps.googleusercontent.com";
   static const String banners = "banners";
   static const String audioBooks = "audio_books";
+  static const String savedAudioDb = "saved_audio.db";
+  static const String savedAudio = "saved_audio";
   static const String favourites = "favourites";
 
   static const String categories = "categories";

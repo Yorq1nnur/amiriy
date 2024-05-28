@@ -9,10 +9,13 @@ import 'package:amiriy/bloc/bottom/bottom_bloc.dart';
 import 'package:amiriy/bloc/category/category_bloc.dart';
 import 'package:amiriy/bloc/category/category_event.dart';
 import 'package:amiriy/bloc/image/image_bloc.dart';
+import 'package:amiriy/bloc/latest_search/saved_audio_bloc.dart';
+import 'package:amiriy/bloc/latest_search/saved_audio_event.dart';
 import 'package:amiriy/bloc/notification/notification_bloc.dart';
 import 'package:amiriy/bloc/notification/notification_event.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_bloc.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_event.dart';
+import 'package:amiriy/data/local/saved_audio_db.dart';
 import 'package:amiriy/data/repositories/audio_books_repo.dart';
 import 'package:amiriy/data/repositories/auth_repository.dart';
 import 'package:amiriy/data/repositories/banner_repository.dart';
@@ -60,6 +63,13 @@ class App extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => BottomBloc(),
+          ),
+          BlocProvider(
+            create: (context) => SavedAudioBloc(
+              SavedAudioDb.instance,
+            )..add(
+                ListenSavedAudioBooksEvent(),
+              ),
           ),
           BlocProvider(
             create: (context) => ImageBloc(),
