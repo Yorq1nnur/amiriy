@@ -1,6 +1,6 @@
 import 'package:amiriy/bloc/form_status/form_status.dart';
-import 'package:amiriy/bloc/latest_search/saved_audio_bloc.dart';
-import 'package:amiriy/bloc/latest_search/saved_audio_state.dart';
+import 'package:amiriy/bloc/saved_audio/saved_audio_bloc.dart';
+import 'package:amiriy/bloc/saved_audio/saved_audio_state.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/tabs/audio_books/widgets/audio_item.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';

@@ -40,22 +40,18 @@ class SavedAudioDb {
 
   Future<NetworkResponse> insertProduct(AudioBooksModel audioBookModel) async {
     final db = await instance.database;
-    final dbForAdd = await instance.database;
-    final result = await db.query(AppConstants.savedAudio);
 
-    bool isExists = false;
+    // Check if the audio book already exists in the database
+    final result = await db.query(
+      AppConstants.savedAudio,
+      where: 'book_name = ?',
+      whereArgs: [audioBookModel.bookName],
+    );
 
-    List<AudioBooksModel> audios =
-        result.map((json) => AudioBooksModel.fromJson(json)).toList();
-    for (AudioBooksModel element in audios) {
-      if (element.bookName == audioBookModel.bookName) {
-        isExists = true;
-        break;
-      }
-    }
-    if (!isExists) {
+    if (result.isEmpty) {
       try {
-        await dbForAdd.insert(
+        // Insert the new audio book
+        await db.insert(
           AppConstants.savedAudio,
           audioBookModel.toJson(),
           conflictAlgorithm: ConflictAlgorithm.replace,
@@ -73,9 +69,15 @@ class SavedAudioDb {
         );
       }
     } else {
-      return NetworkResponse();
+      UtilityFunctions.methodPrint(
+        'PRODUCT ALREADY EXISTS IN DB!!! PRODUCT NAME: ${audioBookModel.bookName}',
+      );
+      return NetworkResponse(
+        errorText: 'Product already exists in the database',
+      );
     }
   }
+
 
   Future<AudioBooksModel?> fetchProduct(String productName) async {
     final db = await instance.database;

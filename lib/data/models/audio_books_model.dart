@@ -20,7 +20,6 @@ class AudioBooksModel {
   Map<String, dynamic> toJson() => {
         AudioBooksFields.bookName: bookName,
         AudioBooksFields.bookUrl: bookUrl,
-        AudioBooksFields.id: id,
       };
 }
 
