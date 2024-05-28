@@ -46,6 +46,9 @@ dependencies:
   google_maps_flutter: ^2.6.1
   location: ^6.0.2
   url_launcher: ^6.2.6
+  just_audio: ^0.9.18
+  audio_service: ^0.18.0
+  rxdart: ^0.27.3
 
   my_utils:
     path: packages/my_utils
