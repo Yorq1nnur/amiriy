@@ -1,4 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:amiriy/bloc/audio_books/audio_books_bloc.dart';
 import 'package:amiriy/bloc/auth/auth_bloc.dart';
 import 'package:amiriy/bloc/auth/auth_event.dart';
 import 'package:amiriy/bloc/banner/banner_bloc.dart';
@@ -12,6 +13,7 @@ import 'package:amiriy/bloc/notification/notification_bloc.dart';
 import 'package:amiriy/bloc/notification/notification_event.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_bloc.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_event.dart';
+import 'package:amiriy/data/repositories/audio_books_repo.dart';
 import 'package:amiriy/data/repositories/auth_repository.dart';
 import 'package:amiriy/data/repositories/banner_repository.dart';
 import 'package:amiriy/data/repositories/book_repo.dart';
@@ -33,6 +35,9 @@ class App extends StatelessWidget {
       providers: [
         RepositoryProvider(
           create: (_) => AuthRepository(),
+        ),
+        RepositoryProvider(
+          create: (_) => AudioBooksRepo(),
         ),
         RepositoryProvider(
           create: (_) => BookRepo(),
@@ -64,6 +69,13 @@ class App extends StatelessWidget {
               context.read<CategoryRepo>(),
             )..add(
                 GetAllCategoriesEvent(),
+              ),
+          ),
+          BlocProvider(
+            create: (context) => AudioBooksBloc(
+              context.read<AudioBooksRepo>(),
+            )..add(
+                ListenAudioBooksEvent(),
               ),
           ),
           BlocProvider(

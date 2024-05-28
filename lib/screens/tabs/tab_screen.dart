@@ -3,7 +3,7 @@ import 'package:amiriy/bloc/auth/auth_bloc.dart';
 import 'package:amiriy/bloc/auth/auth_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/screens/routes.dart';
-import 'package:amiriy/screens/tabs/all_books/all_books_screen.dart';
+import 'package:amiriy/screens/tabs/audio_books/audio_books_screen.dart';
 import 'package:amiriy/screens/tabs/categories/categories_screen.dart';
 import 'package:amiriy/screens/tabs/home/home_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -30,8 +30,8 @@ class _TabScreenState extends State<TabScreen>
   void initState() {
     screens = const [
       HomeScreen(),
-      AllBooksScreen(),
       CategoriesScreen(),
+      AudioBooksScreen(),
       SettingsScreen(),
     ];
     super.initState();
@@ -128,14 +128,14 @@ class _TabScreenState extends State<TabScreen>
             tooltip: 'home'.tr(),
           ),
           BottomNavigationBarItem(
-            icon: _buildAnimatedIcon(Icons.category, 1),
-            label: 'all_books'.tr(),
-            tooltip: 'all_books'.tr(),
-          ),
-          BottomNavigationBarItem(
-            icon: _buildAnimatedIcon(Icons.book, 2),
+            icon: _buildAnimatedIcon(Icons.book, 1),
             label: 'category'.tr(),
             tooltip: 'category'.tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: _buildAnimatedIcon(Icons.audio_file, 2),
+            label: 'audio_books'.tr(),
+            tooltip: 'audio_books'.tr(),
           ),
           BottomNavigationBarItem(
             icon: _buildAnimatedIcon(Icons.settings, 3),
