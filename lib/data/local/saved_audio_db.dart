@@ -40,23 +40,22 @@ class SavedAudioDb {
 
   Future<NetworkResponse> insertProduct(AudioBooksModel audioBookModel) async {
     final db = await instance.database;
-    try {
-      final result = await db.query(AppConstants.savedAudio);
+    final dbForAdd = await instance.database;
+    final result = await db.query(AppConstants.savedAudio);
 
-      bool isExists = false;
+    bool isExists = false;
 
-      List<AudioBooksModel> audios =
-          result.map((json) => AudioBooksModel.fromJson(json)).toList();
-
-      for (AudioBooksModel element in audios) {
-        if (element.bookName == audioBookModel.bookName) {
-          isExists = true;
-          break;
-        }
+    List<AudioBooksModel> audios =
+        result.map((json) => AudioBooksModel.fromJson(json)).toList();
+    for (AudioBooksModel element in audios) {
+      if (element.bookName == audioBookModel.bookName) {
+        isExists = true;
+        break;
       }
-
-      if (!isExists) {
-        await db.insert(
+    }
+    if (!isExists) {
+      try {
+        await dbForAdd.insert(
           AppConstants.savedAudio,
           audioBookModel.toJson(),
           conflictAlgorithm: ConflictAlgorithm.replace,
@@ -65,21 +64,16 @@ class SavedAudioDb {
           'PRODUCT ADDED SUCCESSFULLY TO DB!!! PRODUCT NAME: ${audioBookModel.bookName}',
         );
         return NetworkResponse(data: 'success');
+      } catch (e) {
+        UtilityFunctions.methodPrint(
+          'NOT ADDED TO DB, BECAUSE: $e',
+        );
+        return NetworkResponse(
+          errorText: e.toString(),
+        );
       }
-
-      UtilityFunctions.methodPrint(
-        'audio is exist in database',
-      );
-      return NetworkResponse(
-        data: 'audio is exist in database',
-      );
-    } catch (e) {
-      UtilityFunctions.methodPrint(
-        'NOT ADDED TO DB, BECAUSE: $e',
-      );
-      return NetworkResponse(
-        errorText: e.toString(),
-      );
+    } else {
+      return NetworkResponse();
     }
   }
 
