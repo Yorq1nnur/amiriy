@@ -1,7 +1,7 @@
 import 'package:amiriy/bloc/book/book_bloc.dart';
 import 'package:amiriy/bloc/book/book_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
-import 'package:amiriy/screens/global_widgets/global_search_delegate.dart';
+import 'package:amiriy/screens/global_widgets/item_books_search.dart';
 import 'package:amiriy/screens/global_widgets/search_widget.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,7 @@ class _ItemsListScreenState extends State<ItemsListScreen> {
                     onTap: () {
                       showSearch(
                         context: context,
-                        delegate: ItemSearch(
+                        delegate: ItemBooksSearch(
                           items: context.read<BookBloc>().state.books,
                         ), // Pass your list of items here
                       );

@@ -1,6 +1,9 @@
 import 'package:amiriy/bloc/audio_books/audio_books_bloc.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
+import 'package:amiriy/screens/global_widgets/item_audios_search.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
+import 'package:amiriy/screens/tabs/audio_books/widgets/audio_item.dart';
+import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_utils/my_utils.dart';
@@ -27,6 +30,23 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: ItemAudiosSearch(
+                  items: context.read<AudioBooksBloc>().state.audioBooks,
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.search,
+              size: 24.w,
+              color: Theme.of(context).iconTheme.color,
+            ),
+          ),
+        ],
         centerTitle: true,
         title: GlobalText(
           data: "audio_books",
@@ -60,16 +80,24 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
                 padding: EdgeInsets.symmetric(
                   vertical: 5.h,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      state.audioBooks[index].bookName,
-                    ),
-                    Text(
-                      state.audioBooks[index].bookUrl,
-                    ),
-                  ],
+                child: AudioItem(
+                  saveOnTap: () {
+                    UtilityFunctions.methodPrint(
+                      'SAVE ON TAPED',
+                    );
+                  },
+                  audioBooksModel: state.audioBooks[index],
+                  listOnTap: () {
+                    UtilityFunctions.methodPrint(
+                      'LIST ON TAPED',
+                    );
+                  },
+                  playOnTap: () {
+                    UtilityFunctions.methodPrint(
+                      'PLAY ON TAPED',
+                    );
+                  },
+                  isLiked: index % 2 == 0,
                 ),
               );
             },

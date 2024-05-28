@@ -9,7 +9,7 @@ import 'package:amiriy/bloc/recommended_books/recommended_books_bloc.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_state.dart';
 import 'package:amiriy/screens/global_widgets/banner_items.dart';
 import 'package:amiriy/screens/global_widgets/books_item.dart';
-import 'package:amiriy/screens/global_widgets/global_search_delegate.dart';
+import 'package:amiriy/screens/global_widgets/item_books_search.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               showSearch(
                 context: context,
-                delegate: ItemSearch(
+                delegate: ItemBooksSearch(
                   items: context.read<BookBloc>().state.books,
                 ),
               );

@@ -1,12 +1,12 @@
-import 'package:amiriy/data/models/book_model.dart';
-import 'package:amiriy/screens/global_widgets/search_items.dart';
+import 'package:amiriy/data/models/audio_books_model.dart';
 import 'package:amiriy/screens/routes.dart';
+import 'package:amiriy/screens/tabs/audio_books/widgets/audio_item.dart';
 import 'package:flutter/material.dart';
 
-class ItemSearch extends SearchDelegate<String> {
-  final List<BookModel> items;
+class ItemAudiosSearch extends SearchDelegate<String> {
+  final List<AudioBooksModel> items;
 
-  ItemSearch({
+  ItemAudiosSearch({
     required this.items,
   });
 
@@ -34,7 +34,7 @@ class ItemSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    final List<BookModel> results = items
+    final List<AudioBooksModel> results = items
         .where(
             (item) => item.bookName.toLowerCase().contains(query.toLowerCase()))
         .toList();
@@ -50,7 +50,13 @@ class ItemSearch extends SearchDelegate<String> {
               arguments: results[index],
             );
           },
-          child: SearchItems(bookModel: results[index]),
+          child: AudioItem(
+            audioBooksModel: results[index],
+            saveOnTap: () {},
+            listOnTap: () {},
+            playOnTap: () {},
+            isLiked: false,
+          ),
         );
       },
     );
@@ -58,7 +64,7 @@ class ItemSearch extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final List<BookModel> suggestionList = query.isEmpty
+    final List<AudioBooksModel> suggestionList = query.isEmpty
         ? []
         : items
             .where((item) =>
@@ -76,8 +82,12 @@ class ItemSearch extends SearchDelegate<String> {
               arguments: suggestionList[index],
             );
           },
-          child: SearchItems(
-            bookModel: suggestionList[index],
+          child: AudioItem(
+            audioBooksModel: suggestionList[index],
+            saveOnTap: () {},
+            listOnTap: () {},
+            playOnTap: () {},
+            isLiked: false,
           ),
         );
       },
