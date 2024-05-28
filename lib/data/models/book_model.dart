@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class BookModel {
   final String docId;
   final String bookName;
@@ -36,7 +34,7 @@ class BookModel {
       price: (json["price"] as num? ?? 0.0).toDouble(),
       rate: json["rate"] as String? ?? "",
       bookAuthor: json["book_author"] as String? ?? "",
-      dateTime: (json["date_time"] as Timestamp? ?? DateTime.now()).toString(),
+      dateTime: json["date_time"] as String? ?? "",
     );
   }
 }
