@@ -1,4 +1,5 @@
 import 'package:amiriy/data/local/local_database.dart';
+import 'package:amiriy/data/local/saved_audio_db.dart';
 import 'package:amiriy/screens/app/app.dart';
 import 'package:amiriy/services/local_notification_service.dart';
 import 'package:amiriy/utils/constants/app_constants.dart';
@@ -25,6 +26,7 @@ Future<void> main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   LocalNotificationService.localNotificationService.init();
   LocalDatabase.databaseInstance;
+  SavedAudioDb.instance;
 
   await SystemChrome.setPreferredOrientations(
     [
