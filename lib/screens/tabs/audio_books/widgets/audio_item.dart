@@ -1,7 +1,6 @@
 import 'package:amiriy/data/models/audio_books_model.dart';
 import 'package:amiriy/screens/global_widgets/image_item.dart';
 import 'package:amiriy/screens/global_widgets/tab_item.dart';
-import 'package:amiriy/utils/images/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 
