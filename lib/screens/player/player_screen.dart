@@ -85,12 +85,12 @@ class _PlayerScreenState extends State<PlayerScreen> {
   }
 
   void skipForward() {
-    final newPosition = currentPosition + const Duration(seconds: 15);
+    final newPosition = currentPosition + const Duration(seconds: 5);
     seekTo(newPosition < maxDuration ? newPosition : maxDuration);
   }
 
   void skipBackward() {
-    final newPosition = currentPosition - const Duration(seconds: 15);
+    final newPosition = currentPosition - const Duration(seconds: 5);
     seekTo(newPosition > Duration.zero ? newPosition : Duration.zero);
   }
 
@@ -137,7 +137,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
             ),
             const SizedBox(height: 60),
             Text(
-              widget.music.bookName,
+              widget.music.bookAuthor,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -157,6 +157,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
               progressBarColor: Colors.black,
               baseBarColor: Colors.white,
               bufferedBarColor: Colors.grey,
+              thumbColor: Colors.grey,
               progress: currentPosition,
               total: maxDuration,
               onSeek: seekTo,
