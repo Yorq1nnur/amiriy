@@ -26,11 +26,11 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
   @override
   void dispose() {
     searchController.dispose();
-    player.dispose();
+    // player.dispose();
     super.dispose();
   }
 
-  final AudioPlayer player = AudioPlayer();
+  // final AudioPlayer player = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -133,10 +133,12 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
                       MaterialPageRoute(
                         builder: (context) => PlayerScreen(
                           music: state.audioBooks[index],
-                          player: player,
                         ),
                       ),
                     );
+                    //     .then(
+                    //   (v) => player.stop(),
+                    // );
                   },
                   isLiked: context
                       .read<SavedAudioBloc>()
