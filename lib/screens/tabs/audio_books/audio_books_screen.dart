@@ -124,13 +124,10 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
                       arguments: state.audioBooks[index],
                     );
                   },
-                  isLiked: context
-                      .read<SavedAudioBloc>()
-                      .state
-                      .savedAudioBooks
-                      .contains(
-                        state.audioBooks[index],
-                      ),
+                  isLiked: UtilityFunctions.getIsLikeState(
+                    context.read<SavedAudioBloc>().state.savedAudioBooks,
+                    state.audioBooks[index].bookName,
+                  ),
                 ),
               );
             },

@@ -55,6 +55,7 @@ dependencies:
 
   my_utils:
     path: packages/my_utils
+  flutter_cached_pdfview: ^0.4.2
 
 
 dev_dependencies:

@@ -12,6 +12,20 @@ class UtilityFunctions {
     );
   }
 
+  static bool getIsLikeState(List<AudioBooksModel> audios, String bookName){
+
+    bool isExist = false;
+
+    for(var element in audios){
+      if(element.bookName == bookName){
+        isExist = true;
+        break;
+      }
+    }
+    methodPrint('$bookName is exist: $isExist');
+    return isExist;
+  }
+
   static bool isSavedAudi(
       List<AudioBooksModel> allAudios, AudioBooksModel audio) {
     bool isSaved = false;
