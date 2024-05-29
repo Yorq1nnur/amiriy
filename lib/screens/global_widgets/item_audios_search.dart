@@ -53,7 +53,6 @@ class ItemAudiosSearch extends SearchDelegate<String> {
           child: AudioItem(
             audioBooksModel: results[index],
             saveOnTap: () {},
-            listOnTap: () {},
             playOnTap: () {},
             isLiked: false,
           ),
@@ -74,21 +73,17 @@ class ItemAudiosSearch extends SearchDelegate<String> {
     return ListView.builder(
       itemCount: suggestionList.length,
       itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () {
+        return AudioItem(
+          audioBooksModel: suggestionList[index],
+          saveOnTap: () {},
+          playOnTap: () {
             Navigator.pushNamed(
               context,
-              RouteNames.bookDetailsRoute,
+              RouteNames.playerScreen,
               arguments: suggestionList[index],
             );
           },
-          child: AudioItem(
-            audioBooksModel: suggestionList[index],
-            saveOnTap: () {},
-            listOnTap: () {},
-            playOnTap: () {},
-            isLiked: false,
-          ),
+          isLiked: false,
         );
       },
     );

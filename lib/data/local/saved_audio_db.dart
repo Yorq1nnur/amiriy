@@ -31,7 +31,9 @@ class SavedAudioDb {
     CREATE TABLE ${AppConstants.savedAudio} (
       ${AudioBooksFields.id} INTEGER PRIMARY KEY,
       ${AudioBooksFields.bookName} TEXT NOT NULL,
-      ${AudioBooksFields.bookUrl} TEXT NOT NULL
+      ${AudioBooksFields.bookUrl} TEXT NOT NULL,
+      ${AudioBooksFields.imageUrl} TEXT NOT NULL,
+      ${AudioBooksFields.bookAuthor} TEXT NOT NULL
     )
     ''';
 

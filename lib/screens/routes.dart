@@ -1,3 +1,4 @@
+import 'package:amiriy/data/models/audio_books_model.dart';
 import 'package:amiriy/data/models/book_model.dart';
 import 'package:amiriy/screens/auth/login/login_screen.dart';
 import 'package:amiriy/screens/auth/register/register_screen.dart';
@@ -6,6 +7,7 @@ import 'package:amiriy/screens/favourite_audio_books/favourite_audio_books_scree
 import 'package:amiriy/screens/languages/languages_screen.dart';
 import 'package:amiriy/screens/on_boarding/on_boarding_screen.dart';
 import 'package:amiriy/screens/one_category/one_category_screen.dart';
+import 'package:amiriy/screens/player/player_screen.dart';
 import 'package:amiriy/screens/splash/splash_screen.dart';
 import 'package:amiriy/screens/tabs/tab_screen.dart';
 import 'package:flutter/material.dart';
@@ -126,6 +128,25 @@ class AppRoutes {
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
               const FavouriteAudioBooksScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = 0.0;
+            const end = 1.0;
+            const curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return FadeTransition(
+              opacity: animation.drive(tween),
+              child: child,
+            );
+          },
+        );
+      case RouteNames.playerScreen:
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => PlayerScreen(
+            music: settings.arguments as AudioBooksModel,
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = 0.0;
             const end = 1.0;

@@ -115,29 +115,15 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
                         );
                   },
                   audioBooksModel: state.audioBooks[index],
-                  listOnTap: () {
-                    UtilityFunctions.methodPrint(
-                      'LIST ON TAPED',
-                    );
-                  },
-                  playOnTap: () async {
+                  playOnTap: () {
                     UtilityFunctions.methodPrint(
                       'PLAY ON TAPED',
                     );
-                    // String url = await UtilityFunctions.getAudioUrl("""gs://e-commerce-app-863de.appspot.com/files/musics/"Ona tarbiyasi" hikoyasi - Aziz Nesin.mp3""");
-                    // debugPrint(url);
-                    if (!context.mounted) return;
-                    Navigator.push(
+                    Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => PlayerScreen(
-                          music: state.audioBooks[index],
-                        ),
-                      ),
+                      RouteNames.playerScreen,
+                      arguments: state.audioBooks[index],
                     );
-                    //     .then(
-                    //   (v) => player.stop(),
-                    // );
                   },
                   isLiked: context
                       .read<SavedAudioBloc>()

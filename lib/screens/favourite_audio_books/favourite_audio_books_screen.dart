@@ -2,6 +2,7 @@ import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/bloc/saved_audio/saved_audio_bloc.dart';
 import 'package:amiriy/bloc/saved_audio/saved_audio_state.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
+import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/audio_books/widgets/audio_item.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
@@ -52,8 +53,13 @@ class _FavouriteAudioBooksScreenState extends State<FavouriteAudioBooksScreen> {
                   return AudioItem(
                     audioBooksModel: state.savedAudioBooks[index],
                     saveOnTap: () {},
-                    listOnTap: () {},
-                    playOnTap: () {},
+                    playOnTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        RouteNames.playerScreen,
+                        arguments: state.savedAudioBooks[index],
+                      );
+                    },
                     isLiked: true,
                   );
                 });
