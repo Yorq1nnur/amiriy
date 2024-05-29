@@ -49,6 +49,9 @@ dependencies:
   just_audio: ^0.9.18
   audio_service: ^0.18.0
   rxdart: ^0.27.3
+  audio_video_progress_bar: ^1.0.1
+  audioplayers: ^5.1.0
+  on_audio_query: ^2.9.0
 
   my_utils:
     path: packages/my_utils
@@ -71,6 +74,7 @@ flutter:
     - assets/icons/
     - assets/lottie/
     - assets/translations/
+    - assets/
   fonts:
     - family: Bodoni
       fonts:

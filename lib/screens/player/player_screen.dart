@@ -1,189 +1,167 @@
-// import 'package:amiriy/data/models/audio_books_model.dart';
-// import 'package:audio_service/audio_service.dart';
-// import 'package:cached_network_image/cached_network_image.dart';
-// import 'package:flutter/material.dart';
-// import 'dart:async';
-// // import 'package:flutter_downloader/flutter_downloader.dart';
-//
-// class DetailPage extends StatefulWidget {
-//   final AudioBooksModel book;
-//
-//   const DetailPage(this.book, {super.key});
-//
-//   @override
-//   DetailPageState createState() {
-//     return DetailPageState();
-//   }
-// }
-//
-// class DetailPageState extends State<DetailPage> {
-//   // var taskId;
-//   String? url;
-//   String? title;
-//   late bool toplay;
-//   late StreamSubscription<PlaybackState> playbackStateListner;
-//
-//   /* _downloadBook() async{
-//     var path = await getApplicationDocumentsDirectory();
-//     taskId = await FlutterDownloader.enqueue(
-//       url: widget.book.id,
-//       savedDir: path.path,
-//       showNotification: true, // show download progress in status bar (for Android)
-//       openFileFromNotification: true, // click on notification to open downloaded file (for Android)
-//     );
-//     await FlutterDownloader.loadTasks();
-//   } */
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     toplay = false;
-//     playbackStateListner = audioHandler.playbackState.listen((state) {
-//       if (state.processingState == AudioProcessingState.idle) {
-//         if (toplay) {
-//           // start();
-//           if (mounted) toplay = false;
-//         }
-//       }
-//     });
-//   }
-//
-//   @override
-//   void dispose() {
-//     playbackStateListner.cancel();
-//     super.dispose();
-//   }
-//
-//   Future<List<AudioFile>> _getRssFeeds() {
-//     return Repository().fetchAudioFiles(widget.book.id);
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(widget.book.title),
-//       ),
-//       body: Stack(
-//         children: <Widget>[
-//           ListView(
-//             padding:
-//             EdgeInsets.fromLTRB(20.0, 20.0, 20.0, url != null ? 70 : 20),
-//             children: <Widget>[
-//               SizedBox(
-//                 height: 100,
-//                 child: Row(
-//                   children: <Widget>[
-//                     Hero(
-//                       tag: "${widget.book.id}_image",
-//                       child: CachedNetworkImage(
-//                           imageUrl: widget.book.image, fit: BoxFit.contain),
-//                     ),
-//                     const SizedBox(width: 20.0),
-//                     Expanded(
-//                       child: Column(
-//                         mainAxisAlignment: MainAxisAlignment.start,
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         mainAxisSize: MainAxisSize.min,
-//                         children: <Widget>[
-//                           BookTitle(widget.book.title),
-//                           Text(
-//                             "${widget.book.author}",
-//                             style: Theme.of(context)
-//                                 .textTheme
-//                                 .titleLarge!
-//                                 .copyWith(),
-//                           ),
-//                           const SizedBox(
-//                             height: 5.0,
-//                           ),
-//                           Text(
-//                             "Total time: ${widget.book.totalTime}",
-//                             style: Theme.of(context).textTheme.titleMedium,
-//                           )
-//                         ],
-//                       ),
-//                     )
-//                   ],
-//                 ),
-//               ),
-//               const SizedBox(
-//                 height: 20,
-//               ),
-//               FutureBuilder(
-//                 future: _getRssFeeds(),
-//                 builder: (BuildContext context,
-//                     AsyncSnapshot<List<AudioFile>> snapshot) {
-//                   if (snapshot.hasData) {
-//                     final audios = snapshot.data!;
-//                     return Column(
-//                       children: audios
-//                           .map((item) => ListTile(
-//                         title: Text(item.title!),
-//                         leading: const Icon(Icons.play_circle_filled),
-//                         onTap: () async {
-//                           // // if(url == item.url) AudioService.play();
-//                           // SharedPreferences prefs =
-//                           //     await SharedPreferences.getInstance();
-//                           // await prefs.setString(
-//                           //     "play_url", item.url);
-//                           // await prefs.setString(
-//                           //     "book_id", item.bookId);
-//                           // await prefs.setInt(
-//                           //     "track", snapshot.data.indexOf(item));
-//                           // setState(() {
-//                           //   toplay = true;
-//                           // });
-//                           // await audioHandler.prepare();
-//                           // audioHandler.play();
-//                           // AudioService.stop();
-//                           // start();
-//                           final mediaItems = audios
-//                               .map((chapter) => MediaItem(
-//                             id: chapter.url ?? '',
-//                             album: widget.book.title,
-//                             title: chapter.name ?? '',
-//                             extras: {
-//                               'url': chapter.url,
-//                               'bookId': chapter.bookId
-//                             },
-//                           ))
-//                               .toList();
-//
-//                           // print('tap index $index');
-//                           // print('tap index media ${mediaItems.length}');
-//                           // print('tap index media ID=== ${mediaItems[index].title}');
-//
-//                           await audioHandler.updateQueue(mediaItems);
-//                           await audioHandler
-//                               .skipToQueueItem(audios.indexOf(item));
-//                           audioHandler.play();
-//                           setState(() {
-//                             url = item.url;
-//                             title = item.title;
-//                           });
-//                         },
-//                       ))
-//                           .toList(),
-//                     );
-//                   } else {
-//                     return const CircularProgressIndicator();
-//                   }
-//                 },
-//               )
-//             ],
-//           ),
-//           Positioned(
-//             left: 0,
-//             right: 0,
-//             bottom: 0,
-//             child: Container(
-//               color: Colors.grey.shade100,
-//               child: const PlayerService(),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+import 'package:amiriy/data/models/audio_books_model.dart';
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+class PlayerScreen extends StatefulWidget {
+  const PlayerScreen({
+    required this.player,
+    required this.music,
+    super.key,
+  });
+
+  final AudioBooksModel music;
+  final AudioPlayer player;
+
+  @override
+  State<PlayerScreen> createState() => _PlayerScreenState();
+}
+
+class _PlayerScreenState extends State<PlayerScreen> {
+  Duration maxDuration = const Duration(seconds: 0);
+  late ValueListenable<Duration> progress;
+
+  @override
+  void initState() {
+    widget.player.play(
+      UrlSource(
+        "https://firebasestorage.googleapis.com/v0/b/e-commerce-app-863de.appspot.com/o/files%2Fmusics%2F''O'mrov%20suyagi''%20hikoyasi%20-%20Aziz%20Nesin.mp3?alt=media&token=b413e84a-2cfc-44ac-b7de-9b8f652457ef",
+      ),
+    );
+    setState(() {});
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    getMaxDuration() {
+      widget.player.getDuration().then((value) {
+        maxDuration = value ??
+            const Duration(
+              seconds: 0,
+            );
+        setState(() {});
+      });
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+        ),
+        backgroundColor: Colors.blue,
+        title: const Text(
+          "Audio Player",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 24,
+          ),
+        ),
+      ),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.all(20),
+        color: Colors.blue,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 60),
+            Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                height: MediaQuery.of(context).size.width * 0.7,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(
+                        "https://i.scdn.co/image/ab67616d0000b273b9659e2caa82191d633d6363",
+                      ),
+                      fit: BoxFit.cover),
+                ),
+              ),
+            ),
+            const SizedBox(height: 60),
+            Text(widget.music.bookName,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20)),
+            Text(widget.music.bookName,
+                style: TextStyle(
+                    color: Colors.white.withOpacity(0.5),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16)),
+            const SizedBox(height: 20),
+            StreamBuilder(
+                stream: widget.player.onPositionChanged,
+                builder: (context, snapshot) {
+                  return ProgressBar(
+                    progress: snapshot.data ?? const Duration(seconds: 0),
+                    total: maxDuration,
+                    onSeek: (duration) {
+                      widget.player.seek(duration);
+                      setState(() {});
+                    },
+                  );
+                }),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      widget.player.stop();
+                      // widget.player.play(AssetSource(
+                      //     musics[--widget.index % musics.length].path));
+                      getMaxDuration();
+                    },
+                    icon: const Icon(
+                      Icons.skip_previous,
+                      size: 36,
+                      color: Colors.white,
+                    )),
+                IconButton(
+                    onPressed: () {
+                      widget.player.pause();
+                      widget.player.play(
+                        UrlSource(
+                            "https://firebasestorage.googleapis.com/v0/b/e-commerce-app-863de.appspot.com/o/files%2Fmusics%2F''O'mrov%20suyagi''%20hikoyasi%20-%20Aziz%20Nesin.mp3?alt=media&token=b413e84a-2cfc-44ac-b7de-9b8f652457ef"),
+                      );
+                      getMaxDuration();
+                      setState(() {});
+                    },
+                    icon: Icon(
+                      widget.player.state == PlayerState.playing
+                          ? Icons.pause
+                          : Icons.play_arrow,
+                      size: 40,
+                      color: Colors.white,
+                    )),
+                IconButton(
+                  onPressed: () {
+                    widget.player.stop();
+                    // widget.player.play(AssetSource(
+                    //     musics[--widget.index % musics.length].path));
+                    getMaxDuration();
+
+                    setState(() {});
+                  },
+                  icon: const Icon(
+                    Icons.skip_next,
+                    size: 36,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -1,5 +1,6 @@
 import 'package:amiriy/data/models/audio_books_model.dart';
 import 'package:amiriy/data/models/book_model.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_utils/my_utils.dart';
@@ -167,6 +168,19 @@ class UtilityFunctions {
         "Foydalanuvchi topilmadi.",
         context,
       );
+    }
+  }
+
+  static Future<String> getAudioUrl(String audioPath) async {
+    try {
+      methodPrint(':::::: $audioPath');
+      final ref = FirebaseStorage.instance.ref().child(audioPath);
+      final url = await ref.getDownloadURL();
+      methodPrint('-------$url');
+      return url;
+    } catch (e) {
+      methodPrint('Error getting audio URL: $e');
+      rethrow;
     }
   }
 

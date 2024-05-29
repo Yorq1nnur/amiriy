@@ -4,9 +4,11 @@ import 'package:amiriy/bloc/saved_audio/saved_audio_bloc.dart';
 import 'package:amiriy/bloc/saved_audio/saved_audio_event.dart';
 import 'package:amiriy/screens/global_widgets/item_audios_search.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
+import 'package:amiriy/screens/player/player_screen.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/audio_books/widgets/audio_item.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_utils/my_utils.dart';
@@ -24,8 +26,11 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
   @override
   void dispose() {
     searchController.dispose();
+    player.dispose();
     super.dispose();
   }
+
+  final AudioPlayer player = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -116,9 +121,21 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
                       'LIST ON TAPED',
                     );
                   },
-                  playOnTap: () {
+                  playOnTap: () async {
                     UtilityFunctions.methodPrint(
                       'PLAY ON TAPED',
+                    );
+                    // String url = await UtilityFunctions.getAudioUrl("""gs://e-commerce-app-863de.appspot.com/files/musics/"Ona tarbiyasi" hikoyasi - Aziz Nesin.mp3""");
+                    // debugPrint(url);
+                    if (!context.mounted) return;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PlayerScreen(
+                          music: state.audioBooks[index],
+                          player: player,
+                        ),
+                      ),
                     );
                   },
                   isLiked: context
@@ -136,5 +153,6 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
         return const SizedBox.shrink();
       }),
     );
+
   }
 }

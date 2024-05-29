@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "762812355330-05laqkpcdhdkgfgmi9kkjanjsqql1kcg.apps.googleusercontent.com",
+          "client_id": "762812355330-k3einlm3tvfht0a2e594nbvdjt0i4bmj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.amiriy",
+            "certificate_hash": "fdbf01f4aef4cec8246d8000b3c16ee61a9cbfcd"
+          }
+        },
+        {
+          "client_id": "762812355330-qvr4itns25isga920tev7ki8p9q7r05i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -32,10 +40,10 @@
               "client_type": 3
             },
             {
-              "client_id": "762812355330-ehcshf5v3abcmbp2m27bd9f92ok8trt9.apps.googleusercontent.com",
+              "client_id": "762812355330-0sn7nnei124g06uto38bupqr265td4kf.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.ntExam4"
+                "bundle_id": "com.example.nurGadgetShop"
               }
             }
           ]
@@ -59,7 +67,7 @@
           }
         },
         {
-          "client_id": "762812355330-05laqkpcdhdkgfgmi9kkjanjsqql1kcg.apps.googleusercontent.com",
+          "client_id": "762812355330-qvr4itns25isga920tev7ki8p9q7r05i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -76,10 +84,10 @@
               "client_type": 3
             },
             {
-              "client_id": "762812355330-ehcshf5v3abcmbp2m27bd9f92ok8trt9.apps.googleusercontent.com",
+              "client_id": "762812355330-0sn7nnei124g06uto38bupqr265td4kf.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.ntExam4"
+                "bundle_id": "com.example.nurGadgetShop"
               }
             }
           ]
@@ -95,7 +103,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "762812355330-05laqkpcdhdkgfgmi9kkjanjsqql1kcg.apps.googleusercontent.com",
+          "client_id": "762812355330-qvr4itns25isga920tev7ki8p9q7r05i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -112,10 +120,46 @@
               "client_type": 3
             },
             {
-              "client_id": "762812355330-ehcshf5v3abcmbp2m27bd9f92ok8trt9.apps.googleusercontent.com",
+              "client_id": "762812355330-0sn7nnei124g06uto38bupqr265td4kf.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.ntExam4"
+                "bundle_id": "com.example.nurGadgetShop"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762812355330:android:c8968b54a2ebdbcc4fe81b",
+        "android_client_info": {
+          "package_name": "com.nur.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762812355330-qvr4itns25isga920tev7ki8p9q7r05i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkt6Y0zXTaopOwSmZE64ZCkfv9akwQmDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762812355330-05laqkpcdhdkgfgmi9kkjanjsqql1kcg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "762812355330-0sn7nnei124g06uto38bupqr265td4kf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nurGadgetShop"
               }
             }
           ]

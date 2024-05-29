@@ -165,6 +165,7 @@ class RouteNames {
   static const String splashScreen = "/";
   static const String tabRoute = "/tab_route";
   static const String loginRoute = "/login_route";
+  static const String playerScreen = "/player_screen";
   static const String registerRoute = "/register_route";
   static const String onBoardingRoute = "/on_boarding_route";
   static const String languagesRoute = "/languages_route";
