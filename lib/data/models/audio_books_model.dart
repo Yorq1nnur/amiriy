@@ -1,20 +1,22 @@
 class AudioBooksModel {
   final String bookName;
   final String bookUrl;
+  final String imageUrl;
   final int id;
 
   AudioBooksModel({
     required this.bookName,
     required this.bookUrl,
+    required this.imageUrl,
     required this.id,
   });
 
   factory AudioBooksModel.fromJson(Map<String, dynamic> json) =>
       AudioBooksModel(
-        bookName: json[AudioBooksFields.bookName] as String? ?? 'AUDIO BOOK',
+        bookName: json[AudioBooksFields.bookName] as String? ?? '',
+        imageUrl: json[AudioBooksFields.imageUrl] as String? ?? '',
         id: json[AudioBooksFields.id] as int? ?? 0,
-        bookUrl: json[AudioBooksFields.bookUrl] as String? ??
-            "gs://e-commerce-app-863de.appspot.com/files/musics/''O'mrov suyagi'' hikoyasi - Aziz Nesin.mp3",
+        bookUrl: json[AudioBooksFields.bookUrl] as String? ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -25,6 +27,7 @@ class AudioBooksModel {
 
 class AudioBooksFields {
   static const String bookName = 'book_name';
+  static const String imageUrl = 'image_url';
   static const String bookUrl = 'book_url';
   static const String id = 'id';
 
@@ -32,5 +35,6 @@ class AudioBooksFields {
     bookName,
     bookUrl,
     id,
+    imageUrl,
   ];
 }

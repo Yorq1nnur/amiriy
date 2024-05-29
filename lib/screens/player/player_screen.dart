@@ -2,6 +2,7 @@ import 'package:amiriy/data/models/audio_books_model.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PlayerScreen extends StatefulWidget {
@@ -118,67 +119,75 @@ class _PlayerScreenState extends State<PlayerScreen> {
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(20),
         color: Colors.blue,
-        child: isLoading
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 60),
-                  Center(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      height: MediaQuery.of(context).size.width * 0.7,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            "https://i.scdn.co/image/ab67616d0000b273b9659e2caa82191d633d6363",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 60),
+            Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                height: MediaQuery.of(context).size.width * 0.7,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(widget.music.imageUrl),
+                    fit: BoxFit.cover,
                   ),
-                  const SizedBox(height: 60),
-                  Text(
-                    widget.music.bookName,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20,
-                    ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 60),
+            Text(
+              widget.music.bookName,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+            Text(
+              widget.music.bookName,
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.5),
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 20),
+            ProgressBar(
+              progressBarColor: Colors.black,
+              baseBarColor: Colors.white,
+              bufferedBarColor: Colors.grey,
+              progress: currentPosition,
+              total: maxDuration,
+              onSeek: seekTo,
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  onPressed: isLoading
+                      ? () {
+                          UtilityFunctions.showSnackBar(
+                            'please_wait_audio'.tr(),
+                            context,
+                          );
+                          UtilityFunctions.methodPrint(
+                            'BACKWARD IS LOADING',
+                          );
+                        }
+                      : skipBackward,
+                  icon: const Icon(
+                    Icons.replay_5,
+                    size: 36,
+                    color: Colors.white,
                   ),
-                  Text(
-                    widget.music.bookName,
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.5),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  ProgressBar(
-                    progressBarColor: Colors.black,
-                    baseBarColor: Colors.white,
-                    bufferedBarColor: Colors.grey,
-                    progress: currentPosition,
-                    total: maxDuration,
-                    onSeek: seekTo,
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      IconButton(
-                        onPressed: skipBackward,
-                        icon: const Icon(
-                          Icons.replay_5,
-                          size: 36,
-                          color: Colors.white,
-                        ),
-                      ),
-                      IconButton(
+                ),
+                isLoading
+                    ? const CircularProgressIndicator(
+                        color: Colors.white,
+                      )
+                    : IconButton(
                         onPressed: () {
                           playPause();
                           setState(() {});
@@ -191,18 +200,28 @@ class _PlayerScreenState extends State<PlayerScreen> {
                           color: Colors.white,
                         ),
                       ),
-                      IconButton(
-                        onPressed: skipForward,
-                        icon: const Icon(
-                          Icons.forward_5,
-                          size: 36,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
+                IconButton(
+                  onPressed: isLoading
+                      ? () {
+                          UtilityFunctions.showSnackBar(
+                            'please_wait_audio'.tr(),
+                            context,
+                          );
+                          UtilityFunctions.methodPrint(
+                            'FORWARD IS LOADING',
+                          );
+                        }
+                      : skipForward,
+                  icon: const Icon(
+                    Icons.forward_5,
+                    size: 36,
+                    color: Colors.white,
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
