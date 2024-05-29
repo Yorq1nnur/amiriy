@@ -101,6 +101,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 stream: widget.player.onPositionChanged,
                 builder: (context, snapshot) {
                   return ProgressBar(
+                    progressBarColor: Colors.black,
+                    baseBarColor: Colors.white,
+                    bufferedBarColor: Colors.grey,
                     progress: snapshot.data ?? const Duration(seconds: 0),
                     total: maxDuration,
                     onSeek: (duration) {
