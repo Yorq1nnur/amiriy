@@ -26,7 +26,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
   void initState() {
     widget.player.play(
       UrlSource(
-        "https://firebasestorage.googleapis.com/v0/b/e-commerce-app-863de.appspot.com/o/files%2Fmusics%2F''O'mrov%20suyagi''%20hikoyasi%20-%20Aziz%20Nesin.mp3?alt=media&token=b413e84a-2cfc-44ac-b7de-9b8f652457ef",
+        widget.music.bookUrl,
       ),
     );
     setState(() {});
@@ -127,11 +127,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     )),
                 IconButton(
                     onPressed: () {
-                      widget.player.pause();
-                      widget.player.play(
-                        UrlSource(
-                            "https://firebasestorage.googleapis.com/v0/b/e-commerce-app-863de.appspot.com/o/files%2Fmusics%2F''O'mrov%20suyagi''%20hikoyasi%20-%20Aziz%20Nesin.mp3?alt=media&token=b413e84a-2cfc-44ac-b7de-9b8f652457ef"),
-                      );
+                      widget.player.state == PlayerState.playing
+                          ? widget.player.pause()
+                          : widget.player.play(
+                              UrlSource(
+                                widget.music.bookUrl,
+                              ),
+                            );
                       getMaxDuration();
                       setState(() {});
                     },

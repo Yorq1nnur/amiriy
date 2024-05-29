@@ -12,8 +12,8 @@ class UtilityFunctions {
     );
   }
 
-  static bool isSavedAudi(List<AudioBooksModel> allAudios,
-      AudioBooksModel audio) {
+  static bool isSavedAudi(
+      List<AudioBooksModel> allAudios, AudioBooksModel audio) {
     bool isSaved = false;
 
     for (AudioBooksModel element in allAudios) {
@@ -29,8 +29,8 @@ class UtilityFunctions {
     return isSaved;
   }
 
-  static Widget buildRatingStars(double rating,
-      MainAxisAlignment mainAxisAlignment) {
+  static Widget buildRatingStars(
+      double rating, MainAxisAlignment mainAxisAlignment) {
     List<Widget> stars = [];
 
     for (int i = 1; i <= 5; i++) {
@@ -67,17 +67,18 @@ class UtilityFunctions {
     );
   }
 
-  static List<BookModel> getLatest10Dates(List<BookModel> dates,) {
+  static List<BookModel> getLatest10Dates(
+    List<BookModel> dates,
+  ) {
     // Sort the list in descending order
     dates.sort(
-          (a, b) =>
-          DateTime.parse(
-            b.dateTime,
-          ).compareTo(
-            DateTime.parse(
-              a.dateTime,
-            ),
-          ),
+      (a, b) => DateTime.parse(
+        b.dateTime,
+      ).compareTo(
+        DateTime.parse(
+          a.dateTime,
+        ),
+      ),
     );
 
     // Return the first 10 elements
@@ -119,8 +120,10 @@ class UtilityFunctions {
     }
   }
 
-  static showErrorForRegister(String code,
-      BuildContext context,) {
+  static showErrorForRegister(
+    String code,
+    BuildContext context,
+  ) {
     if (code == 'weak-password') {
       debugPrint('The password provided is too weak.');
       if (!context.mounted) return;
@@ -138,8 +141,10 @@ class UtilityFunctions {
     }
   }
 
-  static showErrorForLogin(String code,
-      BuildContext context,) {
+  static showErrorForLogin(
+    String code,
+    BuildContext context,
+  ) {
     if (code == 'wrong-password') {
       debugPrint('The password provided is wrong.');
       if (!context.mounted) return;
@@ -184,9 +189,8 @@ class UtilityFunctions {
     }
   }
 
-  static  SystemUiOverlayStyle systemUiOverlayStyle() =>
+  static SystemUiOverlayStyle systemUiOverlayStyle() =>
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
       );
-
 }

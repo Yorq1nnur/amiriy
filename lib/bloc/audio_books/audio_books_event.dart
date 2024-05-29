@@ -4,7 +4,7 @@ sealed class AudioBooksEvent extends Equatable {
   const AudioBooksEvent();
 }
 
-class ListenAudioBooksEvent extends AudioBooksEvent{
+class ListenAudioBooksEvent extends AudioBooksEvent {
   @override
   List<Object?> get props => [];
 }

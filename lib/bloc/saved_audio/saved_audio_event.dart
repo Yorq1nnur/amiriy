@@ -22,6 +22,7 @@ class ListenSavedAudioBooksEvent extends SavedAudioEvent {
   @override
   List<Object?> get props => [];
 }
+
 class FetchSavedAudioBookEvent extends SavedAudioEvent {
   @override
   List<Object?> get props => [];

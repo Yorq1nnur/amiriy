@@ -153,6 +153,5 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
         return const SizedBox.shrink();
       }),
     );
-
   }
 }

@@ -42,10 +42,10 @@ class AudioItem extends StatelessWidget {
       ),
       title: Text(
         audioBooksModel.bookName,
-        style: Theme.of(context).textTheme.labelMedium!.copyWith(
-          fontWeight: FontWeight.w900,
-          fontSize: 16.sp
-        ),
+        style: Theme.of(context)
+            .textTheme
+            .labelMedium!
+            .copyWith(fontWeight: FontWeight.w900, fontSize: 16.sp),
       ),
       trailing: TabItem(
           onTap: saveOnTap,
