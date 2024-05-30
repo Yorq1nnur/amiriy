@@ -125,11 +125,35 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
         if (state.formStatus == FormStatus.success) {
           return Column(
             children: [
-              TextField(
-                controller: searchController,
-                onChanged: (v) async {
-                  await addSearch(v);
-                },
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: TextField(
+                  controller: searchController,
+                  onChanged: (v) async {
+                    await addSearch(v);
+                  },
+                  decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.search,size: 30.w,),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(
+                        20,
+                      ),
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                        width: 2.w,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(
+                        20,
+                      ),
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                        width: 2.w,
+                      ),
+                    ),
+                  ),
+                ),
               ),
               Expanded(
                 child: ListView.builder(
