@@ -6,6 +6,7 @@ class BookModel {
   final String bookDescription;
   final double price;
   final String imageUrl;
+  final String pdfBookUrl;
   final String dateTime;
   final String categoryId;
   final String categoryName;
@@ -21,12 +22,14 @@ class BookModel {
     required this.rate,
     required this.bookAuthor,
     required this.dateTime,
+    required this.pdfBookUrl,
   });
 
   factory BookModel.fromJson(Map<String, dynamic> json) {
     return BookModel(
       docId: json["doc_id"] as String? ?? "",
       imageUrl: json["image_url"] as String? ?? "",
+      pdfBookUrl: json["pdf_book_url"] as String? ?? "",
       categoryId: json["category_id"] as String? ?? "",
       categoryName: json["category_name"] as String? ?? "",
       bookName: json["product_name"] as String? ?? "",

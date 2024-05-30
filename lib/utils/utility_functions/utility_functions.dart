@@ -12,12 +12,11 @@ class UtilityFunctions {
     );
   }
 
-  static bool getIsLikeState(List<AudioBooksModel> audios, String bookName){
-
+  static bool getIsLikeState(List<AudioBooksModel> audios, String bookName) {
     bool isExist = false;
 
-    for(var element in audios){
-      if(element.bookName == bookName){
+    for (var element in audios) {
+      if (element.bookName == bookName) {
         isExist = true;
         break;
       }

@@ -75,7 +75,7 @@ flutter:
     - assets/icons/
     - assets/lottie/
     - assets/translations/
-    - assets/
+
   fonts:
     - family: Bodoni
       fonts:

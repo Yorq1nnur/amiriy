@@ -1,6 +1,7 @@
 import 'package:amiriy/data/models/book_model.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/global_widgets/image_item.dart';
+import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
@@ -76,12 +77,18 @@ class BookDetailsScreen extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.pdfViewRoute,
+                              arguments: bookModel,
+                            );
+                          },
                           style: IconButton.styleFrom(
                             backgroundColor: Theme.of(context).primaryColor,
                           ),
                           icon: Icon(
-                            Icons.car_rental,
+                            Icons.picture_as_pdf,
                             color: Theme.of(context).iconTheme.color,
                             size: Theme.of(context).iconTheme.size,
                           ),
