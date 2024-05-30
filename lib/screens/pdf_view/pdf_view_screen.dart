@@ -80,13 +80,18 @@ class PdfViewScreen extends StatelessWidget {
                       builder: (_, AsyncSnapshot<String> snapshot) {
                         if (snapshot.hasData) {
                           return Container(
+                            height: 80.w,
+                            width: 80.w,
                             margin: EdgeInsets.symmetric(horizontal: 50.w),
-                            padding: EdgeInsets.all(25.w),
+                            // padding: EdgeInsets.all(25.w),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Theme.of(context).colorScheme.primary,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.1),
                             ),
-                            child: Text(snapshot.data!),
+                            child: Center(child: Text(snapshot.data!)),
                           );
                         }
                         return const CircularProgressIndicator();
@@ -95,42 +100,76 @@ class PdfViewScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      FloatingActionButton(
-                        backgroundColor: Theme.of(context).primaryColor,
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          size: 24.w,
-                          color: Theme.of(context).iconTheme.color,
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(
+                            50,
+                          ),
+                          onTap: () async {
+                            final PDFViewController pdfController =
+                                snapshot.data!;
+                            final int currentPage =
+                                (await pdfController.getCurrentPage())! - 1;
+                            if (currentPage >= 0) {
+                              await pdfController.setPage(
+                                currentPage,
+                              );
+                            }
+                          },
+                          child: Container(
+                            height: 80.w,
+                            width: 80.w,
+                            // padding: EdgeInsets.symmetric(vertical: 20.h,horizontal: 20.w),
+                            decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .primaryColor
+                                    .withOpacity(0.1),
+                                shape: BoxShape.circle),
+                            child: Center(
+                              child: Icon(
+                                Icons.arrow_back,
+                                size: 35.w,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                            ),
+                          ),
                         ),
-                        onPressed: () async {
-                          final PDFViewController pdfController =
-                              snapshot.data!;
-                          final int currentPage =
-                              (await pdfController.getCurrentPage())! - 1;
-                          if (currentPage >= 0) {
-                            await pdfController.setPage(
-                              currentPage,
-                            );
-                          }
-                        },
                       ),
-                      50.getW(),
-                      FloatingActionButton(
-                        backgroundColor: Theme.of(context).primaryColor,
-                        child: Icon(Icons.arrow_forward_ios,
-                            size: 24.w,
-                            color: Theme.of(context).iconTheme.color),
-                        onPressed: () async {
-                          final PDFViewController pdfController =
-                              snapshot.data!;
-                          final int currentPage =
-                              (await pdfController.getCurrentPage())! + 1;
-                          final int numberOfPages =
-                              await pdfController.getPageCount() ?? 0;
-                          if (numberOfPages > currentPage) {
-                            await pdfController.setPage(currentPage);
-                          }
-                        },
+                      20.getW(),
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(50),
+                          onTap: () async {
+                            final PDFViewController pdfController =
+                                snapshot.data!;
+                            final int currentPage =
+                                (await pdfController.getCurrentPage())! + 1;
+                            final int numberOfPages =
+                                await pdfController.getPageCount() ?? 0;
+                            if (numberOfPages > currentPage) {
+                              await pdfController.setPage(currentPage);
+                            }
+                          },
+                          child: Container(
+                            height: 80.w,
+                            width: 80.w,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor.withOpacity(
+                                    0.1,
+                                  ),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.arrow_forward,
+                                size: 35.w,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
