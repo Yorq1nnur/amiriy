@@ -24,11 +24,21 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
   @override
   void dispose() {
     searchController.dispose();
-    // player.dispose();
     super.dispose();
   }
 
-  // final AudioPlayer player = AudioPlayer();
+  @override
+  void initState() {
+    Future.microtask(() {
+      context.read<AudioBooksBloc>().add(
+            ListenAudioBooksEvent(),
+          );
+      context.read<SavedAudioBloc>().add(
+            ListenSavedAudioBooksEvent(),
+          );
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +53,15 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
                 context: context,
                 delegate: ItemAudiosSearch(
                   items: context.read<AudioBooksBloc>().state.audioBooks,
+                  voidCallback: () {
+                    context.read<AudioBooksBloc>().add(
+                      ListenAudioBooksEvent(),
+                    );
+                    context.read<SavedAudioBloc>().add(
+                      ListenSavedAudioBooksEvent(),
+                    );
+                    setState(() {});
+                  },
                 ),
               );
             },
@@ -110,16 +129,28 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
                     UtilityFunctions.methodPrint(
                       'SAVE ON TAPED',
                     );
-                    if(context.read<SavedAudioBloc>().state.savedAudioBooksName.contains(state.audioBooks[index].bookName)){
-                      context.read<SavedAudioBloc>().add(DeleteAudioFromSavedEvent(bookName: state.audioBooks[index].bookName,),);
-                    }else{
+                    if (context
+                        .read<SavedAudioBloc>()
+                        .state
+                        .savedAudioBooksName
+                        .contains(state.audioBooks[index].bookName)) {
                       context.read<SavedAudioBloc>().add(
-                        InsertAudioToDbEvent(
-                          audioBook: state.audioBooks[index],
-                        ),
-                      );
+                            DeleteAudioFromSavedEvent(
+                              bookName: state.audioBooks[index].bookName,
+                            ),
+                          );
+                    } else {
+                      context.read<SavedAudioBloc>().add(
+                            InsertAudioToDbEvent(
+                              audioBook: state.audioBooks[index],
+                            ),
+                          );
                     }
-                    await Future.delayed(const Duration(milliseconds: 500));
+                    await Future.delayed(
+                      const Duration(
+                        milliseconds: 500,
+                      ),
+                    );
                     if (!context.mounted) return;
                     context.read<SavedAudioBloc>().add(
                           ListenSavedAudioBooksEvent(),
