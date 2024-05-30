@@ -29,14 +29,14 @@ class FetchSavedAudioBookEvent extends SavedAudioEvent {
 }
 
 class DeleteAudioFromSavedEvent extends SavedAudioEvent {
-  final int id;
+  final String bookName;
 
   const DeleteAudioFromSavedEvent({
-    required this.id,
+    required this.bookName,
   });
 
   @override
   List<Object?> get props => [
-        id,
+        bookName,
       ];
 }

@@ -48,7 +48,7 @@ class SavedAudioBloc extends Bloc<SavedAudioEvent, SavedAudioState> {
     );
 
     NetworkResponse networkResponse = await savedAudioDb.deleteProduct(
-      event.id,
+      event.bookName,
     );
 
     if (networkResponse.errorText.isEmpty) {
@@ -100,10 +100,15 @@ class SavedAudioBloc extends Bloc<SavedAudioEvent, SavedAudioState> {
 
     await emit.onEach(savedAudioDb.listenLatestProducts(),
         onData: (List<AudioBooksModel> audios) {
+      List<String> bookNames = [];
+      for (var element in audios) {
+        bookNames.add(element.bookName);
+      }
       emit(
         state.copyWith(
           formStatus: FormStatus.success,
           savedAudioBooks: audios,
+          savedAudioBooksName: bookNames,
         ),
       );
     }, onError: (e, s) {

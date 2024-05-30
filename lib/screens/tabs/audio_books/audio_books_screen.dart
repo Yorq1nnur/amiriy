@@ -95,23 +95,37 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
             ),
             itemCount: state.audioBooks.length,
             itemBuilder: (context, index) {
+              UtilityFunctions.methodPrint(
+                'CURRENT ID: ${state.audioBooks[index].id}',
+              );
+              UtilityFunctions.methodPrint(
+                'Saved book name is length: ${context.read<SavedAudioBloc>().state.savedAudioBooksName.length}',
+              );
               return Padding(
                 padding: EdgeInsets.symmetric(
                   vertical: 5.h,
                 ),
                 child: AudioItem(
-                  saveOnTap: () {
+                  saveOnTap: () async {
                     UtilityFunctions.methodPrint(
                       'SAVE ON TAPED',
                     );
-                    context.read<SavedAudioBloc>().add(
-                          InsertAudioToDbEvent(
-                            audioBook: state.audioBooks[index],
-                          ),
-                        );
+                    if(context.read<SavedAudioBloc>().state.savedAudioBooksName.contains(state.audioBooks[index].bookName)){
+                      context.read<SavedAudioBloc>().add(DeleteAudioFromSavedEvent(bookName: state.audioBooks[index].bookName,),);
+                    }else{
+                      context.read<SavedAudioBloc>().add(
+                        InsertAudioToDbEvent(
+                          audioBook: state.audioBooks[index],
+                        ),
+                      );
+                    }
+                    await Future.delayed(const Duration(milliseconds: 500));
+                    if (!context.mounted) return;
                     context.read<SavedAudioBloc>().add(
                           ListenSavedAudioBooksEvent(),
                         );
+
+                    setState(() {});
                   },
                   audioBooksModel: state.audioBooks[index],
                   playOnTap: () {
@@ -124,10 +138,13 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
                       arguments: state.audioBooks[index],
                     );
                   },
-                  isLiked: UtilityFunctions.getIsLikeState(
-                    context.read<SavedAudioBloc>().state.savedAudioBooks,
-                    state.audioBooks[index].bookName,
-                  ),
+                  isLiked: context
+                      .read<SavedAudioBloc>()
+                      .state
+                      .savedAudioBooksName
+                      .contains(
+                        state.audioBooks[index].bookName,
+                      ),
                 ),
               );
             },

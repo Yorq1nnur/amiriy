@@ -6,6 +6,7 @@ class SavedAudioState extends Equatable {
   final String errorText;
   final String statusMessage;
   final List<AudioBooksModel> savedAudioBooks;
+  final List<String> savedAudioBooksName;
   final FormStatus formStatus;
 
   const SavedAudioState({
@@ -13,12 +14,14 @@ class SavedAudioState extends Equatable {
     required this.errorText,
     required this.savedAudioBooks,
     required this.statusMessage,
+    required this.savedAudioBooksName,
   });
 
   SavedAudioState copyWith({
     String? errorText,
     String? statusMessage,
     List<AudioBooksModel>? savedAudioBooks,
+    List<String>? savedAudioBooksName,
     FormStatus? formStatus,
   }) =>
       SavedAudioState(
@@ -26,6 +29,7 @@ class SavedAudioState extends Equatable {
         errorText: errorText ?? this.errorText,
         statusMessage: statusMessage ?? this.statusMessage,
         savedAudioBooks: savedAudioBooks ?? this.savedAudioBooks,
+        savedAudioBooksName: savedAudioBooksName ?? this.savedAudioBooksName,
       );
 
   static SavedAudioState initial() => const SavedAudioState(
@@ -33,6 +37,7 @@ class SavedAudioState extends Equatable {
         errorText: '',
         statusMessage: '',
         savedAudioBooks: [],
+        savedAudioBooksName: [],
       );
 
   @override

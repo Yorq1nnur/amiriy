@@ -141,16 +141,16 @@ class SavedAudioDb {
     }
   }
 
-  Future<NetworkResponse> deleteProduct(int id) async {
+  Future<NetworkResponse> deleteProduct(String bookName) async {
     final db = await instance.database;
     try {
       await db.delete(
         AppConstants.savedAudio,
-        where: '${AudioBooksFields.id} = ?',
-        whereArgs: [id],
+        where: '${AudioBooksFields.bookName} = ?',
+        whereArgs: [bookName],
       );
       UtilityFunctions.methodPrint(
-        'PRODUCT DELETED SUCCESSFULLY FROM DB!!! $id}',
+        'PRODUCT DELETED SUCCESSFULLY FROM DB!!! $bookName}',
       );
       return NetworkResponse(
         data: 'deleted',
