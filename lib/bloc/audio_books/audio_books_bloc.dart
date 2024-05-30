@@ -13,16 +13,46 @@ class AudioBooksBloc extends Bloc<AudioBooksEvent, AudioBooksState> {
     this.audioBooksRepo,
   ) : super(AudioBooksState.initial()) {
     on<ListenAudioBooksEvent>(_listenAudioBooks);
+    on<SearchAudioBooksEvent>(_searchAudioBooks);
   }
 
   final AudioBooksRepo audioBooksRepo;
 
-  _listenAudioBooks(ListenAudioBooksEvent event, Emitter emit) async {
-    emit(
-      state.copyWith(
-        formStatus: FormStatus.loading,
-      ),
+  _searchAudioBooks(SearchAudioBooksEvent event, Emitter emit) async {
+    // emit(
+    //   state.copyWith(
+    //     formStatus: FormStatus.loading,
+    //   ),
+    // );
+
+    await emit.onEach(
+      audioBooksRepo.listenAllBooks(),
+      onData: (List<AudioBooksModel> a) {
+        emit(
+          state.copyWith(
+            formStatus: FormStatus.success,
+            audioBooks:
+                a.where((e) => e.bookName.contains(event.query)).toList(),
+          ),
+        );
+      },
     );
+
+    // emit(
+    //   state.copyWith(
+    //     audioBooks: event.audios
+    //         .where((e) => e.bookName.contains(event.query))
+    //         .toList(),
+    //   ),
+    // );
+  }
+
+  _listenAudioBooks(ListenAudioBooksEvent event, Emitter emit) async {
+    // emit(
+    //   state.copyWith(
+    //     formStatus: FormStatus.loading,
+    //   ),
+    // );
 
     await emit.onEach(audioBooksRepo.listenAllBooks(),
         onData: (List<AudioBooksModel> audios) {

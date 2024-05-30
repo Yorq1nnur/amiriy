@@ -3,6 +3,7 @@ import 'package:amiriy/data/models/network_response.dart';
 import 'package:amiriy/utils/constants/app_constants.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:sqflite/sqflite.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 
 class SavedAudioDb {

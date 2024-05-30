@@ -6,6 +6,7 @@ import 'package:amiriy/screens/global_widgets/item_audios_search.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/audio_books/widgets/audio_item.dart';
+import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +26,21 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
   void dispose() {
     searchController.dispose();
     super.dispose();
+  }
+
+  Future<void> addSearch(String query) async {
+    if (query.isEmpty) {
+      context.read<AudioBooksBloc>().add(
+            ListenAudioBooksEvent(),
+          );
+    } else {
+      context.read<AudioBooksBloc>().add(
+            SearchAudioBooksEvent(
+              query: searchController.text,
+              // audios: context.read<AudioBooksBloc>().state.audioBooks,
+            ),
+          );
+    }
   }
 
   @override
@@ -47,30 +63,30 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
       appBar: AppBar(
         elevation: 0,
         actions: [
-          IconButton(
-            onPressed: () {
-              showSearch(
-                context: context,
-                delegate: ItemAudiosSearch(
-                  items: context.read<AudioBooksBloc>().state.audioBooks,
-                  voidCallback: () {
-                    context.read<AudioBooksBloc>().add(
-                      ListenAudioBooksEvent(),
-                    );
-                    context.read<SavedAudioBloc>().add(
-                      ListenSavedAudioBooksEvent(),
-                    );
-                    setState(() {});
-                  },
-                ),
-              );
-            },
-            icon: Icon(
-              Icons.search,
-              size: 24.w,
-              color: Theme.of(context).iconTheme.color,
-            ),
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     showSearch(
+          //       context: context,
+          //       delegate: ItemAudiosSearch(
+          //         items: context.read<AudioBooksBloc>().state.audioBooks,
+          //         voidCallback: () {
+          //           context.read<AudioBooksBloc>().add(
+          //                 ListenAudioBooksEvent(),
+          //               );
+          //           context.read<SavedAudioBloc>().add(
+          //                 ListenSavedAudioBooksEvent(),
+          //               );
+          //           setState(() {});
+          //         },
+          //       ),
+          //     );
+          //   },
+          //   icon: Icon(
+          //     Icons.search,
+          //     size: 24.w,
+          //     color: Theme.of(context).iconTheme.color,
+          //   ),
+          // ),
           IconButton(
             onPressed: () {
               Navigator.pushNamed(
@@ -84,6 +100,7 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
               color: Theme.of(context).iconTheme.color,
             ),
           ),
+          10.getW(),
         ],
         centerTitle: true,
         title: GlobalText(
@@ -106,79 +123,91 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
           );
         }
         if (state.formStatus == FormStatus.success) {
-          return ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            padding: EdgeInsets.symmetric(
-              horizontal: 20.w,
-              vertical: 20.h,
-            ),
-            itemCount: state.audioBooks.length,
-            itemBuilder: (context, index) {
-              UtilityFunctions.methodPrint(
-                'CURRENT ID: ${state.audioBooks[index].id}',
-              );
-              UtilityFunctions.methodPrint(
-                'Saved book name is length: ${context.read<SavedAudioBloc>().state.savedAudioBooksName.length}',
-              );
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 5.h,
-                ),
-                child: AudioItem(
-                  saveOnTap: () async {
+          return Column(
+            children: [
+              TextField(
+                controller: searchController,
+                onChanged: (v) async {
+                  await addSearch(v);
+                },
+              ),
+              Expanded(
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.w,
+                    vertical: 20.h,
+                  ),
+                  itemCount: state.audioBooks.length,
+                  itemBuilder: (context, index) {
                     UtilityFunctions.methodPrint(
-                      'SAVE ON TAPED',
+                      'CURRENT ID: ${state.audioBooks[index].id}',
                     );
-                    if (context
-                        .read<SavedAudioBloc>()
-                        .state
-                        .savedAudioBooksName
-                        .contains(state.audioBooks[index].bookName)) {
-                      context.read<SavedAudioBloc>().add(
-                            DeleteAudioFromSavedEvent(
-                              bookName: state.audioBooks[index].bookName,
-                            ),
-                          );
-                    } else {
-                      context.read<SavedAudioBloc>().add(
-                            InsertAudioToDbEvent(
-                              audioBook: state.audioBooks[index],
-                            ),
-                          );
-                    }
-                    await Future.delayed(
-                      const Duration(
-                        milliseconds: 500,
+                    UtilityFunctions.methodPrint(
+                      'Saved book name is length: ${context.read<SavedAudioBloc>().state.savedAudioBooksName.length}',
+                    );
+                    return Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 5.h,
                       ),
-                    );
-                    if (!context.mounted) return;
-                    context.read<SavedAudioBloc>().add(
-                          ListenSavedAudioBooksEvent(),
-                        );
+                      child: AudioItem(
+                        saveOnTap: () async {
+                          UtilityFunctions.methodPrint(
+                            'SAVE ON TAPED',
+                          );
+                          if (context
+                              .read<SavedAudioBloc>()
+                              .state
+                              .savedAudioBooksName
+                              .contains(state.audioBooks[index].bookName)) {
+                            context.read<SavedAudioBloc>().add(
+                                  DeleteAudioFromSavedEvent(
+                                    bookName: state.audioBooks[index].bookName,
+                                  ),
+                                );
+                          } else {
+                            context.read<SavedAudioBloc>().add(
+                                  InsertAudioToDbEvent(
+                                    audioBook: state.audioBooks[index],
+                                  ),
+                                );
+                          }
+                          await Future.delayed(
+                            const Duration(
+                              milliseconds: 500,
+                            ),
+                          );
+                          if (!context.mounted) return;
+                          context.read<SavedAudioBloc>().add(
+                                ListenSavedAudioBooksEvent(),
+                              );
 
-                    setState(() {});
-                  },
-                  audioBooksModel: state.audioBooks[index],
-                  playOnTap: () {
-                    UtilityFunctions.methodPrint(
-                      'PLAY ON TAPED',
-                    );
-                    Navigator.pushNamed(
-                      context,
-                      RouteNames.playerScreen,
-                      arguments: state.audioBooks[index],
-                    );
-                  },
-                  isLiked: context
-                      .read<SavedAudioBloc>()
-                      .state
-                      .savedAudioBooksName
-                      .contains(
-                        state.audioBooks[index].bookName,
+                          setState(() {});
+                        },
+                        audioBooksModel: state.audioBooks[index],
+                        playOnTap: () {
+                          UtilityFunctions.methodPrint(
+                            'PLAY ON TAPED',
+                          );
+                          Navigator.pushNamed(
+                            context,
+                            RouteNames.playerScreen,
+                            arguments: state.audioBooks[index],
+                          );
+                        },
+                        isLiked: context
+                            .read<SavedAudioBloc>()
+                            .state
+                            .savedAudioBooksName
+                            .contains(
+                              state.audioBooks[index].bookName,
+                            ),
                       ),
+                    );
+                  },
                 ),
-              );
-            },
+              ),
+            ],
           );
         }
         return const SizedBox.shrink();

@@ -1,4 +1,3 @@
-import 'package:amiriy/bloc/audio_books/audio_books_bloc.dart';
 import 'package:amiriy/bloc/saved_audio/saved_audio_bloc.dart';
 import 'package:amiriy/bloc/saved_audio/saved_audio_event.dart';
 import 'package:amiriy/data/models/audio_books_model.dart';
@@ -41,7 +40,10 @@ class ItemAudiosSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    final List<AudioBooksModel> results = context.read<AudioBooksBloc>().state.audioBooks
+
+    List<String> rs = context.read<SavedAudioBloc>().state.savedAudioBooksName;
+
+    final List<AudioBooksModel> results = items
         .where(
             (item) => item.bookName.toLowerCase().contains(query.toLowerCase()))
         .toList();
@@ -63,11 +65,7 @@ class ItemAudiosSearch extends SearchDelegate<String> {
               UtilityFunctions.methodPrint(
                 'SAVE ON TAPED',
               );
-              if (context
-                  .read<SavedAudioBloc>()
-                  .state
-                  .savedAudioBooksName
-                  .contains(results[index].bookName)) {
+              if (rs.contains(results[index].bookName)) {
                 context.read<SavedAudioBloc>().add(
                       DeleteAudioFromSavedEvent(
                         bookName: results[index].bookName,
@@ -92,11 +90,7 @@ class ItemAudiosSearch extends SearchDelegate<String> {
               voidCallback.call();
             },
             playOnTap: () {},
-            isLiked: context
-                .read<SavedAudioBloc>()
-                .state
-                .savedAudioBooksName
-                .contains(
+            isLiked: rs.contains(
                   results[index].bookName,
                 ),
           ),
@@ -107,10 +101,13 @@ class ItemAudiosSearch extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
+
+    List<String> rs = context.read<SavedAudioBloc>().state.savedAudioBooksName;
+
+
     final List<AudioBooksModel> suggestionList = query.isEmpty
         ? []
-        : context.read<AudioBooksBloc>().state.audioBooks
-            .where((item) =>
+        : items.where((item) =>
                 item.bookName.toLowerCase().contains(query.toLowerCase()))
             .toList();
 
@@ -123,11 +120,7 @@ class ItemAudiosSearch extends SearchDelegate<String> {
             UtilityFunctions.methodPrint(
               'SAVE ON TAPED',
             );
-            if (context
-                .read<SavedAudioBloc>()
-                .state
-                .savedAudioBooksName
-                .contains(suggestionList[index].bookName)) {
+            if (rs.contains(suggestionList[index].bookName)) {
               context.read<SavedAudioBloc>().add(
                     DeleteAudioFromSavedEvent(
                       bookName: suggestionList[index].bookName,
@@ -159,7 +152,7 @@ class ItemAudiosSearch extends SearchDelegate<String> {
             );
           },
           isLiked:
-              context.read<SavedAudioBloc>().state.savedAudioBooksName.contains(
+              rs.contains(
                     suggestionList[index].bookName,
                   ),
         );
