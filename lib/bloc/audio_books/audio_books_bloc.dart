@@ -14,6 +14,7 @@ class AudioBooksBloc extends Bloc<AudioBooksEvent, AudioBooksState> {
   ) : super(AudioBooksState.initial()) {
     on<ListenAudioBooksEvent>(_listenAudioBooks);
     on<SearchAudioBooksEvent>(_searchAudioBooks);
+    // on<SearchAudioBooksEvent>(_searchAudioBooks);
   }
 
   final AudioBooksRepo audioBooksRepo;
@@ -31,8 +32,13 @@ class AudioBooksBloc extends Bloc<AudioBooksEvent, AudioBooksState> {
         emit(
           state.copyWith(
             formStatus: FormStatus.success,
-            audioBooks:
-                a.where((e) => e.bookName.contains(event.query)).toList(),
+            audioBooks: a
+                .where(
+                  (e) => e.bookName.toLowerCase().contains(
+                        event.query.toLowerCase(),
+                      ),
+                )
+                .toList(),
           ),
         );
       },

@@ -9,10 +9,10 @@ import 'package:amiriy/bloc/recommended_books/recommended_books_bloc.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_state.dart';
 import 'package:amiriy/screens/global_widgets/banner_items.dart';
 import 'package:amiriy/screens/global_widgets/books_item.dart';
+import 'package:amiriy/screens/global_widgets/category_button.dart';
 import 'package:amiriy/screens/global_widgets/item_books_search.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/routes.dart';
-import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
 import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
@@ -109,52 +109,65 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                   if (state.formStatus == FormStatus.success) {
                     return Wrap(
-                      children: List.generate(
-                        state.allCategories.length > 10
-                            ? state.allCategories.length -
-                                (state.allCategories.length - 10)
-                            : state.allCategories.length,
-                        (index) => Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 3.w,
-                            vertical: 3.h,
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                context,
-                                RouteNames.oneCategoryRoute,
-                                arguments:
-                                    state.allCategories[index].categoryName,
-                              );
+                      children: [
+                        ...List.generate(
+                          state.allCategories.length > 10
+                              ? state.allCategories.length -
+                                  (state.allCategories.length - 10)
+                              : state.allCategories.length,
+                          (index) => CategoryButton(
+                            voidCallback: () async {
                               context.read<BookBloc>().add(
                                     GetBooksByCategoryId(
                                       categoryId:
                                           state.allCategories[index].docId,
                                     ),
                                   );
+                              await Future.delayed(
+                                  const Duration(milliseconds: 500));
+                              if (!context.mounted) return;
+                              Navigator.pushNamed(
+                                context,
+                                RouteNames.oneCategoryRoute,
+                                arguments: {
+                                  'categoryName':
+                                      state.allCategories[index].categoryName,
+                                  'categoryId':
+                                      state.allCategories[index].docId,
+                                },
+                              ).then((v) async {
+                                context.read<BookBloc>().add(
+                                      GetBooksByCategoryId(
+                                        categoryId:
+                                            state.allCategories[index].docId,
+                                      ),
+                                    );
+                                await Future.delayed(
+                                  const Duration(
+                                    seconds: 1,
+                                  ),
+                                );
+                                if (!context.mounted) return;
+                                UtilityFunctions.methodPrint(
+                                  'WHAT WHAT WHAT WHAT WHAT ${context.read<BookBloc>().state.categoryBooks.length}',
+                                );
+                              });
                             },
-                            borderRadius: BorderRadius.circular(20),
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 10.w,
-                                vertical: 15.h,
-                              ),
-                              margin: EdgeInsets.all(2.w),
-                              decoration: BoxDecoration(
-                                color: AppColors.cF1F1F1,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: GlobalText(
-                                data: state.allCategories[index].categoryName,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400,
-                                isTranslate: false,
-                              ),
-                            ),
+                            title: state.allCategories[index].categoryName,
+                            isTranslate: false,
                           ),
                         ),
-                      ),
+                        CategoryButton(
+                          voidCallback: () {
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.categoryRoute,
+                            );
+                          },
+                          title: "more",
+                          isTranslate: true,
+                        ),
+                      ],
                     );
                   }
                   return const SizedBox();

@@ -3,6 +3,7 @@ import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/bloc/saved_audio/saved_audio_bloc.dart';
 import 'package:amiriy/bloc/saved_audio/saved_audio_event.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
+import 'package:amiriy/screens/global_widgets/search_text_field.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/audio_books/widgets/audio_item.dart';
 import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
@@ -41,21 +42,28 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
     }
   }
 
-  @override
-  void initState() {
+  _init(){
     Future.microtask(() {
       context.read<AudioBooksBloc>().add(
-            ListenAudioBooksEvent(),
-          );
+        ListenAudioBooksEvent(),
+      );
       context.read<SavedAudioBloc>().add(
-            ListenSavedAudioBooksEvent(),
-          );
+        ListenSavedAudioBooksEvent(),
+      );
     });
+  }
+
+  @override
+  void initState() {
+    _init();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.read<SavedAudioBloc>().add(
+      ListenSavedAudioBooksEvent(),
+    );
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -99,38 +107,11 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
         if (state.formStatus == FormStatus.success) {
           return Column(
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: TextField(
-                  controller: searchController,
-                  onChanged: (v) async {
-                    await addSearch(v);
-                  },
-                  decoration: InputDecoration(
-                    suffixIcon: Icon(
-                      Icons.search,
-                      size: 30.w,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(
-                        20,
-                      ),
-                      borderSide: BorderSide(
-                        color: Colors.blue,
-                        width: 2.w,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(
-                        20,
-                      ),
-                      borderSide: BorderSide(
-                        color: Colors.blue,
-                        width: 2.w,
-                      ),
-                    ),
-                  ),
-                ),
+              SearchTextField(
+                textEditingController: searchController,
+                valueChanged: (v) async {
+                  await addSearch(v);
+                },
               ),
               Expanded(
                 child: ListView.builder(

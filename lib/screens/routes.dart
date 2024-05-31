@@ -2,6 +2,7 @@ import 'package:amiriy/data/models/audio_books_model.dart';
 import 'package:amiriy/data/models/book_model.dart';
 import 'package:amiriy/screens/auth/login/login_screen.dart';
 import 'package:amiriy/screens/auth/register/register_screen.dart';
+import 'package:amiriy/screens/categories/categories_screen.dart';
 import 'package:amiriy/screens/details/book_details_screen.dart';
 import 'package:amiriy/screens/favourite_audio_books/favourite_audio_books_screen.dart';
 import 'package:amiriy/screens/languages/languages_screen.dart';
@@ -89,7 +90,7 @@ class AppRoutes {
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
               OneCategoryScreen(
-            categoryName: settings.arguments as String,
+            categoryDetails: settings.arguments as Map<String, dynamic>,
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = 0.0;
@@ -129,6 +130,24 @@ class AppRoutes {
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
               const FavouriteAudioBooksScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = 0.0;
+            const end = 1.0;
+            const curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return FadeTransition(
+              opacity: animation.drive(tween),
+              child: child,
+            );
+          },
+        );
+      case RouteNames.categoryRoute:
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const CategoriesScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = 0.0;
             const end = 1.0;
@@ -213,6 +232,7 @@ class RouteNames {
   static const String languagesRoute = "/languages_route";
   static const String pdfViewRoute = "/pdf_view_route";
   static const String oneCategoryRoute = "/one_category_route";
+  static const String categoryRoute = "/category_route";
   static const String bookDetailsRoute = "/book_details_route";
   static const String favouriteAudioBooksScreen =
       "/favourite_audio_books_screen";

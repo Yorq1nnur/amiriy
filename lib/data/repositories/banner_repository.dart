@@ -1,7 +1,6 @@
 import 'package:amiriy/data/models/banner_model.dart';
 import 'package:amiriy/data/models/network_response.dart';
 import 'package:amiriy/utils/constants/app_constants.dart';
-import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BannerRepository {

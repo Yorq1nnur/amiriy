@@ -4,7 +4,6 @@ import 'package:amiriy/bloc/auth/auth_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/audio_books/audio_books_screen.dart';
-import 'package:amiriy/screens/tabs/categories/categories_screen.dart';
 import 'package:amiriy/screens/tabs/home/home_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +29,7 @@ class _TabScreenState extends State<TabScreen>
   void initState() {
     screens = const [
       HomeScreen(),
-      CategoriesScreen(),
+      // CategoriesScreen(),
       AudioBooksScreen(),
       SettingsScreen(),
     ];
@@ -127,11 +126,11 @@ class _TabScreenState extends State<TabScreen>
             label: 'home'.tr(),
             tooltip: 'home'.tr(),
           ),
-          BottomNavigationBarItem(
-            icon: _buildAnimatedIcon(Icons.book, 1),
-            label: 'category'.tr(),
-            tooltip: 'category'.tr(),
-          ),
+          // BottomNavigationBarItem(
+          //   icon: _buildAnimatedIcon(Icons.book, 1),
+          //   label: 'category'.tr(),
+          //   tooltip: 'category'.tr(),
+          // ),
           BottomNavigationBarItem(
             icon: _buildAnimatedIcon(Icons.audio_file, 2),
             label: 'audio_books'.tr(),

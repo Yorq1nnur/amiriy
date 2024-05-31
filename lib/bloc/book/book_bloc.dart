@@ -9,9 +9,38 @@ class BookBloc extends Bloc<BookEvent, BookState> {
   BookBloc(this.bookRepo) : super(BookState.initial()) {
     on<ListenAllBooksEvent>(_listenAllBooks);
     on<GetBooksByCategoryId>(_getBooksByCategoryId);
+    on<SearchProductsProductsEvent>(_searchProducts);
   }
 
   BookRepo bookRepo;
+
+  _searchProducts(SearchProductsProductsEvent event, Emitter emit) {
+    event.isCategoryProducts
+        ? emit(
+            state.copyWith(
+              formStatus: FormStatus.success,
+              categoryBooks: event.books
+                  .where(
+                    (e) => e.bookName.toLowerCase().contains(
+                          event.query.toLowerCase(),
+                        ),
+                  )
+                  .toList(),
+            ),
+          )
+        : emit(
+            state.copyWith(
+              formStatus: FormStatus.success,
+              books: event.books
+                  .where(
+                    (e) => e.bookName.toLowerCase().contains(
+                          event.query.toLowerCase(),
+                        ),
+                  )
+                  .toList(),
+            ),
+          );
+  }
 
   _getBooksByCategoryId(GetBooksByCategoryId event, Emitter emit) async {
     emit(
