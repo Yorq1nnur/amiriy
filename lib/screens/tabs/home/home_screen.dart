@@ -75,12 +75,16 @@ class _HomeScreenState extends State<HomeScreen> {
             20.getH(),
             BlocBuilder<BannerBloc, BannerState>(
               builder: (context, state) {
-                return BannerItems(
-                  banners: state.banners,
-                );
+                return context.read<BannerBloc>().state.banners.isNotEmpty
+                    ? BannerItems(
+                        banners: state.banners,
+                      )
+                    : const SizedBox.shrink();
               },
             ),
-            20.getH(),
+            context.read<BannerBloc>().state.banners.isNotEmpty
+                ? 20.getH()
+                : const SizedBox.shrink(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 32.w),
               child: GlobalText(

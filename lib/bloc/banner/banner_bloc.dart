@@ -19,12 +19,19 @@ class BannerBloc extends Bloc<BannerEvent, BannerState> {
 
     await emit.onEach(bannerRepository.getBannerStream(),
         onData: (List<BannerModel> bannersStream) {
-      emit(
-        state.copyWith(
-          status: FormStatus.success,
-          banners: bannersStream,
-        ),
-      );
+      bannersStream.isNotEmpty
+          ? emit(
+              state.copyWith(
+                status: FormStatus.success,
+                banners: bannersStream,
+              ),
+            )
+          : emit(
+              state.copyWith(
+                status: FormStatus.success,
+                banners: [],
+              ),
+            );
     }, onError: (e, s) {
       emit(
         state.copyWith(
@@ -35,21 +42,21 @@ class BannerBloc extends Bloc<BannerEvent, BannerState> {
     });
   }
 
-  // _getBanner(GetBannerEvent event, Emitter emit) async {
-  //   emit(state.copyWith(status: FormStatus.loading));
-  //   NetworkResponse networkResponse = await bannerRepository.getBanner();
-  //   if (networkResponse.errorText.isEmpty) {
-  //     emit(state.copyWith(
-  //       status: FormStatus.success,
-  //       banners: networkResponse.data,
-  //     ));
-  //   } else {
-  //     emit(state.copyWith(
-  //       status: FormStatus.error,
-  //       errorMessage: networkResponse.errorText,
-  //     ));
-  //   }
-  // }
+// _getBanner(GetBannerEvent event, Emitter emit) async {
+//   emit(state.copyWith(status: FormStatus.loading));
+//   NetworkResponse networkResponse = await bannerRepository.getBanner();
+//   if (networkResponse.errorText.isEmpty) {
+//     emit(state.copyWith(
+//       status: FormStatus.success,
+//       banners: networkResponse.data,
+//     ));
+//   } else {
+//     emit(state.copyWith(
+//       status: FormStatus.error,
+//       errorMessage: networkResponse.errorText,
+//     ));
+//   }
+// }
 }
 
 //banner_url

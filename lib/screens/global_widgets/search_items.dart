@@ -42,7 +42,7 @@ class SearchItems extends StatelessWidget {
                     bookModel.bookName,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.end,
+                    textAlign: TextAlign.center,
                   ),
                   30.getH(),
                   SizedBox(
@@ -51,6 +51,7 @@ class SearchItems extends StatelessWidget {
                       bookModel.bookDescription,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   30.getH(),
