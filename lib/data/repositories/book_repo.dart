@@ -18,7 +18,7 @@ class BookRepo {
         );
   }
 
-  Future<NetworkResponse> getRecommendedBooks() async {
+  Stream<List<BookModel>> getRecommendedBooks() async* {
     try {
       QuerySnapshot querySnapshot =
           await FirebaseFirestore.instance.collection(AppConstants.books).get();
@@ -41,14 +41,9 @@ class BookRepo {
         }
       }
 
-      return NetworkResponse(
-        data: recommendedProducts,
-      );
+      yield recommendedProducts;
     } on FirebaseException catch (error) {
-      return NetworkResponse(
-        errorCode: error.code,
-        errorText: error.message ?? '',
-      );
+      throw Exception(error);
     }
   }
 
@@ -219,3 +214,39 @@ class BookRepo {
     }
   }
 }
+
+/*
+Stream<NetworkResponse> getRecommendedBooks() async* {
+  try {
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection(AppConstants.books).get();
+
+    List<BookModel> products = querySnapshot.docs
+        .map(
+          (e) => BookModel.fromJson(
+            e.data() as Map<String, dynamic>,
+          ),
+        )
+        .toList();
+
+    List<BookModel> recommendedProducts = [];
+
+    for (var element in products) {
+      if (double.parse(element.rate) >= 4.5) {
+        recommendedProducts.add(
+          element,
+        );
+      }
+    }
+
+    yield NetworkResponse(
+      data: recommendedProducts,
+    );
+  } on FirebaseException catch (error) {
+    yield NetworkResponse(
+      errorCode: error.code,
+      errorText: error.message ?? '',
+    );
+  }
+}
+ */
