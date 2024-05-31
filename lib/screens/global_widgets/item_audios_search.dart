@@ -40,7 +40,6 @@ class ItemAudiosSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-
     List<String> rs = context.read<SavedAudioBloc>().state.savedAudioBooksName;
 
     final List<AudioBooksModel> results = items
@@ -91,8 +90,8 @@ class ItemAudiosSearch extends SearchDelegate<String> {
             },
             playOnTap: () {},
             isLiked: rs.contains(
-                  results[index].bookName,
-                ),
+              results[index].bookName,
+            ),
           ),
         );
       },
@@ -101,13 +100,12 @@ class ItemAudiosSearch extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-
     List<String> rs = context.read<SavedAudioBloc>().state.savedAudioBooksName;
-
 
     final List<AudioBooksModel> suggestionList = query.isEmpty
         ? []
-        : items.where((item) =>
+        : items
+            .where((item) =>
                 item.bookName.toLowerCase().contains(query.toLowerCase()))
             .toList();
 
@@ -151,10 +149,9 @@ class ItemAudiosSearch extends SearchDelegate<String> {
               arguments: suggestionList[index],
             );
           },
-          isLiked:
-              rs.contains(
-                    suggestionList[index].bookName,
-                  ),
+          isLiked: rs.contains(
+            suggestionList[index].bookName,
+          ),
         );
       },
     );

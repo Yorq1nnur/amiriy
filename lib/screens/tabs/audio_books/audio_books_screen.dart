@@ -36,7 +36,6 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
       context.read<AudioBooksBloc>().add(
             SearchAudioBooksEvent(
               query: searchController.text,
-              // audios: context.read<AudioBooksBloc>().state.audioBooks,
             ),
           );
     }
@@ -62,30 +61,6 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
       appBar: AppBar(
         elevation: 0,
         actions: [
-          // IconButton(
-          //   onPressed: () {
-          //     showSearch(
-          //       context: context,
-          //       delegate: ItemAudiosSearch(
-          //         items: context.read<AudioBooksBloc>().state.audioBooks,
-          //         voidCallback: () {
-          //           context.read<AudioBooksBloc>().add(
-          //                 ListenAudioBooksEvent(),
-          //               );
-          //           context.read<SavedAudioBloc>().add(
-          //                 ListenSavedAudioBooksEvent(),
-          //               );
-          //           setState(() {});
-          //         },
-          //       ),
-          //     );
-          //   },
-          //   icon: Icon(
-          //     Icons.search,
-          //     size: 24.w,
-          //     color: Theme.of(context).iconTheme.color,
-          //   ),
-          // ),
           IconButton(
             onPressed: () {
               Navigator.pushNamed(
@@ -132,7 +107,10 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
                     await addSearch(v);
                   },
                   decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.search,size: 30.w,),
+                    suffixIcon: Icon(
+                      Icons.search,
+                      size: 30.w,
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(
                         20,
@@ -238,3 +216,30 @@ class _AudioBooksScreenState extends State<AudioBooksScreen> {
     );
   }
 }
+
+//SEARCH DELEGATE EXAMPLE
+
+// IconButton(
+//   onPressed: () {
+//     showSearch(
+//       context: context,
+//       delegate: ItemAudiosSearch(
+//         items: context.read<AudioBooksBloc>().state.audioBooks,
+//         voidCallback: () {
+//           context.read<AudioBooksBloc>().add(
+//                 ListenAudioBooksEvent(),
+//               );
+//           context.read<SavedAudioBloc>().add(
+//                 ListenSavedAudioBooksEvent(),
+//               );
+//           setState(() {});
+//         },
+//       ),
+//     );
+//   },
+//   icon: Icon(
+//     Icons.search,
+//     size: 24.w,
+//     color: Theme.of(context).iconTheme.color,
+//   ),
+// ),
