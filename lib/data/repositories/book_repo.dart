@@ -179,8 +179,8 @@ class BookRepo {
               FavouriteBookModel.fromJson(e.data() as Map<String, dynamic>))
           .toList();
 
-      for (var user in favourites) {
-        if (user.favouriteDocId == favouriteDocId) {
+      for (FavouriteBookModel favourite in favourites) {
+        if (favourite.favouriteDocId == favouriteDocId) {
           isExists = true;
         }
 
