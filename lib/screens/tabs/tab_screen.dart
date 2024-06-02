@@ -93,7 +93,7 @@ class _TabScreenState extends State<TabScreen>
           alignment: Alignment.center,
           children: [
             if (_selectedIndex == index)
-              ...List.generate(3, (i) {
+              ...List.generate(4, (i) {
                 double angle = (i * 90.0) * (pi / 180.0);
                 return Transform.translate(
                   offset: Offset(
