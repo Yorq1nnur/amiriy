@@ -28,7 +28,12 @@ class _ThemeScreenState extends State<ThemeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('theme'.tr(), style: Theme.of(context).textTheme.titleLarge),
+        title: Text(
+          'change_theme'.tr(),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                fontSize: 20.w,
+              ),
+        ),
         centerTitle: true,
         elevation: 0,
       ),

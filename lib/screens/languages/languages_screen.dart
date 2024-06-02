@@ -30,11 +30,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              RouteNames.tabRoute,
-              (context) => false,
-            );
+            Navigator.pop(context);
           },
           icon: Icon(
             Icons.arrow_back,
@@ -164,14 +160,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
                   ),
                 );
                 if (!context.mounted) return;
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  RouteNames.tabRoute,
-                  (
-                    context,
-                  ) =>
-                      false,
-                );
+                Navigator.pop(context);
               },
               text: "save",
               isTranslate: true,

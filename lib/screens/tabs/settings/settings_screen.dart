@@ -1,9 +1,12 @@
 import 'package:amiriy/bloc/auth/auth_bloc.dart';
 import 'package:amiriy/bloc/auth/auth_event.dart';
+import 'package:amiriy/bloc/image/image_bloc.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
+import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/images/app_images.dart';
 import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
+import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -39,8 +42,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     LogOutUserEvent(),
                   );
             },
-            style: IconButton.styleFrom(
-                backgroundColor: Theme.of(context).primaryColor),
             icon: Icon(
               Icons.logout,
               size: Theme.of(context).iconTheme.size,
@@ -52,60 +53,230 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: 40.w,
+          horizontal: 20.w,
           vertical: 20.h,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            GlobalText(
-              data: 'account',
-              fontSize: 30.w,
-              fontWeight: FontWeight.w900,
-              isTranslate: true,
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  RouteNames.editProfileRoute,
+                ).then((v) async {
+                  context.read<ImageBloc>().add(
+                        ChangeInitialState(),
+                      );
+                  await Future.delayed(
+                    const Duration(
+                      seconds: 1,
+                    ),
+                  );
+                  if (context.mounted) {
+                    UtilityFunctions.methodPrint(
+                      'ON IMAGE INITIAL STATE IMAGE IS: ${context.read<ImageBloc>().state}',
+                    );
+                  }
+                });
+              },
+              borderRadius: BorderRadius.circular(
+                10,
+              ),
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25.w,
+                  vertical: 25.h,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    10,
+                  ),
+                  color: AppColors.cCA5A5A.withOpacity(
+                    0.1,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.tabProfile,
+                      height: 30.w,
+                      width: 30.w,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).iconTheme.color!,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    GlobalText(
+                      data: 'edit_profile',
+                      fontSize: 16.w,
+                      fontWeight: FontWeight.w700,
+                      isTranslate: true,
+                      textAlign: TextAlign.start,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Theme.of(context).iconTheme.color!,
+                    ),
+                  ],
+                ),
+              ),
             ),
-            24.getH(),
-            Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 30.w,
-                vertical: 25.h,
+            20.getH(),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  RouteNames.languagesRoute,
+                ).then((v) {
+                  setState(() {});
+                });
+              },
+              borderRadius: BorderRadius.circular(
+                10,
               ),
-              margin: EdgeInsets.symmetric(
-                vertical: 10.h,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  10,
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25.w,
+                  vertical: 25.h,
                 ),
-                color: AppColors.cCA5A5A.withOpacity(
-                  0.1,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    10,
+                  ),
+                  color: AppColors.cCA5A5A.withOpacity(
+                    0.1,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.language,
+                      height: 30.w,
+                      width: 30.w,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).iconTheme.color!,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    GlobalText(
+                      data: 'language',
+                      fontSize: 16.w,
+                      fontWeight: FontWeight.w700,
+                      isTranslate: true,
+                      textAlign: TextAlign.start,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Theme.of(context).iconTheme.color!,
+                    ),
+                  ],
                 ),
               ),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SvgPicture.asset(
-                        AppImages.tabProfile,
-                        height: 55.w,
-                        width: 55.w,
-                        colorFilter: ColorFilter.mode(
-                          Theme.of(context).iconTheme.color!,
-                          BlendMode.srcIn,
-                        ),
+            ),
+            20.getH(),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  RouteNames.contactUs,
+                );
+              },
+              borderRadius: BorderRadius.circular(
+                10,
+              ),
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25.w,
+                  vertical: 25.h,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    10,
+                  ),
+                  color: AppColors.cCA5A5A.withOpacity(
+                    0.1,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.contactUs,
+                      height: 30.w,
+                      width: 30.w,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).iconTheme.color!,
+                        BlendMode.srcIn,
                       ),
-                      60.getW(),
-                      GlobalText(
-                        data: 'edit_profile',
-                        fontSize: 16.w,
-                        fontWeight: FontWeight.w700,
-                        isTranslate: true,
+                    ),
+                    GlobalText(
+                      data: 'contact_us',
+                      fontSize: 16.w,
+                      fontWeight: FontWeight.w700,
+                      isTranslate: true,
+                      textAlign: TextAlign.start,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Theme.of(context).iconTheme.color!,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            20.getH(),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  RouteNames.theme,
+                );
+              },
+              borderRadius: BorderRadius.circular(
+                10,
+              ),
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25.w,
+                  vertical: 25.h,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    10,
+                  ),
+                  color: AppColors.cCA5A5A.withOpacity(
+                    0.1,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SvgPicture.asset(
+                      AppImages.theme,
+                      height: 30.w,
+                      width: 30.w,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).iconTheme.color!,
+                        BlendMode.srcIn,
                       ),
-                    ],
-                  )
-                ],
+                    ),
+                    GlobalText(
+                      data: 'change_theme',
+                      fontSize: 16.w,
+                      fontWeight: FontWeight.w700,
+                      isTranslate: true,
+                      textAlign: TextAlign.start,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Theme.of(context).iconTheme.color!,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -114,22 +285,3 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 }
-
-/*
-() {
-                    Navigator.pushNamed(
-                      context,
-                      RouteNames.editProfileRoute,
-                    ).then((v) async {
-                      context.read<ImageBloc>().add(
-                            ChangeInitialState(),
-                          );
-                      await Future.delayed(const Duration(seconds: 1));
-                      if (context.mounted) {
-                        UtilityFunctions.methodPrint(
-                          'ON IMAGE INITIAL STATE IMAGE IS: ${context.read<ImageBloc>().state}',
-                        );
-                      }
-                    });
-                  }
- */

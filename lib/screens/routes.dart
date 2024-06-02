@@ -3,6 +3,7 @@ import 'package:amiriy/data/models/book_model.dart';
 import 'package:amiriy/screens/auth/login/login_screen.dart';
 import 'package:amiriy/screens/auth/register/register_screen.dart';
 import 'package:amiriy/screens/categories/categories_screen.dart';
+import 'package:amiriy/screens/contact_us/contact_us_screen.dart';
 import 'package:amiriy/screens/details/book_details_screen.dart';
 import 'package:amiriy/screens/favourite_audio_books/favourite_audio_books_screen.dart';
 import 'package:amiriy/screens/languages/languages_screen.dart';
@@ -13,6 +14,7 @@ import 'package:amiriy/screens/player/player_screen.dart';
 import 'package:amiriy/screens/profile/profile_screen.dart';
 import 'package:amiriy/screens/splash/splash_screen.dart';
 import 'package:amiriy/screens/tabs/tab_screen.dart';
+import 'package:amiriy/screens/theme/theme_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -220,6 +222,42 @@ class AppRoutes {
             );
           },
         );
+      case RouteNames.contactUs:
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const ContactUsScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = 0.0;
+            const end = 1.0;
+            const curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return FadeTransition(
+              opacity: animation.drive(tween),
+              child: child,
+            );
+          },
+        );
+      case RouteNames.theme:
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const ThemeScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = 0.0;
+            const end = 1.0;
+            const curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return FadeTransition(
+              opacity: animation.drive(tween),
+              child: child,
+            );
+          },
+        );
 
       default:
         return navigate(
@@ -253,6 +291,8 @@ class RouteNames {
   static const String pdfViewRoute = "/pdf_view_route";
   static const String oneCategoryRoute = "/one_category_route";
   static const String categoryRoute = "/category_route";
+  static const String contactUs = "/contact_us_route";
+  static const String theme = "/theme_route";
   static const String bookDetailsRoute = "/book_details_route";
   static const String favouriteAudioBooksScreen =
       "/favourite_audio_books_screen";
