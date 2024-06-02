@@ -106,7 +106,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             phoneNumber: userCredential.user!.phoneNumber ?? "",
             userId: "",
             username: userCredential.user!.displayName ?? "",
-            password: '', imageUrl: '',
+            password: '',
+            imageUrl: '',
           ),
         ),
       );

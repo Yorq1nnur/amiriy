@@ -51,33 +51,33 @@ class BannerItems extends StatelessWidget {
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       fontSize: 30,
                       shadows: [
-                        const Shadow(
-                          offset: Offset(
+                        Shadow(
+                          offset: const Offset(
                             -1.5,
                             -1.5,
                           ),
-                          color: Colors.white,
+                          color: Theme.of(context).shadowColor,
                         ),
-                        const Shadow(
-                          offset: Offset(
+                         Shadow(
+                          offset: const Offset(
                             1.5,
                             -1.5,
                           ),
-                          color: Colors.white,
+                          color: Theme.of(context).shadowColor,
                         ),
-                        const Shadow(
-                          offset: Offset(
+                         Shadow(
+                          offset: const Offset(
                             1.5,
                             1.5,
                           ),
-                          color: Colors.white,
+                          color: Theme.of(context).shadowColor,
                         ),
-                        const Shadow(
-                          offset: Offset(
+                         Shadow(
+                          offset: const Offset(
                             -1.5,
                             1.5,
                           ),
-                          color: Colors.white,
+                          color: Theme.of(context).shadowColor,
                         ),
                       ],
                     ),

@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               if (state.statusMessage == "registered") {
                 BlocProvider.of<UserBloc>(context).add(
                   AddUserEvent(
-                userModel:     state.userModel,
+                    userModel: state.userModel,
                   ),
                 );
               }

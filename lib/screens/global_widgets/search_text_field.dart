@@ -7,10 +7,12 @@ class SearchTextField extends StatelessWidget {
     super.key,
     required this.textEditingController,
     required this.valueChanged,
+    required this.focusNode,
   });
 
   final TextEditingController textEditingController;
   final ValueChanged<String> valueChanged;
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {

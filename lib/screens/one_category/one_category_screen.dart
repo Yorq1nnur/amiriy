@@ -25,10 +25,12 @@ class OneCategoryScreen extends StatefulWidget {
 
 class _OneCategoryScreenState extends State<OneCategoryScreen> {
   final TextEditingController textEditingController = TextEditingController();
+  final FocusNode focusNode = FocusNode();
 
   @override
   void dispose() {
     textEditingController.dispose();
+    focusNode.dispose();
     super.dispose();
   }
 
@@ -90,7 +92,13 @@ class _OneCategoryScreenState extends State<OneCategoryScreen> {
                     _addSearchToCategoryProducts(
                       v,
                     );
+                    if (v.isEmpty) {
+                      setState(() {
+                        focusNode.unfocus();
+                      });
+                    }
                   },
+                  focusNode: focusNode,
                 ),
                 Expanded(
                   child: SingleChildScrollView(

@@ -50,18 +50,21 @@ class RecommendedBooksBloc
       ),
     );
 
-    await emit.onEach(bookRepo.getRecommendedBooks(), onData: (List<BookModel> recommendedBooks){
-      emit(state.copyWith(
-        formStatus: FormStatus.success,
-        recommendedBooks: recommendedBooks,
-      ),);
-    }, onError: (error,stackTree){
-
-      emit(state.copyWith(
-        formStatus: FormStatus.error,
-        errorMessage: error.toString(),
-      ),);
+    await emit.onEach(bookRepo.getRecommendedBooks(),
+        onData: (List<BookModel> recommendedBooks) {
+      emit(
+        state.copyWith(
+          formStatus: FormStatus.success,
+          recommendedBooks: recommendedBooks,
+        ),
+      );
+    }, onError: (error, stackTree) {
+      emit(
+        state.copyWith(
+          formStatus: FormStatus.error,
+          errorMessage: error.toString(),
+        ),
+      );
     });
-
   }
 }

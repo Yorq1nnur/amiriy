@@ -28,16 +28,16 @@ class BannerRepository {
     }
   }
 
-  Stream<List<BannerModel>> getBannerStream() =>FirebaseFirestore.instance
+  Stream<List<BannerModel>> getBannerStream() => FirebaseFirestore.instance
       .collection(AppConstants.banners)
       .snapshots()
       .map(
         (event) => event.docs
-        .map(
-          (e) => BannerModel.fromJson(
-        e.data(),
-      ),
-    )
-        .toList(),
-  );
+            .map(
+              (e) => BannerModel.fromJson(
+                e.data(),
+              ),
+            )
+            .toList(),
+      );
 }

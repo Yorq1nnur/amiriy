@@ -31,7 +31,7 @@ class LightTheme {
       type: BottomNavigationBarType.fixed,
     ),
     shadowColor: Colors.black,
-    cardColor: Colors.white,
+    cardColor: Colors.grey,
     dividerColor: Colors.black,
     textTheme: const TextTheme(
       displayLarge: TextStyle(

@@ -6,19 +6,19 @@ import '../../utils/colors/app_colors.dart';
 class CustomTexField extends StatelessWidget {
   const CustomTexField(
       {super.key,
-        required this.controller,
-        required this.focusNode,
-        this.hintText,
-        this.maxLines,
-        this.minLines,
-        this.width,
-        required this.fromKey,
-        this.validateEmptyText,
-        this.validate,
-        this.validateText,
-        required this.type,
-        required this.inputFormatter,
-        required this.action});
+      required this.controller,
+      required this.focusNode,
+      this.hintText,
+      this.maxLines,
+      this.minLines,
+      this.width,
+      required this.fromKey,
+      this.validateEmptyText,
+      this.validate,
+      this.validateText,
+      required this.type,
+      required this.inputFormatter,
+      required this.action});
 
   final TextEditingController controller;
   final FocusNode focusNode;
@@ -63,7 +63,7 @@ class CustomTexField extends StatelessWidget {
           filled: true,
           fillColor: Theme.of(context).cardColor,
           contentPadding:
-          EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.w),
+              EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.w),
           hintStyle: Theme.of(context).textTheme.bodyMedium,
           border: InputBorder.none,
           errorBorder: OutlineInputBorder(
