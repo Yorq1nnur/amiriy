@@ -2,10 +2,13 @@ import 'dart:math';
 import 'package:amiriy/bloc/auth/auth_bloc.dart';
 import 'package:amiriy/bloc/auth/auth_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
+import 'package:amiriy/bloc/user/user_bloc.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/screens/tabs/audio_books/audio_books_screen.dart';
 import 'package:amiriy/screens/tabs/home/home_screen.dart';
+import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'settings/settings_screen.dart';
@@ -27,9 +30,9 @@ class _TabScreenState extends State<TabScreen>
 
   @override
   void initState() {
+    _init();
     screens = const [
       HomeScreen(),
-      // CategoriesScreen(),
       AudioBooksScreen(),
       SettingsScreen(),
     ];
@@ -43,7 +46,6 @@ class _TabScreenState extends State<TabScreen>
       curve: Curves.easeOut,
     );
 
-    // Start the animation when the app enters
     if (_selectedIndex == 0) {
       _controller.forward();
     }
@@ -60,6 +62,26 @@ class _TabScreenState extends State<TabScreen>
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  _init() {
+    Future.microtask(
+      () => context.read<UserBloc>().add(
+            GetUserEvent(
+              userId: FirebaseAuth.instance.currentUser!.uid,
+            ),
+          ),
+    );
+    // await Future.delayed(
+    //   const Duration(
+    //     seconds: 1,
+    //   ),
+    // );
+    // if (mounted) {
+    //   UtilityFunctions.methodPrint(
+    //     'ON TAB SCREEN USER IS: ${context.read<UserBloc>().state.userModel.username}',
+    //   );
+    // }
   }
 
   Widget _buildAnimatedIcon(IconData icon, int index) {
@@ -102,16 +124,29 @@ class _TabScreenState extends State<TabScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocListener<AuthBloc, AuthState>(
-        listener: (p, c) {
-          if (c.status == FormStatus.unauthenticated) {
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              RouteNames.loginRoute,
-              (context) => false,
-            );
-          }
-        },
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<AuthBloc, AuthState>(
+            listener: (p, c) {
+              if (c.status == FormStatus.unauthenticated) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RouteNames.loginRoute,
+                  (context) => false,
+                );
+              }
+            },
+          ),
+          BlocListener<UserBloc, UserState>(
+            listener: (BuildContext context, UserState state) {
+              if (state.formStatus == FormStatus.success) {
+                UtilityFunctions.methodPrint(
+                  'ON TAB SCREEN USER IS: ${context.read<UserBloc>().state.userModel.username}',
+                );
+              }
+            },
+          ),
+        ],
         child: IndexedStack(
           index: _selectedIndex,
           children: screens,
@@ -132,12 +167,12 @@ class _TabScreenState extends State<TabScreen>
           //   tooltip: 'category'.tr(),
           // ),
           BottomNavigationBarItem(
-            icon: _buildAnimatedIcon(Icons.audio_file, 2),
+            icon: _buildAnimatedIcon(Icons.audio_file, 1),
             label: 'audio_books'.tr(),
             tooltip: 'audio_books'.tr(),
           ),
           BottomNavigationBarItem(
-            icon: _buildAnimatedIcon(Icons.settings, 3),
+            icon: _buildAnimatedIcon(Icons.settings, 2),
             label: 'settings'.tr(),
             tooltip: 'settings'.tr(),
           ),

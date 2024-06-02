@@ -31,12 +31,14 @@ class UserRepo {
   Future<NetworkResponse> updateUser(UserModel userModel) async {
     try {
       UtilityFunctions.methodPrint(
-        'ON UPDATE USER REPO ID IS: ${userModel.authUid}\n ON UPDATE USER REPO IMAGE IS: ${userModel.imageUrl}',
+        'ON UPDATE USER REPO ID IS: ${userModel.userId}\n ON UPDATE USER REPO IMAGE IS: ${userModel.imageUrl}',
       );
       await FirebaseFirestore.instance
           .collection(AppConstants.users)
-          .doc(userModel.authUid)
-          .update(userModel.toJsonForUpdate());
+          .doc(userModel.userId)
+          .update(
+            userModel.toJsonForUpdate(),
+          );
       return NetworkResponse(
         data: 'updated successfully',
       );

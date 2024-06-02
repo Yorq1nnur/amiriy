@@ -102,7 +102,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 });
                 debugPrint("DOWNLOAD URL edit profile: $imageUrl");
               } else if (state is ImageFailure) {
-                // Handle failure if needed
                 debugPrint("Image upload failed: ${state.error}");
               }
             },
@@ -161,11 +160,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 );
                               }
-                              return SizedBox(
-                                width: 60.w,
-                                height: 60.h,
-                                child: Lottie.asset(AppImages.loadingLottie),
-                              );
+                              if (state is ImageLoading) {
+                                return SizedBox(
+                                  width: 60.w,
+                                  height: 60.h,
+                                  child: Lottie.asset(AppImages.loadingLottie),
+                                );
+                              }
+                              if (state is ImageSuccess) {
+                                imageUrl = state.imageUrl;
+                                UtilityFunctions.methodPrint(
+                                    'WHAT A FUCK: $imageUrl}');
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                    90.w,
+                                  ),
+                                  child: Image.network(
+                                    state.imageUrl,
+                                    width: 60.w,
+                                    height: 60.w,
+                                    fit: BoxFit.cover,
+                                  ),
+                                );
+                              }
+                              return const SizedBox.shrink();
                             },
                           ),
                           SizedBox(
@@ -333,12 +351,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 onTab: () {
                                   UserModel resumeModel = state.userModel;
                                   resumeModel = resumeModel.copyWith(
-                                    imageUrl: context
-                                            .read<ImageBloc>()
-                                            .imageUrl
-                                            .isEmpty
+                                    imageUrl: imageUrl.isEmpty
                                         ? state.userModel.imageUrl
-                                        : context.read<ImageBloc>().imageUrl,
+                                        : imageUrl,
                                     username: _nameController.text.isEmpty
                                         ? resumeModel.username
                                         : _nameController.text,

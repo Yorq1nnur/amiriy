@@ -1,12 +1,12 @@
 import 'package:amiriy/bloc/auth/auth_bloc.dart';
 import 'package:amiriy/bloc/auth/auth_event.dart';
-import 'package:amiriy/bloc/image/image_bloc.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
-import 'package:amiriy/screens/routes.dart';
+import 'package:amiriy/utils/colors/app_colors.dart';
+import 'package:amiriy/utils/images/app_images.dart';
 import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
-import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_utils/my_utils.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -52,29 +52,71 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: 20.w,
+          horizontal: 40.w,
           vertical: 20.h,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.h),
-              child: Ink(
-                height: 50.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(
-                    16,
-                  ),
+            GlobalText(
+              data: 'account',
+              fontSize: 30.w,
+              fontWeight: FontWeight.w900,
+              isTranslate: true,
+            ),
+            24.getH(),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 30.w,
+                vertical: 25.h,
+              ),
+              margin: EdgeInsets.symmetric(
+                vertical: 10.h,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(
+                  10,
                 ),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(
-                    16,
-                  ),
-                  onTap: () {
+                color: AppColors.cCA5A5A.withOpacity(
+                  0.1,
+                ),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset(
+                        AppImages.tabProfile,
+                        height: 55.w,
+                        width: 55.w,
+                        colorFilter: ColorFilter.mode(
+                          Theme.of(context).iconTheme.color!,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                      60.getW(),
+                      GlobalText(
+                        data: 'edit_profile',
+                        fontSize: 16.w,
+                        fontWeight: FontWeight.w700,
+                        isTranslate: true,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/*
+() {
                     Navigator.pushNamed(
                       context,
                       RouteNames.editProfileRoute,
@@ -89,53 +131,5 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         );
                       }
                     });
-                  },
-                  child: Center(
-                    child: GlobalText(
-                      data: 'edit_profile',
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w900,
-                      isTranslate: true,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.h),
-              child: Ink(
-                height: 50.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(
-                    16,
-                  ),
-                ),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(
-                    16,
-                  ),
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      RouteNames.languagesRoute,
-                    );
-                  },
-                  child: Center(
-                    child: GlobalText(
-                      data: 'languages',
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w900,
-                      isTranslate: true,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+                  }
+ */
