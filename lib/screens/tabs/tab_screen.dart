@@ -26,12 +26,12 @@ class _TabScreenState extends State<TabScreen>
   late AnimationController _controller;
   late Animation<double> _animation;
 
-  late List<Widget> screens;
+  late List<Widget> _screens;
 
   @override
   void initState() {
     _init();
-    screens = const [
+    _screens = const [
       HomeScreen(),
       AudioBooksScreen(),
       SettingsScreen(),
@@ -72,16 +72,6 @@ class _TabScreenState extends State<TabScreen>
             ),
           ),
     );
-    // await Future.delayed(
-    //   const Duration(
-    //     seconds: 1,
-    //   ),
-    // );
-    // if (mounted) {
-    //   UtilityFunctions.methodPrint(
-    //     'ON TAB SCREEN USER IS: ${context.read<UserBloc>().state.userModel.username}',
-    //   );
-    // }
   }
 
   Widget _buildAnimatedIcon(IconData icon, int index) {
@@ -149,7 +139,7 @@ class _TabScreenState extends State<TabScreen>
         ],
         child: IndexedStack(
           index: _selectedIndex,
-          children: screens,
+          children: _screens,
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
