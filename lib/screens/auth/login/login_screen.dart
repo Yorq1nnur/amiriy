@@ -2,10 +2,13 @@ import 'package:amiriy/bloc/auth/auth_bloc.dart';
 import 'package:amiriy/bloc/auth/auth_event.dart';
 import 'package:amiriy/bloc/auth/auth_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
+import 'package:amiriy/bloc/user/user_bloc.dart';
 import 'package:amiriy/screens/auth/dialog/error_dialog.dart';
 import 'package:amiriy/screens/auth/widgets/global_passwordfield.dart';
 import 'package:amiriy/screens/auth/widgets/global_textbutton.dart';
 import 'package:amiriy/screens/auth/widgets/global_textfield.dart';
+import 'package:amiriy/screens/global_widgets/global_text.dart';
+import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/constants/app_constants.dart';
 import 'package:amiriy/utils/formaters/formatters.dart';
@@ -14,7 +17,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_utils/my_utils.dart';
-import '../../routes.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -45,12 +47,15 @@ class _LoginScreenState extends State<LoginScreen> {
         body: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state.status == FormStatus.error) {
-              debugPrint("Hello dialog");
               errorDialog(context: context, errorText: state.errorMessage);
             }
             if (state.status == FormStatus.authenticated) {
               if (state.statusMessage == "registered") {
-                ///TODO ADD USER DATA TO USER TABLE
+                BlocProvider.of<UserBloc>(context).add(
+                  AddUserEvent(
+                userModel:     state.userModel,
+                  ),
+                );
               }
               Navigator.pushNamedAndRemoveUntil(
                 context,
@@ -69,10 +74,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     Center(
                       child: Text(
                         "welcome_back".tr(),
-                        style:
-                            Theme.of(context).textTheme.titleMedium!.copyWith(
-                                  fontSize: 30,
-                                ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(fontSize: 30),
                       ),
                     ),
                     SizedBox(height: 11.h),
@@ -160,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: double.infinity,
                         child: TextButton(
                           style: TextButton.styleFrom(
-                            backgroundColor: AppColors.cCA5A5A,
+                            backgroundColor: AppColors.c9D9EA8,
                           ),
                           onPressed: () {
                             context
@@ -172,14 +177,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               Image.asset(AppImages.google, height: 20.h),
                               SizedBox(width: 10.w),
-                              Text(
-                                "sign_up_google".tr(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge
-                                    ?.copyWith(
-                                      fontSize: 14,
-                                    ),
+                              GlobalText(
+                                data: "sign_up_google",
+                                fontSize: 16.w,
+                                fontWeight: FontWeight.w900,
+                                isTranslate: true,
                               ),
                             ],
                           ),
@@ -191,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "have_an_account".tr(),
+                          "don't_have_an_account".tr(),
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium!
@@ -204,14 +206,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               RouteNames.registerRoute,
                             );
                           },
-                          child: Text(
-                            'sign_up'.tr(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge
-                                ?.copyWith(
-                                  fontSize: 12,
-                                ),
+                          child: GlobalText(
+                            data: 'register',
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w900,
+                            isTranslate: true,
                           ),
                         )
                       ],

@@ -15,12 +15,14 @@ import 'package:amiriy/bloc/recommended_books/recommended_books_bloc.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_event.dart';
 import 'package:amiriy/bloc/saved_audio/saved_audio_bloc.dart';
 import 'package:amiriy/bloc/saved_audio/saved_audio_event.dart';
+import 'package:amiriy/bloc/user/user_bloc.dart';
 import 'package:amiriy/data/local/saved_audio_db.dart';
 import 'package:amiriy/data/repositories/audio_books_repo.dart';
 import 'package:amiriy/data/repositories/auth_repository.dart';
 import 'package:amiriy/data/repositories/banner_repository.dart';
 import 'package:amiriy/data/repositories/book_repo.dart';
 import 'package:amiriy/data/repositories/category_repo.dart';
+import 'package:amiriy/data/repositories/user_repo.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/app_theme/app_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -38,6 +40,9 @@ class App extends StatelessWidget {
       providers: [
         RepositoryProvider(
           create: (_) => AuthRepository(),
+        ),
+        RepositoryProvider(
+          create: (_) => UserRepo(),
         ),
         RepositoryProvider(
           create: (_) => AudioBooksRepo(),
@@ -60,6 +65,11 @@ class App extends StatelessWidget {
             )..add(
                 CheckAuthenticationEvent(),
               ),
+          ),
+          BlocProvider(
+            create: (context) => UserBloc(
+              context.read<UserRepo>(),
+            ),
           ),
           BlocProvider(
             create: (context) => BottomBloc(),

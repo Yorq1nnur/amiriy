@@ -13,7 +13,8 @@ import 'services/firebase_options.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   debugPrint(
-      "BACKGROUND MODE DA PUSH NOTIFICATION KELDI:${message.notification!.title}");
+    "BACKGROUND MODE DA PUSH NOTIFICATION KELDI:${message.notification!.title}",
+  );
 }
 
 Future<void> main() async {
@@ -22,8 +23,12 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FirebaseMessaging.instance.subscribeToTopic("news");
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.instance.subscribeToTopic(
+    "news",
+  );
+  FirebaseMessaging.onBackgroundMessage(
+    _firebaseMessagingBackgroundHandler,
+  );
   LocalNotificationService.localNotificationService.init();
   LocalDatabase.databaseInstance;
   SavedAudioDb.instance;
@@ -40,15 +45,27 @@ Future<void> main() async {
     EasyLocalization(
       saveLocale: true,
       supportedLocales: const [
-        Locale("en", "US"),
-        Locale("uz", "UZ"),
-        Locale("ru", "RU"),
-        Locale('uz', 'RU'),
+        Locale(
+          'en',
+          'US',
+        ),
+        Locale(
+          'uz',
+          'UZ',
+        ),
+        Locale(
+          'ru',
+          'RU',
+        ),
+        Locale(
+          'uz',
+          'RU',
+        ),
       ],
       path: AppConstants.translations,
       startLocale: const Locale(
-        "uz",
-        "UZ",
+        'uz',
+        'UZ',
       ),
       child: App(),
     ),

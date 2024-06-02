@@ -10,6 +10,7 @@ import 'package:amiriy/screens/on_boarding/on_boarding_screen.dart';
 import 'package:amiriy/screens/one_category/one_category_screen.dart';
 import 'package:amiriy/screens/pdf_view/pdf_view_screen.dart';
 import 'package:amiriy/screens/player/player_screen.dart';
+import 'package:amiriy/screens/profile/profile_screen.dart';
 import 'package:amiriy/screens/splash/splash_screen.dart';
 import 'package:amiriy/screens/tabs/tab_screen.dart';
 import 'package:flutter/material.dart';
@@ -201,6 +202,24 @@ class AppRoutes {
             );
           },
         );
+      case RouteNames.editProfileRoute:
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const ProfileScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = 0.0;
+            const end = 1.0;
+            const curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return FadeTransition(
+              opacity: animation.drive(tween),
+              child: child,
+            );
+          },
+        );
 
       default:
         return navigate(
@@ -224,6 +243,7 @@ class AppRoutes {
 
 class RouteNames {
   static const String splashScreen = "/";
+  static const String editProfileRoute = "/edit_profile_route";
   static const String tabRoute = "/tab_route";
   static const String loginRoute = "/login_route";
   static const String playerScreen = "/player_screen";

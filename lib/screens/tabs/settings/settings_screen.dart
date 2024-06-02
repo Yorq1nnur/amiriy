@@ -1,8 +1,10 @@
 import 'package:amiriy/bloc/auth/auth_bloc.dart';
 import 'package:amiriy/bloc/auth/auth_event.dart';
+import 'package:amiriy/bloc/image/image_bloc.dart';
 import 'package:amiriy/screens/global_widgets/global_text.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/sizedbox/get_sizedbox.dart';
+import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_utils/my_utils.dart';
@@ -48,40 +50,91 @@ class _SettingsScreenState extends State<SettingsScreen> {
           20.getW(),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Ink(
-            height: 50.h,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(
-                16,
-              ),
-            ),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(
-                16,
-              ),
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  RouteNames.languagesRoute,
-                );
-              },
-              child: Center(
-                child: GlobalText(
-                  data: 'languages',
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w900,
-                  isTranslate: true,
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 20.w,
+          vertical: 20.h,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.h),
+              child: Ink(
+                height: 50.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(
+                    16,
+                  ),
+                ),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(
+                    16,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.editProfileRoute,
+                    ).then((v) async {
+                      context.read<ImageBloc>().add(
+                            ChangeInitialState(),
+                          );
+                      await Future.delayed(const Duration(seconds: 1));
+                      if (context.mounted) {
+                        UtilityFunctions.methodPrint(
+                          'ON IMAGE INITIAL STATE IMAGE IS: ${context.read<ImageBloc>().state}',
+                        );
+                      }
+                    });
+                  },
+                  child: Center(
+                    child: GlobalText(
+                      data: 'edit_profile',
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w900,
+                      isTranslate: true,
+                    ),
+                  ),
                 ),
               ),
             ),
-          )
-        ],
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.h),
+              child: Ink(
+                height: 50.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(
+                    16,
+                  ),
+                ),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(
+                    16,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.languagesRoute,
+                    );
+                  },
+                  child: Center(
+                    child: GlobalText(
+                      data: 'languages',
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w900,
+                      isTranslate: true,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

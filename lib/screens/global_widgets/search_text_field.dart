@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:my_utils/my_utils.dart';
 
@@ -19,6 +20,7 @@ class SearchTextField extends StatelessWidget {
         controller: textEditingController,
         onChanged: valueChanged,
         decoration: InputDecoration(
+          hintText: 'search'.tr(),
           suffixIcon: Icon(
             Icons.search,
             size: 30.w,

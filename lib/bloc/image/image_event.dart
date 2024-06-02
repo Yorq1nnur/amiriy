@@ -1,6 +1,6 @@
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
+part of 'image_bloc.dart';
 
+@immutable
 abstract class ImageEvent {}
 
 class UploadImage extends ImageEvent {
@@ -11,6 +11,10 @@ class UploadImage extends ImageEvent {
 }
 
 class ChangeInitialState extends ImageEvent {}
+
+class GetFromCameraEvent extends ImageEvent {}
+
+class GetFromGalleryEvent extends ImageEvent {}
 
 class UploadAndGetImageUrl extends ImageEvent {
   final File file;

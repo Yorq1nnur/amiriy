@@ -1,6 +1,7 @@
 import 'package:amiriy/data/models/book_model.dart';
 import 'package:amiriy/screens/global_widgets/search_items.dart';
 import 'package:amiriy/screens/routes.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ItemBooksSearch extends SearchDelegate<String> {
@@ -83,4 +84,7 @@ class ItemBooksSearch extends SearchDelegate<String> {
       },
     );
   }
+
+  @override
+  String? get searchFieldLabel => 'search_for_book'.tr();
 }

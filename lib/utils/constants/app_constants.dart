@@ -16,6 +16,7 @@ class AppConstants {
   static const String savedAudioDb = "saved_audio.db";
   static const String savedAudio = "saved_audio";
   static const String favourites = "favourites";
+  static const String users = "users";
 
   static const String categories = "categories";
   static const String books = "books";
