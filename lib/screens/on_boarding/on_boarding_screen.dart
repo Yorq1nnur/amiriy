@@ -65,14 +65,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 await StorageRepository.setBool(
                   key: 'is_new_user',
                   value: true,
-                );
-                await Future.delayed(const Duration(seconds: 1));
-                if (context.mounted) {
+                ).then((v) {
                   Navigator.pushReplacementNamed(
                     context,
                     RouteNames.loginRoute,
                   );
-                }
+                });
+                // await Future.delayed(const Duration(seconds: 1));
+                // if (context.mounted) {
+                //   Navigator.pushReplacementNamed(
+                //     context,
+                //     RouteNames.loginRoute,
+                //   );
+                // }
               },
               text: "get_started",
               isLoading: isLoading,

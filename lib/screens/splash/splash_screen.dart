@@ -1,8 +1,9 @@
+import 'package:amiriy/bloc/auth/auth_bloc.dart';
+import 'package:amiriy/bloc/auth/auth_state.dart';
 import 'package:amiriy/bloc/book/book_bloc.dart';
 import 'package:amiriy/bloc/book/book_event.dart';
-import 'package:amiriy/bloc/category/category_bloc.dart';
-import 'package:amiriy/bloc/category/category_event.dart';
-import 'package:amiriy/data/local/storage_repository.dart';
+import 'package:amiriy/bloc/form_status/form_status.dart';
+import 'package:amiriy/bloc/user/user_bloc.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/images/app_images.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,38 +20,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  _init() async {
-    context.read<CategoryBloc>().add(
-          GetAllCategoriesEvent(),
-        );
+  _init(bool auth) async {
     await Future.delayed(const Duration(seconds: 2));
-    bool isNewUser = StorageRepository.getBool(key: 'is_new_user');
-
     if (!mounted) return;
-
-    if (isNewUser) {
-      if (FirebaseAuth.instance.currentUser == null) {
-        Navigator.pushReplacementNamed(
-          context,
-          RouteNames.loginRoute,
-        );
-      } else {
-        Navigator.pushReplacementNamed(
-          context,
-          RouteNames.tabRoute,
-        );
-      }
+    if (!auth) {
+      Navigator.pushReplacementNamed(context, RouteNames.loginRoute);
     } else {
-      Navigator.pushReplacementNamed(
-        context,
-        RouteNames.onBoardingRoute,
-      );
+      BlocProvider.of<UserBloc>(context)
+          .add(GetUserEvent(userId: FirebaseAuth.instance.currentUser!.uid));
+      Navigator.pushReplacementNamed(context, RouteNames.tabRoute);
     }
   }
 
   @override
   void initState() {
-    _init();
     Future.microtask(
       () => context.read<BookBloc>().add(
             ListenAllBooksEvent(),
@@ -64,10 +47,27 @@ class _SplashScreenState extends State<SplashScreen> {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Center(
-        child: Lottie.asset(
-          AppImages.lottie,
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) {
+              if (state.status == FormStatus.authenticated) {
+                _init(true);
+              }
+              if (state.status == FormStatus.unauthenticated) {
+                _init(false);
+              }
+            },
+            child: const SizedBox.shrink(),
+          ),
+          Center(
+            child: Lottie.asset(
+              AppImages.lottie,
+            ),
+          ),
+        ],
       ),
     );
   }
