@@ -248,65 +248,65 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             focusNode: _name,
                             type: TextInputType.text,
                           ),
-                          SizedBox(
-                            height: 15.h,
-                          ),
-                          Text("date_birth".tr(),
-                              style: Theme.of(context).textTheme.bodyLarge),
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 8,
-                                child: CustomTexField(
-                                  action: TextInputAction.next,
-                                  validate: AppConstants.textRegExp,
-                                  validateText: 'Xato kiritingiz!',
-                                  inputFormatter: [
-                                    MaskTextInputFormatter(
-                                      mask: '####/##/##',
-                                      filter: {"#": RegExp(r'[0-9]')},
-                                      type: MaskAutoCompletionType.lazy,
-                                    )
-                                  ],
-                                  validateEmptyText: 'Date',
-                                  fromKey: _formKey,
-                                  maxLines: 1,
-                                  controller: _date,
-                                  focusNode: _dateF,
-                                  type: TextInputType.number,
-                                ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: GestureDetector(
-                                  onTap: () async {
-                                    dateTime = await showDatePicker(
-                                      barrierDismissible: false,
-                                      cancelText: "Cancel",
-                                      confirmText: "Choose time",
-                                      context: context,
-                                      firstDate: DateTime(1950),
-                                      lastDate: DateTime(2030),
-                                    );
-                                    _date.text =
-                                        DateFormat.yMMMEd().format(dateTime!);
-                                  },
-                                  child: const SizedBox(
-                                    width: double.infinity,
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.calendar_month,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
-                          SizedBox(height: 15.h),
+                          // SizedBox(
+                          //   height: 15.h,
+                          // ),
+                          // Text("date_birth".tr(),
+                          //     style: Theme.of(context).textTheme.bodyLarge),
+                          // Row(
+                          //   children: [
+                          //     Expanded(
+                          //       flex: 8,
+                          //       child: CustomTexField(
+                          //         action: TextInputAction.next,
+                          //         validate: AppConstants.textRegExp,
+                          //         validateText: 'Xato kiritingiz!',
+                          //         inputFormatter: [
+                          //           MaskTextInputFormatter(
+                          //             mask: '####/##/##',
+                          //             filter: {"#": RegExp(r'[0-9]')},
+                          //             type: MaskAutoCompletionType.lazy,
+                          //           )
+                          //         ],
+                          //         validateEmptyText: 'Date',
+                          //         fromKey: _formKey,
+                          //         maxLines: 1,
+                          //         controller: _date,
+                          //         focusNode: _dateF,
+                          //         type: TextInputType.number,
+                          //       ),
+                          //     ),
+                          //     Expanded(
+                          //       flex: 1,
+                          //       child: GestureDetector(
+                          //         onTap: () async {
+                          //           dateTime = await showDatePicker(
+                          //             barrierDismissible: false,
+                          //             cancelText: "Cancel",
+                          //             confirmText: "Choose time",
+                          //             context: context,
+                          //             firstDate: DateTime(1950),
+                          //             lastDate: DateTime(2030),
+                          //           );
+                          //           _date.text =
+                          //               DateFormat.yMMMEd().format(dateTime!);
+                          //         },
+                          //         child: const SizedBox(
+                          //           width: double.infinity,
+                          //           child: Center(
+                          //             child: Icon(
+                          //               Icons.calendar_month,
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     )
+                          //   ],
+                          // ),
+                          // SizedBox(
+                          //   height: 10.h,
+                          // ),
+                          // SizedBox(height: 15.h),
                           Text(
                             "address".tr(),
                             style: Theme.of(context).textTheme.bodyLarge,

@@ -28,6 +28,8 @@
   "home": "Home",
   "category": "Category",
   "search": "Search",
+  "name": "Name",
+  "address": "Address",
   "search_books": "Search for books...",
   "sign_up_google": "Sign in with Google",
   "have_an_account": "Already have an account!",
