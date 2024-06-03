@@ -177,57 +177,57 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
-            20.getH(),
-            InkWell(
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  RouteNames.contactUs,
-                );
-              },
-              borderRadius: BorderRadius.circular(
-                10,
-              ),
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 25.w,
-                  vertical: 25.h,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    10,
-                  ),
-                  color: AppColors.cCA5A5A.withOpacity(
-                    0.1,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SvgPicture.asset(
-                      AppImages.contactUs,
-                      height: 30.w,
-                      width: 30.w,
-                      colorFilter: ColorFilter.mode(
-                        Theme.of(context).iconTheme.color!,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    GlobalText(
-                      data: 'contact_us',
-                      fontSize: 16.w,
-                      fontWeight: FontWeight.w700,
-                      isTranslate: true,
-                      textAlign: TextAlign.start,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: Theme.of(context).iconTheme.color!,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            // 20.getH(),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.pushNamed(
+            //       context,
+            //       RouteNames.contactUs,
+            //     );
+            //   },
+            //   borderRadius: BorderRadius.circular(
+            //     10,
+            //   ),
+            //   child: Container(
+            //     padding: EdgeInsets.symmetric(
+            //       horizontal: 25.w,
+            //       vertical: 25.h,
+            //     ),
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(
+            //         10,
+            //       ),
+            //       color: AppColors.cCA5A5A.withOpacity(
+            //         0.1,
+            //       ),
+            //     ),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: [
+            //         SvgPicture.asset(
+            //           AppImages.contactUs,
+            //           height: 30.w,
+            //           width: 30.w,
+            //           colorFilter: ColorFilter.mode(
+            //             Theme.of(context).iconTheme.color!,
+            //             BlendMode.srcIn,
+            //           ),
+            //         ),
+            //         GlobalText(
+            //           data: 'contact_us',
+            //           fontSize: 16.w,
+            //           fontWeight: FontWeight.w700,
+            //           isTranslate: true,
+            //           textAlign: TextAlign.start,
+            //         ),
+            //         Icon(
+            //           Icons.arrow_forward_ios,
+            //           color: Theme.of(context).iconTheme.color!,
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             20.getH(),
             InkWell(
               onTap: () {
