@@ -3,10 +3,8 @@ import 'package:amiriy/bloc/auth/auth_state.dart';
 import 'package:amiriy/bloc/book/book_bloc.dart';
 import 'package:amiriy/bloc/book/book_event.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
-import 'package:amiriy/bloc/user/user_bloc.dart';
 import 'package:amiriy/screens/routes.dart';
 import 'package:amiriy/utils/images/app_images.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -26,20 +24,13 @@ class _SplashScreenState extends State<SplashScreen> {
     if (!auth) {
       Navigator.pushReplacementNamed(context, RouteNames.loginRoute);
     } else {
-      BlocProvider.of<UserBloc>(context)
-          .add(GetUserEvent(userId: FirebaseAuth.instance.currentUser!.uid));
+      Future.microtask(
+        () => context.read<BookBloc>().add(
+              ListenAllBooksEvent(),
+            ),
+      );
       Navigator.pushReplacementNamed(context, RouteNames.tabRoute);
     }
-  }
-
-  @override
-  void initState() {
-    Future.microtask(
-      () => context.read<BookBloc>().add(
-            ListenAllBooksEvent(),
-          ),
-    );
-    super.initState();
   }
 
   @override
@@ -55,8 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
             listener: (context, state) {
               if (state.status == FormStatus.authenticated) {
                 _init(true);
-              }
-              if (state.status == FormStatus.unauthenticated) {
+              } else {
                 _init(false);
               }
             },

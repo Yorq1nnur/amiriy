@@ -49,7 +49,8 @@ class BookDetailsScreen extends StatelessWidget {
                     left: 10.w,
                     child: IconButton(
                       style: IconButton.styleFrom(
-                          backgroundColor: Theme.of(context).primaryColor),
+                        backgroundColor: Colors.grey,
+                      ),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -68,7 +69,7 @@ class BookDetailsScreen extends StatelessWidget {
                         IconButton(
                           onPressed: () {},
                           style: IconButton.styleFrom(
-                            backgroundColor: Theme.of(context).primaryColor,
+                            backgroundColor:  Colors.grey,
                           ),
                           icon: Icon(
                             Icons.shop,
@@ -85,7 +86,7 @@ class BookDetailsScreen extends StatelessWidget {
                             );
                           },
                           style: IconButton.styleFrom(
-                            backgroundColor: Theme.of(context).primaryColor,
+                            backgroundColor:  Colors.grey,
                           ),
                           icon: Icon(
                             Icons.picture_as_pdf,

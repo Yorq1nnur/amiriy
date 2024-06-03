@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:amiriy/bloc/auth/auth_bloc.dart';
 import 'package:amiriy/bloc/auth/auth_state.dart';
+import 'package:amiriy/bloc/category/category_bloc.dart';
+import 'package:amiriy/bloc/category/category_event.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/bloc/user/user_bloc.dart';
 import 'package:amiriy/screens/routes.dart';
@@ -30,6 +32,14 @@ class _TabScreenState extends State<TabScreen>
 
   @override
   void initState() {
+    Future.microtask(
+      () {
+        context.read<CategoryBloc>().add(
+              GetAllCategoriesEvent(),
+            );
+      },
+    );
+
     _init();
     _screens = const [
       HomeScreen(),
