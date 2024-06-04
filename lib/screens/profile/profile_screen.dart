@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:my_utils/my_utils.dart';
 import '../../../../../utils/colors/app_colors.dart';
 import '../../../../../utils/constants/app_constants.dart';
@@ -32,11 +31,9 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final _formKey = GlobalKey<FormState>();
   final FocusNode _name = FocusNode();
-  final FocusNode _dateF = FocusNode();
   final FocusNode _addressF = FocusNode();
   final FocusNode _emailF = FocusNode();
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _date = TextEditingController();
   final TextEditingController _address = TextEditingController();
   final TextEditingController _email = TextEditingController();
 
