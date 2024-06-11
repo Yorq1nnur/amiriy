@@ -59,21 +59,21 @@ class BannerItems extends StatelessWidget {
                           ),
                           color: Colors.white,
                         ),
-                         Shadow(
+                        Shadow(
                           offset: const Offset(
                             1.5,
                             -1.5,
                           ),
                           color: Theme.of(context).shadowColor,
                         ),
-                         const Shadow(
+                        const Shadow(
                           offset: Offset(
                             1.5,
                             1.5,
                           ),
                           color: Colors.white,
                         ),
-                         const Shadow(
+                        const Shadow(
                           offset: Offset(
                             -1.5,
                             1.5,

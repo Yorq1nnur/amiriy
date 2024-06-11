@@ -69,7 +69,7 @@ class BookDetailsScreen extends StatelessWidget {
                         IconButton(
                           onPressed: () {},
                           style: IconButton.styleFrom(
-                            backgroundColor:  Colors.grey,
+                            backgroundColor: Colors.grey,
                           ),
                           icon: Icon(
                             Icons.shop,
@@ -86,7 +86,7 @@ class BookDetailsScreen extends StatelessWidget {
                             );
                           },
                           style: IconButton.styleFrom(
-                            backgroundColor:  Colors.grey,
+                            backgroundColor: Colors.grey,
                           ),
                           icon: Icon(
                             Icons.picture_as_pdf,
