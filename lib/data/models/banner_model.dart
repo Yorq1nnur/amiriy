@@ -12,13 +12,14 @@ class BannerModel {
   });
 
   factory BannerModel.fromJson(Map<String, dynamic> json) => BannerModel(
-        bannerTitle: json['banner_title'] as String? ?? '',
-        bannerImageUrl: json['banner_image_url'] as String? ?? '',
-        bannerOnTapUrl: json['banner_url'] as String? ?? '',
-        bannerCreatedAt: json['banner_created_at'] as String? ?? '',
+        bannerTitle: json[BannerModelFields.bannerTitle] as String? ?? '',
+        bannerImageUrl: json[BannerModelFields.bannerImageUrl] as String? ?? '',
+        bannerOnTapUrl: json[BannerModelFields.bannerOnTapUrl] as String? ?? '',
+        bannerCreatedAt:
+            json[BannerModelFields.bannerCreatedAt] as String? ?? '',
       );
 
-  static List<BannerModel> initialValue() => [
+  static  List<BannerModel> initialValue() => [
         BannerModel(
           bannerTitle: '',
           bannerImageUrl: '',
@@ -26,4 +27,11 @@ class BannerModel {
           bannerCreatedAt: '',
         ),
       ];
+}
+
+class BannerModelFields {
+  static const String bannerTitle = 'banner_title';
+  static const String bannerImageUrl = 'banner_image_url';
+  static const String bannerOnTapUrl = 'banner_url';
+  static const String bannerCreatedAt = 'banner_created_at';
 }

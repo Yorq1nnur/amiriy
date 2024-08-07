@@ -11,9 +11,15 @@ class CategoryModel {
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     return CategoryModel(
-      docId: json["doc_id"] as String? ?? "",
-      imageUrl: json["image_url"] as String? ?? "",
-      categoryName: json["category_name"] as String? ?? "",
+      docId: json[CategoryModelFields.docId] as String? ?? "",
+      imageUrl: json[CategoryModelFields.imageUrl] as String? ?? "",
+      categoryName: json[CategoryModelFields.categoryName] as String? ?? "",
     );
   }
+}
+
+class CategoryModelFields{
+  static const String docId= 'doc_id';
+  static const String imageUrl= 'image_url';
+  static const String categoryName= 'category_name';
 }
