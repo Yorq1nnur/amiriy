@@ -30,8 +30,9 @@ class BooksItem extends StatelessWidget {
         ),
         onTap: voidCallback,
         child: Container(
+          padding: EdgeInsets.only(bottom: 10.h),
           width: widthh ?? width / 2,
-          height: heightt ?? height / 3,
+          // height: heightt ?? height / 3,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(
               20,

@@ -114,114 +114,116 @@ class _PlayerScreenState extends State<PlayerScreen> {
           ),
         ),
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.all(20),
-        color: Colors.blue,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 60),
-            Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.7,
-                height: MediaQuery.of(context).size.width * 0.7,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(widget.music.imageUrl),
-                    fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.all(20),
+          color: Colors.blue,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 60),
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  height: MediaQuery.of(context).size.width * 0.7,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(widget.music.imageUrl),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 60),
-            Text(
-              widget.music.bookAuthor,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
-              ),
-            ),
-            Text(
-              widget.music.bookName,
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.5),
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(height: 20),
-            ProgressBar(
-              progressBarColor: Colors.black,
-              baseBarColor: Colors.white,
-              bufferedBarColor: Colors.grey,
-              thumbColor: Colors.grey,
-              progress: currentPosition,
-              total: maxDuration,
-              onSeek: seekTo,
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                  onPressed: isLoading
-                      ? () {
-                          UtilityFunctions.showSnackBar(
-                            'please_wait_audio'.tr(),
-                            context,
-                          );
-                          UtilityFunctions.methodPrint(
-                            'BACKWARD IS LOADING',
-                          );
-                        }
-                      : skipBackward,
-                  icon: const Icon(
-                    Icons.replay_5,
-                    size: 36,
-                    color: Colors.white,
-                  ),
+              const SizedBox(height: 60),
+              Text(
+                widget.music.bookAuthor,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
                 ),
-                isLoading
-                    ? const CircularProgressIndicator(
-                        color: Colors.white,
-                      )
-                    : IconButton(
-                        onPressed: () {
-                          playPause();
-                          setState(() {});
-                        },
-                        icon: Icon(
-                          player.state == PlayerState.playing
-                              ? Icons.pause
-                              : Icons.play_arrow,
-                          size: 40,
+              ),
+              Text(
+                widget.music.bookName,
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.5),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(height: 20),
+              ProgressBar(
+                progressBarColor: Colors.black,
+                baseBarColor: Colors.white,
+                bufferedBarColor: Colors.grey,
+                thumbColor: Colors.grey,
+                progress: currentPosition,
+                total: maxDuration,
+                onSeek: seekTo,
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                    onPressed: isLoading
+                        ? () {
+                            UtilityFunctions.showSnackBar(
+                              'please_wait_audio'.tr(),
+                              context,
+                            );
+                            UtilityFunctions.methodPrint(
+                              'BACKWARD IS LOADING',
+                            );
+                          }
+                        : skipBackward,
+                    icon: const Icon(
+                      Icons.replay_5,
+                      size: 36,
+                      color: Colors.white,
+                    ),
+                  ),
+                  isLoading
+                      ? const CircularProgressIndicator(
                           color: Colors.white,
+                        )
+                      : IconButton(
+                          onPressed: () {
+                            playPause();
+                            setState(() {});
+                          },
+                          icon: Icon(
+                            player.state == PlayerState.playing
+                                ? Icons.pause
+                                : Icons.play_arrow,
+                            size: 40,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                IconButton(
-                  onPressed: isLoading
-                      ? () {
-                          UtilityFunctions.showSnackBar(
-                            'please_wait_audio'.tr(),
-                            context,
-                          );
-                          UtilityFunctions.methodPrint(
-                            'FORWARD IS LOADING',
-                          );
-                        }
-                      : skipForward,
-                  icon: const Icon(
-                    Icons.forward_5,
-                    size: 36,
-                    color: Colors.white,
+                  IconButton(
+                    onPressed: isLoading
+                        ? () {
+                            UtilityFunctions.showSnackBar(
+                              'please_wait_audio'.tr(),
+                              context,
+                            );
+                            UtilityFunctions.methodPrint(
+                              'FORWARD IS LOADING',
+                            );
+                          }
+                        : skipForward,
+                    icon: const Icon(
+                      Icons.forward_5,
+                      size: 36,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
