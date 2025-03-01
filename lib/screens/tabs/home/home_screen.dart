@@ -105,7 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   );
                               await Future.delayed(
-                                  const Duration(milliseconds: 500));
+                                const Duration(
+                                  milliseconds: 500,
+                                ),
+                              );
                               if (!context.mounted) return;
                               Navigator.pushNamed(
                                 context,
@@ -117,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       state.allCategories[index].docId,
                                 },
                               ).then((v) async {
-                                if(!context.mounted) return;
+                                if (!context.mounted) return;
                                 context.read<BookBloc>().add(
                                       GetBooksByCategoryId(
                                         categoryId:

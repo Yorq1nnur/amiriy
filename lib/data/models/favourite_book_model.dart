@@ -124,12 +124,15 @@ class FavouriteBookModel {
   factory FavouriteBookModel.fromJson(Map<String, dynamic> json) {
     return FavouriteBookModel(
       bookDocId: json[FavouriteBookModelFields.bookDocId] as String? ?? "",
-      favouriteDocId: json[FavouriteBookModelFields.favouriteDocId] as String? ?? "",
+      favouriteDocId:
+          json[FavouriteBookModelFields.favouriteDocId] as String? ?? "",
       imageUrl: json[FavouriteBookModelFields.imageUrl] as String? ?? "",
       categoryId: json[FavouriteBookModelFields.categoryId] as String? ?? "",
-      categoryName: json[FavouriteBookModelFields.categoryName] as String? ?? "",
+      categoryName:
+          json[FavouriteBookModelFields.categoryName] as String? ?? "",
       bookName: json[FavouriteBookModelFields.bookName] as String? ?? "",
-      bookDescription: json[FavouriteBookModelFields.bookDescription] as String? ?? "",
+      bookDescription:
+          json[FavouriteBookModelFields.bookDescription] as String? ?? "",
       price: (json[FavouriteBookModelFields.price] as num? ?? 0.0).toDouble(),
       rate: json[FavouriteBookModelFields.rate] as String? ?? "",
       bookAuthor: json[FavouriteBookModelFields.bookAuthor] as String? ?? "",

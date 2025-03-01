@@ -42,10 +42,10 @@ class BookModel {
   }
 }
 
-class BookModelFields{
+class BookModelFields {
   static const String docId = 'doc_id';
   static const String imageUrl = 'image_url';
-  static const String pdfBookUrl= 'pdf_book_url';
+  static const String pdfBookUrl = 'pdf_book_url';
   static const String categoryId = 'category_id';
   static const String categoryName = 'category_name';
   static const String bookName = 'product_name';

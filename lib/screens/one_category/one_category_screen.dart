@@ -115,7 +115,7 @@ class _OneCategoryScreenState extends State<OneCategoryScreen> {
                                 vertical: 10.h,
                               ),
                               child: BooksItem(
-                                heightt: height/2.2,
+                                heightt: height / 2.2,
                                 widthh: width / 2.3,
                                 bookModel: state.categoryBooks[index],
                                 voidCallback: () {

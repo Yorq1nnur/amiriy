@@ -19,7 +19,7 @@ class BannerModel {
             json[BannerModelFields.bannerCreatedAt] as String? ?? '',
       );
 
-  static  List<BannerModel> initialValue() => [
+  static List<BannerModel> initialValue() => [
         BannerModel(
           bannerTitle: '',
           bannerImageUrl: '',

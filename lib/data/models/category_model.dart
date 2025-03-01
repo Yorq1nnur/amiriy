@@ -18,8 +18,8 @@ class CategoryModel {
   }
 }
 
-class CategoryModelFields{
-  static const String docId= 'doc_id';
-  static const String imageUrl= 'image_url';
-  static const String categoryName= 'category_name';
+class CategoryModelFields {
+  static const String docId = 'doc_id';
+  static const String imageUrl = 'image_url';
+  static const String categoryName = 'category_name';
 }
