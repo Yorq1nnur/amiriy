@@ -1,5 +1,3 @@
-import 'package:amiriy/bloc/banner/banner_bloc.dart';
-import 'package:amiriy/bloc/banner/banner_state.dart';
 import 'package:amiriy/bloc/book/book_bloc.dart';
 import 'package:amiriy/bloc/book/book_event.dart';
 import 'package:amiriy/bloc/category/category_bloc.dart';
@@ -7,7 +5,6 @@ import 'package:amiriy/bloc/category/category_state.dart';
 import 'package:amiriy/bloc/form_status/form_status.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_bloc.dart';
 import 'package:amiriy/bloc/recommended_books/recommended_books_state.dart';
-import 'package:amiriy/screens/global_widgets/banner_items.dart';
 import 'package:amiriy/screens/global_widgets/books_item.dart';
 import 'package:amiriy/screens/global_widgets/category_button.dart';
 import 'package:amiriy/screens/global_widgets/item_books_search.dart';
@@ -75,28 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             20.getH(),
-            BlocBuilder<BannerBloc, BannerState>(
-              builder: (context, state) {
-                return context.read<BannerBloc>().state.banners.isNotEmpty
-                    ? BannerItems(
-                        banners: state.banners,
-                      )
-                    : const SizedBox.shrink();
-              },
-            ),
-            context.read<BannerBloc>().state.banners.isNotEmpty
-                ? 20.getH()
-                : const SizedBox.shrink(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32.w),
-              child: GlobalText(
-                data: 'categories',
-                fontSize: 18.w,
-                fontWeight: FontWeight.w700,
-                isTranslate: true,
-              ),
-            ),
-            6.getH(),
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 32.w,
@@ -142,6 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       state.allCategories[index].docId,
                                 },
                               ).then((v) async {
+                                if(!context.mounted) return;
                                 context.read<BookBloc>().add(
                                       GetBooksByCategoryId(
                                         categoryId:
