@@ -16,7 +16,8 @@ class DarkTheme {
       ),
     ),
     shadowColor: Colors.white,
-    cardColor: const Color(0xFF1E1E1E),
+    // cardColor: const Color(0xFF1E1E1E),
+    cardColor: Colors.amber,
     dividerColor: Colors.white,
     textTheme: const TextTheme(
       displayLarge: TextStyle(
