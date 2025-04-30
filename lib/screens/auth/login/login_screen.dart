@@ -13,6 +13,7 @@ import 'package:amiriy/utils/colors/app_colors.dart';
 import 'package:amiriy/utils/constants/app_constants.dart';
 import 'package:amiriy/utils/formaters/formatters.dart';
 import 'package:amiriy/utils/images/app_images.dart';
+import 'package:amiriy/utils/utility_functions/utility_functions.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,6 +49,9 @@ class _LoginScreenState extends State<LoginScreen> {
           listener: (context, state) {
             if (state.status == FormStatus.error) {
               errorDialog(context: context, errorText: state.errorMessage);
+              UtilityFunctions.methodPrint(
+                state.errorMessage,
+              );
             }
             if (state.status == FormStatus.authenticated) {
               if (state.statusMessage == "registered") {
